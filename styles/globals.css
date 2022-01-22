@@ -1,8 +1,9 @@
 
 :root { 
-  --mainColor:#EEEEEA;
+  --mainColor:#181635;
   --secondaryColor:#4c6ef5;
   --mainText:#000;
+  --highlight : #ccb;
   --secondaryText:#FBFEF9;
   --borderColor:#A31621;
 
@@ -37,7 +38,7 @@ p, li,span,label,input,textarea{
 font-family: 'Roboto Mono', monospace;
   color: var(--secondaryText);
 }
-h1 {font-size:  56px;}
+h1 {font-size:  46px;}
 h2 {font-size:  36px;}
 h3 {font-size:  28px;}
 h4 {font-size:  24px;}
