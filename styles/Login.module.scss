@@ -1,4 +1,4 @@
-
+@import "colors";
 .form{ 
   display: flex;
   flex-direction: column;
@@ -16,22 +16,32 @@
 .form_btn{ 
   padding: 0.8rem;
   height: 2rem;
-  background-color:#181635 ;
-  color: #ccb;
+  background-color:$mainColor ;
+  color: $mainText;
   border-radius: 4px;
   align-self: flex-end;
   margin-bottom: 0.9em;
   border: 0;
   font-size: 0.9rem;
   line-height: 0;
+  margin-bottom: 50px;
 }
 .form_btn:hover{ 
   transition: 0.5s;
-  background-color:#1816355b ;
-  color: #181635;
+  background-color:$highlight ;
 
 }
 .clicky{ 
   cursor: pointer;
   pointer-events: all !important;
+}
+.register{
+  margin-top: 1em;
+  padding: 0.3em;
+  border-radius: 0.2em;
+  background-color: $secondaryColor ;
+  color: $mainText;
+}
+.register:hover{ 
+  background-color: $highlight;
 }

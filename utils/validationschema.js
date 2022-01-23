@@ -1,8 +1,8 @@
 import { z } from 'zod'
 const email = z.string().email({ message: 'Invalid email address' }).transform((str) => str.toLowerCase().trim())
 
-const firstname = z.string().transform((str) => str.toLowerCase().trim())
-const lastname = z.string().transform((str) => str.toLowerCase().trim())
+const firstname = z.string().nonempty({ message: 'firstname is required' }).transform((str) => str.toLowerCase().trim())
+const lastname = z.string().nonempty({ message: 'lastname is required' }).transform((str) => str.toLowerCase().trim())
 
 const password = z
   .string()

@@ -2,18 +2,18 @@ import React, { useState } from 'react'
 import Container from '../core/Container'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Login } from '../../utils/validationschema'
+import { Signup } from '../../utils/validationschema'
 import styles from '../../styles/Login.module.scss'
-import { MdOutlineEmail, MdPassword } from 'react-icons/md'
+import { MdOutlineEmail, MdPassword, MdPerson, MdPersonAdd } from 'react-icons/md'
 import { BiHide, BiShow } from 'react-icons/bi'
 import classnames from 'classnames'
 import Link from 'next/link'
-const LoginForm = () => {
+const Register = () => {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm({ resolver: zodResolver(Login) })
+  } = useForm({ resolver: zodResolver(Signup) })
   const onSubmit = (data) => {
     console.log(data)
   }
@@ -28,8 +28,26 @@ const LoginForm = () => {
       <div className='card'>
         <div className='card-content'>
           <Container customStyle={conStyle}>
-            <h1 className='mb-6'>Login</h1>
+            <h1 className='mb-6'>Register</h1>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+              <div className='field'>
+                <div className='control has-icons-left'>
+                  <input className='input' type='firstname' placeholder='Firstname' {...register('firstname')} />
+                  {errors.email?.firstname && <p className='help is-danger'>{errors.firstname.message}</p>}
+                  <span className='icon is-small is-left'>
+                    <MdPerson />
+                  </span>
+                </div>
+              </div>
+              <div className='field'>
+                <div className='control has-icons-left'>
+                  <input className='input' type='lastname' placeholder='Lastname' {...register('lastname')} />
+                  {errors.lastname?.message && <p className='help is-danger'>{errors.lastname.message}</p>}
+                  <span className='icon is-small is-left'>
+                    <MdPersonAdd />
+                  </span>
+                </div>
+              </div>
               <div className='field'>
                 <div className='control has-icons-left has-icons-right'>
                   <input className='input' type='email' placeholder='Email' {...register('email')} />
@@ -53,11 +71,10 @@ const LoginForm = () => {
                 </div>
 
               </div>
-              <button type='submit' className='button is-success is-align-self-flex-end mb-3 mt-2'>Login</button>
+              <button type='submit' className='button is-success is-align-self-flex-end mb-3 mt-2'>Register</button>
             </form>
-            <p className='my-4'>Dont have an account? </p>
-            <a className='button is-warning'><Link href='/register'>Register</Link></a>
-
+            <p className='my-4'>Already have an account? </p>
+            <a className='button is-warning'><Link href='/login'>Login</Link></a>
           </Container>
         </div>
       </div>
@@ -65,4 +82,4 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm
+export default Register
