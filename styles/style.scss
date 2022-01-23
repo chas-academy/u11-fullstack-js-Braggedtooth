@@ -1,0 +1,52 @@
+@import "bulma/bulma";
+
+
+$mainColor:#181635;
+$secondaryColor:#4c6ef5;
+$mainText:#000;
+$highlight : #ccb;
+$secondaryText:#FBFEF9;
+$borderColor:#A31621;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #4c6ef5;
+  color: #000;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+h1,h2,h3,h4,h5,h6,strong{ 
+  font-family: 'Rajdhani', sans-serif;
+
+  color: $mainText;
+}
+p, li,span,label,input,textarea{
+
+font-family: 'Roboto Mono', monospace;
+  color: $secondaryText;
+}
+h1 {font-size:  46px;}
+h2 {font-size:  36px;}
+h3 {font-size:  28px;}
+h4 {font-size:  24px;}
+h5 {font-size:  20px;}
+h6 {font-size:  16px;}
+
+
+
+.control .icon {
+  pointer-events: all;
+}

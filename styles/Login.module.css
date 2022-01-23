@@ -1,0 +1,37 @@
+
+.form{ 
+  display: flex;
+  flex-direction: column;
+  
+}
+@media only screen and (max-width: 600px) {
+
+  .form{ 
+    display: flex;
+    flex-direction: column;
+    
+    
+  }
+}
+.form_btn{ 
+  padding: 0.8rem;
+  height: 2rem;
+  background-color:#181635 ;
+  color: #ccb;
+  border-radius: 4px;
+  align-self: flex-end;
+  margin-bottom: 0.9em;
+  border: 0;
+  font-size: 0.9rem;
+  line-height: 0;
+}
+.form_btn:hover{ 
+  transition: 0.5s;
+  background-color:#1816355b ;
+  color: #181635;
+
+}
+.clicky{ 
+  cursor: pointer;
+  pointer-events: all !important;
+}

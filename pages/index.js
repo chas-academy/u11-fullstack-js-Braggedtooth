@@ -3,11 +3,9 @@ import Image from 'next/image'
 import Layout from '../components/Layout'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home () {
   return (
-      <div>
-       
-      </div>
+    <div />
   )
 }
-Home.getLayout =(page)=><Layout title="Home">{page}</Layout>
+Home.getLayout = (page) => <Layout title='Home'>{page}</Layout>
