@@ -21,6 +21,7 @@ const Register = () => {
   const [toggle, setToggle] = useState(true)
   const togglePassword = () => setToggle(!toggle)
   const conStyle = {
+
     padding: '2rem'
   }
   return (
@@ -28,11 +29,11 @@ const Register = () => {
       <div className='card'>
         <div className='card-content'>
           <Container customStyle={conStyle}>
-            <h1 className='mb-6'>Register</h1>
+            <h1 className='mb-6 has-text-centered'>Skapa Konto</h1>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
               <div className='field'>
                 <div className='control has-icons-left'>
-                  <input className='input' type='firstname' placeholder='Firstname' {...register('firstname')} />
+                  <input className='input' type='firstname' placeholder='Förnamn' {...register('firstname')} />
                   {errors.email?.firstname && <p className='help is-danger'>{errors.firstname.message}</p>}
                   <span className='icon is-small is-left'>
                     <MdPerson />
@@ -41,7 +42,7 @@ const Register = () => {
               </div>
               <div className='field'>
                 <div className='control has-icons-left'>
-                  <input className='input' type='lastname' placeholder='Lastname' {...register('lastname')} />
+                  <input className='input' type='lastname' placeholder='Efternamn' {...register('lastname')} />
                   {errors.lastname?.message && <p className='help is-danger'>{errors.lastname.message}</p>}
                   <span className='icon is-small is-left'>
                     <MdPersonAdd />
@@ -50,7 +51,7 @@ const Register = () => {
               </div>
               <div className='field'>
                 <div className='control has-icons-left has-icons-right'>
-                  <input className='input' type='email' placeholder='Email' {...register('email')} />
+                  <input className='input' type='email' placeholder='E-post' {...register('email')} />
                   {errors.email?.message && <p className='help is-danger'>{errors.email.message}</p>}
                   <span className='icon is-small is-left'>
                     <MdOutlineEmail />
@@ -59,7 +60,7 @@ const Register = () => {
               </div>
               <div className='field'>
                 <div className='control has-icons-left has-icons-right '>
-                  <input className='input' type={toggle ? 'password' : 'text'} placeholder='Password' {...register('password')} />
+                  <input className='input' type={toggle ? 'password' : 'text'} placeholder='Lösenord' {...register('password')} />
 
                   {errors.password?.message && <p className='help is-danger'>{errors.password.message}</p>}
                   <span className='icon is-small is-left'>
@@ -71,10 +72,9 @@ const Register = () => {
                 </div>
 
               </div>
-              <button type='submit' className='button is-success is-align-self-flex-end mb-3 mt-2'>Register</button>
+              <button type='submit' className={classnames({ 'button has-text-grey-light  mb-3 mt-2 has-background-black-ter is-hover': true })}>Registera</button>
             </form>
-            <p className='my-4'>Already have an account? </p>
-            <a className='button is-warning'><Link href='/login'>Login</Link></a>
+            <h5 className='has-text-centered my-2 has-text-black '> Redan registrerad?  <Link href='/login'><a className='has-text-weight-bold is-underlined '>Logga in</a></Link></h5>
           </Container>
         </div>
       </div>

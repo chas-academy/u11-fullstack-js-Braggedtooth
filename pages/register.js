@@ -5,20 +5,12 @@ import Container from '../components/core/Container'
 
 const RegisterStyle = {
   display: 'flex',
-  alignContent: 'center',
+  alignItems: 'center',
   justifyContent: 'center',
-  width: '80%',
-  margin: '10rem auto'
+  margin: 'auto'
 
 }
-const shadow = {
-  minWidth: '80%',
-  width: '20%',
-  padding: '1rem',
-  boxShadow: ' 4px 7px 22px 1px rgba(24,22,53,0.76)',
-  webkitBoxShadow: '4px 7px 22px 1px rgba(24,22,53,0.76)',
-  mozBoxShadow: '4px 7px 22px 1px rgba(24,22,53,0.76)'
-}
+
 const Register = () => {
   return (
     <Container customStyle={RegisterStyle}>

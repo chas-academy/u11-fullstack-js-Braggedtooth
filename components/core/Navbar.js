@@ -2,22 +2,23 @@ import Link from 'next/link'
 import React from 'react'
 import styles from '../../styles/Navbar.module.css'
 import classNames from 'classnames/bind'
+import { GiStarSwirl } from 'react-icons/gi'
 const LoggedIn = () => {
   return (
     <nav className={styles.navigation}>
       <Link href='/profile'>
         <a>
-          Account Details
+          Mina Sidor
         </a>
       </Link>
       <Link href='/reviews'>
         <a>
-          My Reviews
+          Recensioner
         </a>
       </Link>
-      <Link href='/logout'>
+      <Link href='/login'>
         <a>
-          Logout
+          Logga ut
         </a>
       </Link>
     </nav>
@@ -28,12 +29,12 @@ const LoggedOut = () => {
     <nav className={styles.navigation}>
       <Link href='/login'>
         <a>
-          Login
+          Logga in
         </a>
       </Link>
       <Link href='/about'>
         <a>
-          About Us
+          Om oss
         </a>
       </Link>
     </nav>
@@ -41,10 +42,12 @@ const LoggedOut = () => {
 }
 const Logo = () => {
   return (
-    <Link href='/'>
-      <a>
-        Real Agent Rating
-      </a>
+    <Link href='/' passHref>
+      <span className='has-background-dark p-4 has-text-black'>
+        <a>
+          <GiStarSwirl />  Mäklar Visionen
+        </a>
+      </span>
     </Link>
   )
 }
@@ -52,7 +55,7 @@ const cx = classNames.bind(styles)
 
 const Navbar = ({ user, loading }) => {
   return (
-    <header className={styles.navbar}>
+    <header className={classNames({ ' has-background-primary': true, [styles.navbar]: true })}>
       <Logo />
 
       {

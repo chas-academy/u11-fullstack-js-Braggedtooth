@@ -14,8 +14,16 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors }
   } = useForm({ resolver: zodResolver(Login) })
+  const [state, setState] = useState(false)
+  const login = (data) => {
+    setState(true)
+    setTimeout(() => {
+      alert('you are logged in')
+      setState(false)
+    }, 3000)
+  }
   const onSubmit = (data) => {
-    console.log(data)
+    login(data)
   }
 
   const [toggle, setToggle] = useState(true)
@@ -28,11 +36,11 @@ const LoginForm = () => {
       <div className='card'>
         <div className='card-content'>
           <Container customStyle={conStyle}>
-            <h1 className='mb-6'>Login</h1>
+            <h1 className='mb-6 has-text-centered has-text-black-ter '>Inloggning</h1>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
               <div className='field'>
                 <div className='control has-icons-left has-icons-right'>
-                  <input className='input' type='email' placeholder='Email' {...register('email')} />
+                  <input className='input' type='email' placeholder='E-post' {...register('email')} />
                   {errors.email?.message && <p className='help is-danger'>{errors.email.message}</p>}
                   <span className='icon is-small is-left'>
                     <MdOutlineEmail />
@@ -41,7 +49,7 @@ const LoginForm = () => {
               </div>
               <div className='field'>
                 <div className='control has-icons-left has-icons-right '>
-                  <input className='input' type={toggle ? 'password' : 'text'} placeholder='Password' {...register('password')} />
+                  <input className='input' type={toggle ? 'password' : 'text'} placeholder='Lösenord' {...register('password')} />
 
                   {errors.password?.message && <p className='help is-danger'>{errors.password.message}</p>}
                   <span className='icon is-small is-left'>
@@ -53,10 +61,10 @@ const LoginForm = () => {
                 </div>
 
               </div>
-              <button type='submit' className='button is-success is-align-self-flex-end mb-3 mt-2'>Login</button>
+              <button type='submit' className={classnames({ 'button has-text-grey-light  mb-3 mt-2 has-background-black-ter is-hover': true, 'is-loading': state })}>Logga in</button>
             </form>
-            <p className='my-4'>Dont have an account? </p>
-            <a className='button is-warning'><Link href='/register'>Register</Link></a>
+
+            <h5 className='has-text-centered my-2 has-text-black '>Inget Konto?  <Link href='/register'><a className='has-text-weight-bold is-underlined '> Registera dig</a></Link></h5>
 
           </Container>
         </div>

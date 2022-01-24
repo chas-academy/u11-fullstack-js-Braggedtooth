@@ -1,20 +1,34 @@
-$backgroundColor:#FAF8FF; 
+$backgroundColor:#b4b4b48f; 
 $mainColor:#8D83EE;
 $secondaryColor:#00C899;
-$mainText:#181635;
+$mainText:#111111;
 $highlight : #9691b43a;
 $secondaryText:#C7FCEB;
 $borderColor:#792525;
 
-$main:      	#826166;
+$main:      	#6a9590;
 $darkAccent: #618DA4;
-$lightAccent:#C38493;
+$lightAccent:#e2f8f5;
 $darkshades:#251A23;
-$lightshades:#F7f7f8;
+$lightshades:#9d9da5b4;
 
 
-	$Primary:	$main;
-	$Info:$darkshades;
-	$Success:	#5c9857;
-	$Warning:#da881f;
- $Danger:	#f44336;
+	$primary:	$main;
+	$info:$darkshades;
+	$black: $mainText;
+	$success:	#308b27ce;
+	$warning:#ccbb23;
+ $danger:	#3d0400;
+	$light:$lightAccent ;
+	$dark:$darkAccent;
+	$white:$lightshades;
+	$info: $mainColor
+/* 
+$primary: $turquoise
+$link: $blue
+
+$success: $green
+$warning: $yellow
+$danger: $red
+$dark: $grey-darker
+$text: $grey-dark */
