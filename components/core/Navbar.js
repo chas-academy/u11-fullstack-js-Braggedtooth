@@ -51,11 +51,9 @@ const Logo = () => {
     </Link>
   )
 }
-const cx = classNames.bind(styles)
-
 const Navbar = ({ user, loading }) => {
   return (
-    <header className={classNames({ ' has-background-primary': true, [styles.navbar]: true })}>
+    <header className={classNames({ [styles.navbar]: true })} style={{ borderBottom: '1px solid black' }}>
       <Logo />
 
       {
