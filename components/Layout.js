@@ -6,11 +6,12 @@ import { useEffect, useState } from 'react'
 import useUser from '../services/hooks/useUser'
 import LoginForm from './forms/Login'
 import _ from 'lodash'
-import { AppShell, Container } from '@mantine/core'
+import { AppShell, Center, Container, Modal, Paper, Text } from '@mantine/core'
+import { useRouter } from 'next/router'
 
 const Layout = ({ title, children, auth }) => {
   const [authState, setAuth] = useState()
-
+  const router = useRouter()
   const { user } = useUser()
   useEffect(() => {
     if (_.isEmpty(user)) {
@@ -53,11 +54,22 @@ const Layout = ({ title, children, auth }) => {
       >
         {/*  <Appbar user /> */}
         {!auth || authState ? (
-          <Container>{children}</Container>
+          <Center>{children}</Center>
         ) : (
-          <Container>
+          <Modal
+            centered
+            opened
+            onClose={() => router.push('/')}
+            closeOnClickOutside
+          >
+            <Center>
+              <Text color='red'>
+                {' '}
+                Du måste logga in för att komma åt denna sidan
+              </Text>
+            </Center>
             <LoginForm />
-          </Container>
+          </Modal>
         )}
       </AppShell>
       {/*     <Navbar user />
