@@ -1,20 +1,16 @@
 import Head from 'next/head'
-import Navbar from './core/Navbar'
-import Container from './core/Container'
+import Appbar from './core/Navbar'
 import Footer from './core/Footer'
 import Search from './core/search'
 import { useEffect, useState } from 'react'
 import useUser from '../services/hooks/useUser'
 import LoginForm from './forms/Login'
 import _ from 'lodash'
+import { AppShell, Container } from '@mantine/core'
 
-const newStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  height: '100%'
-}
 const Layout = ({ title, children, auth }) => {
   const [authState, setAuth] = useState()
+
   const { user } = useUser()
   useEffect(() => {
     if (_.isEmpty(user)) {
@@ -22,28 +18,52 @@ const Layout = ({ title, children, auth }) => {
     }
     if (!_.isEmpty(user)) setAuth(true)
   }, [auth, user])
+
+  function CustomHeader (props) {
+    return <Appbar setOpened={props.togle} opened={props.opened} />
+  }
+  const [opened, setOpened] = useState(false)
   return (
     <>
       <Head>
         <title>{title || 'RealRate'}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-
-      <Container
-        customStyle={{ height: '100vh', justifyContent: 'space-between' }}
+      <AppShell
+        padding='xl'
+        fixed
+        navbarOffsetBreakpoint='sm'
+        header={
+          <CustomHeader
+            height={60}
+            padding='xs'
+            user
+            op={opened}
+            togle={setOpened}
+          />
+        }
+        styles={theme => ({
+          main: {
+            backgroundColor:
+              theme.colorScheme === 'dark'
+                ? theme.colors.dark[8]
+                : theme.colors.gray[0]
+          }
+        })}
       >
-        <Navbar user />
-        <p>{title}</p>
-        <Search />
+        {/*  <Appbar user /> */}
         {!auth || authState ? (
-          <Container customStyle={newStyle}>{children}</Container>
+          <Container>{children}</Container>
         ) : (
-          <Container customStyle={newStyle}>
+          <Container>
             <LoginForm />
           </Container>
         )}
-        <Footer />
-      </Container>
+      </AppShell>
+      {/*     <Navbar user />
+        <p>{title}</p>
+        <Footer /> */}
+      {/*  </Container> */}
     </>
   )
 }

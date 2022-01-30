@@ -1,4 +1,4 @@
-import { useBooleanToggle, useForm, useLocalStorageValue } from '@mantine/hooks'
+import { useBooleanToggle, useForm } from '@mantine/hooks'
 import { useState } from 'react'
 import { EnvelopeClosedIcon, LockClosedIcon } from '@modulz/radix-icons'
 import { login } from '../../services/lib/auth'
@@ -17,7 +17,6 @@ import {
 import { useNotifications } from '@mantine/notifications'
 import { BiCheck, BiError } from 'react-icons/bi'
 import { useRouter } from 'next/router'
-import { objToString } from '../../services/lib/helpers'
 import RegisterForm from './Register'
 import useUser from '../../services/hooks/useUser'
 

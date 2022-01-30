@@ -1,22 +1,13 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
-import Head from 'next/head'
-import Image from 'next/image'
-import Container from '../components/core/Container'
+import { Container } from '@mantine/core'
 import Layout from '../components/Layout'
-import styles from '../styles/Home.module.css'
 
-const hero = {
-  margin: '5rem auto',
-  justifyContent: 'center',
-  width: '80%'
-
-}
 export default function Home () {
   return (
     <>
-      <h1 className='title has-text-centered'>Välkommen Till Real Agent Rating</h1>
-      <Container customStyle={hero}>
+      <h1 className='title has-text-centered'>
+        Välkommen Till Real Agent Rating
+      </h1>
+      <Container>
         <div className='tile is-ancestor'>
           <div className='tile is-vertical is-8'>
             <div className='tile'>
@@ -62,4 +53,8 @@ export default function Home () {
     </>
   )
 }
-Home.getLayout = (page) => <Layout title='Home' auth={false}>{page}</Layout>
+Home.getLayout = page => (
+  <Layout title='Home' auth={false}>
+    {page}
+  </Layout>
+)

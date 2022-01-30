@@ -1,31 +1,8 @@
-.navbar{ 
-  height: 70px;
-  width:  100%;
+.navbar {
+  width: 100%;
   flex-direction: row;
-  display:  flex;
+  display: flex;
   justify-content: space-between;
   align-content: center;
   align-items: center;
-  background-color: var(--mainColor);
-  border-bottom: 1px solid var(--secondaryText);
-  color: var(--highlight);
-  margin-bottom: 5px;
- 
 }
-.navigation { 
-  display: flex;
-  justify-content: space-between;
-  max-height: 60px;
-}
-.navigation a{ 
-  border:0;
-  padding: 1rem;
-  margin: 0 4px ;
-}
-.navigation a:nth-last-child(1){ 
-  margin-right: 0;
-}
-.navigation a:hover{ 
-  background-color: antiquewhite;
-}
-

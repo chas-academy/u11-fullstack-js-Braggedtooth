@@ -25,6 +25,10 @@ class MyDocument extends Document {
             href='https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&family=Roboto+Mono&display=swap'
             rel='stylesheet'
           />
+          <link
+            href='http://fonts.cdnfonts.com/css/post-no-bills-jaffna'
+            rel='stylesheet'
+          />
         </Head>
         <body>
           <Main />

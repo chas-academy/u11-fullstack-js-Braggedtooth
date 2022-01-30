@@ -13,7 +13,7 @@ function MyApp ({ Component, pageProps }) {
       <MantineProvider
         withGlobalStyles
         withNormalizeCSS
-        theme={{ loader: 'bars' }}
+        theme={{ loader: 'bars', colorScheme: 'dark' }}
       >
         <NotificationsProvider>
           <StateMachineProvider>
