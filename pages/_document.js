@@ -1,9 +1,18 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-
+import { ServerStyles, createStylesServer } from '@mantine/next'
+const stylesServer = createStylesServer()
 class MyDocument extends Document {
   static async getInitialProps (ctx) {
     const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+    return {
+      ...initialProps,
+      styles: (
+        <>
+          {initialProps.styles}
+          <ServerStyles html={initialProps.html} server={stylesServer} />
+        </>
+      )
+    }
   }
 
   render () {
@@ -11,8 +20,11 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link rel='preconnect' href='https://fonts.googleapis.com' />
-          <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin />
-          <link href='https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&family=Roboto+Mono&display=swap' rel='stylesheet' />
+          <link rel='preconnect' href='https://fonts.gstatic.com' />
+          <link
+            href='https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&family=Roboto+Mono&display=swap'
+            rel='stylesheet'
+          />
         </Head>
         <body>
           <Main />

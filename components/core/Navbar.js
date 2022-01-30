@@ -1,26 +1,30 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Navbar.module.css'
 import classNames from 'classnames/bind'
 import { GiStarSwirl } from 'react-icons/gi'
+import useUser from '../../services/hooks/useUser'
+import { logout } from '../../services/lib/auth'
+import { useBooleanToggle, useToggle } from '@mantine/hooks'
+import _ from 'lodash'
 const LoggedIn = () => {
+  const { removeUserFromStore } = useUser()
   return (
     <nav className={styles.navigation}>
       <Link href='/profile'>
-        <a>
-          Mina Sidor
-        </a>
+        <a>Mina Sidor</a>
       </Link>
       <Link href='/reviews'>
-        <a>
-          Recensioner
-        </a>
+        <a>Recensioner</a>
       </Link>
-      <Link href='/login'>
-        <a>
-          Logga ut
-        </a>
-      </Link>
+      <button
+        onClick={() => {
+          logout()
+          removeUserFromStore()
+        }}
+      >
+        <a>Logga ut</a>
+      </button>
     </nav>
   )
 }
@@ -28,14 +32,10 @@ const LoggedOut = () => {
   return (
     <nav className={styles.navigation}>
       <Link href='/login'>
-        <a>
-          Logga in
-        </a>
+        <a>Logga in</a>
       </Link>
       <Link href='/about'>
-        <a>
-          Om oss
-        </a>
+        <a>Om oss</a>
       </Link>
     </nav>
   )
@@ -45,25 +45,31 @@ const Logo = () => {
     <Link href='/' passHref>
       <span className='has-background-dark p-4 has-text-black'>
         <a>
-          <GiStarSwirl />  Mäklar Visionen
+          <GiStarSwirl /> Mäklar Visionen
         </a>
       </span>
     </Link>
   )
 }
-const cx = classNames.bind(styles)
 
-const Navbar = ({ user, loading }) => {
+const Navbar = () => {
+  const { user } = useUser()
+  const [nav, toggle] = useState()
+  useEffect(() => {
+    if (_.isEmpty(user)) {
+      toggle(false)
+    }
+    if (!_.isEmpty(user)) toggle(true)
+  }, [user])
   return (
-    <header className={classNames({ ' has-background-primary': true, [styles.navbar]: true })}>
+    <header
+      className={classNames({
+        ' has-background-primary': true,
+        [styles.navbar]: true
+      })}
+    >
       <Logo />
-
-      {
-        !loading && (
-          user ? <LoggedIn /> : <LoggedOut />
-        )
-      }
-
+      {nav ? <LoggedIn /> : <LoggedOut />}
     </header>
   )
 }

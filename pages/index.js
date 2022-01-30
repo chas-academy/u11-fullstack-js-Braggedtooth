@@ -62,4 +62,4 @@ export default function Home () {
     </>
   )
 }
-Home.getLayout = (page) => <Layout title='Home'>{page}</Layout>
+Home.getLayout = (page) => <Layout title='Home' auth={false}>{page}</Layout>

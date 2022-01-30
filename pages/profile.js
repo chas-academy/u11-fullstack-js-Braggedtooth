@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from 'react'
 import Layout from '../components/Layout'
 
@@ -6,4 +7,8 @@ const Profile = () => {
 }
 
 export default Profile
-Profile.getLayout = (page) => <Layout title='Profile'>{page}</Layout>
+Profile.getLayout = page => (
+  <Layout title='Profile' auth>
+    {page}
+  </Layout>
+)

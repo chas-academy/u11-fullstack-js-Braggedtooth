@@ -1,7 +1,9 @@
 import React from 'react'
-import LoginForm from '../components/forms/Login'
 import Layout from '../components/Layout'
 import Container from '../components/core/Container'
+import LoginForm from '../components/forms/Login'
+import useUser from '../services/hooks/useUser'
+import { useRouter } from 'next/router'
 
 const loginStyle = {
   display: 'flex',
@@ -11,8 +13,11 @@ const loginStyle = {
 }
 
 const Login = () => {
+  /*   const { user } = useUser()
+  const router = useRouter()
+  if (user) router.push('/') */
   return (
-    <Container customStyle={loginStyle}>
+    <Container>
       <LoginForm />
     </Container>
   )
@@ -20,4 +25,8 @@ const Login = () => {
 
 export default Login
 
-Login.getLayout = (page) => <Layout title='Login'>{page}</Layout>
+Login.getLayout = page => (
+  <Layout title='Login' auth={false}>
+    {page}
+  </Layout>
+)
