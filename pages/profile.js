@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import { Container, Paper, Tabs, Title } from '@mantine/core'
@@ -8,7 +7,7 @@ import Account from '../components/account'
 const Profile = () => {
   const [activeTab, setActiveTab] = useState(1)
   return (
-    <Paper sx={{ width: '80%' }} shadow='md'>
+    <Paper shadow='md' padding='xl'>
       <Paper withBorder padding='xs'>
         <Title order={2} align='center'>
           Mina Sidor

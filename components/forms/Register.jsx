@@ -16,7 +16,6 @@ import { BiCheck, BiError } from 'react-icons/bi'
 
 const RegisterForm = ({ toggle }) => {
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
   const notifications = useNotifications()
   const form = useForm({
     initialValues: {

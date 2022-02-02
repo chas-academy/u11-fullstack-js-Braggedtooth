@@ -1,12 +1,10 @@
 import Head from 'next/head'
 import Appbar from './core/Navbar'
-import Footer from './core/Footer'
-import Search from './core/search'
 import { useEffect, useState } from 'react'
 import useUser from '../services/hooks/useUser'
 import LoginForm from './forms/Login'
 import _ from 'lodash'
-import { AppShell, Center, Container, Modal, Paper, Text } from '@mantine/core'
+import { AppShell, Center, Modal, Text } from '@mantine/core'
 import { useRouter } from 'next/router'
 
 const Layout = ({ title, children, auth }) => {
@@ -52,7 +50,6 @@ const Layout = ({ title, children, auth }) => {
           }
         })}
       >
-        {/*  <Appbar user /> */}
         {!auth || authState ? (
           <Center>{children}</Center>
         ) : (

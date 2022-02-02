@@ -18,5 +18,16 @@ export const registerAcc = async user => {
 }
 
 export const logout = () => {
-  return axios.delete(apiUrl + 'logout', { withCredentials: true })
+  return axios.delete(apiUrl + '/logout', { withCredentials: true })
+}
+
+export const editProfile = user => {
+  const auth = axios.put(apiUrl + '/user/editprofile', user, {
+    withCredentials: true,
+    headers: {
+      'content-type': 'application/json',
+      'access-control-allow-origin': apiUrl
+    }
+  })
+  return auth
 }
