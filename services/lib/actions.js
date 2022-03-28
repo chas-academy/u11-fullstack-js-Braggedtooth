@@ -16,7 +16,8 @@ function removeUser (state, payload) {
   }
 }
 function getChangedProps (user, payload) {
-  const diff = Object.keys(user).reduce((result, key) => {
+  return Object.keys(user).reduce((result, key) => {
+    // eslint-disable-next-line no-prototype-builtins
     if (!payload.hasOwnProperty(key)) {
       result.push(key)
     } else if (_.isEqual(user[key], payload[key])) {
@@ -25,7 +26,5 @@ function getChangedProps (user, payload) {
     }
     return result
   }, Object.keys(payload))
-
-  return diff
 }
 export { storeUser, removeUser, getChangedProps }

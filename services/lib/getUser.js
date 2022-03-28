@@ -2,7 +2,7 @@ import axios from 'axios'
 import { apiUrl } from './config'
 
 const getUser = () => {
-  const data = axios
+  return axios
     .get(apiUrl + '/user/me', {
       withCredentials: true,
       headers: {
@@ -11,7 +11,6 @@ const getUser = () => {
       }
     })
     .then(res => res.data.data)
-  return data
 }
 
 export default getUser

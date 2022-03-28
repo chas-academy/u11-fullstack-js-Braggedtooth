@@ -49,7 +49,7 @@ const LoginForm = () => {
           message: res.data.message,
           icon: <BiCheck />
         })
-        addUserToStore(res.data.User)
+        addUserToStore(res.data)
         setLoading(false)
         router.push('/profile')
       })
@@ -62,7 +62,7 @@ const LoginForm = () => {
           icon: <BiError />
         })
       })
-      .finally(setLoading(false))
+      .finally(() => setLoading(false))
   }
 
   return (
