@@ -13,8 +13,8 @@ const Profile = () => {
           Mina Sidor
         </Title>
       </Paper>
-      <Container>
-        <Tabs active={activeTab} onTabChange={setActiveTab} grow>
+      <Container fluid>
+        <Tabs active={activeTab} onTabChange={setActiveTab} grow variant={"pills"} orientation={'vertical'} mt={30}>
           <Tabs.Tab label='Konto ' icon={<FcBookmark />}>
             <Account />
           </Tabs.Tab>

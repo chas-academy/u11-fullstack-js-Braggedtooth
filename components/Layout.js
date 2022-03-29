@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import useUser from '../services/hooks/useUser'
 import LoginForm from './forms/Login'
 import _ from 'lodash'
-import { AppShell, Center, Modal, Text } from '@mantine/core'
+import { AppShell, Center, Container, Modal, Text } from '@mantine/core'
 import { useRouter } from 'next/router'
 
 const Layout = ({ title, children, auth }) => {
@@ -25,11 +25,11 @@ const Layout = ({ title, children, auth }) => {
   return (
     <>
       <Head>
-        <title>{title || 'RealRate'}</title>
+        <title>{title || 'MV'}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <AppShell
-        padding='xl'
+        padding='-60px'
         fixed
         navbarOffsetBreakpoint='sm'
         header={
@@ -51,7 +51,7 @@ const Layout = ({ title, children, auth }) => {
         })}
       >
         {!auth || authState ? (
-          <Center>{children}</Center>
+          <Container width={'60'}>{children}</Container>
         ) : (
           <Modal
             centered

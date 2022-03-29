@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { GiStarSwirl } from 'react-icons/gi'
 import useUser from '../../services/hooks/useUser'
 import { logout } from '../../services/lib/auth'
 import LogoIcon from './logo.svg'
@@ -13,7 +12,6 @@ import {
   Anchor,
   Menu,
   MenuItem,
-  Paper,
   Text,
   useMantineTheme
 } from '@mantine/core'
@@ -27,17 +25,18 @@ import {
 } from 'react-icons/md'
 import Image from 'next/image'
 const LoggedIn = () => {
-  const [opened, setOpened] = useState()
+  const [opened, setOpened] = useState(false)
   const theme = useMantineTheme()
   const { removeUserFromStore } = useUser()
   return (
     <Menu
       placement='center'
       gutter={6}
+      onClose={() => setOpened(!opened)}
       control={
         <Burger
           opened={opened}
-          onClick={() => setOpened(o => !o)}
+          onClick={() => setOpened(!opened)}
           size='sm'
           color={theme.colors.gray[6]}
           mr='xl'
@@ -45,7 +44,7 @@ const LoggedIn = () => {
       }
     >
       <MenuItem icon={<MdPerson />}>
-        <Link href='/profile' passHref>
+        <Link href='/mina-sidor' passHref>
           <Text size='sm' color='gray'>
             Mina Sidor{' '}
           </Text>
