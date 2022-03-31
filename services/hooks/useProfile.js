@@ -1,10 +1,29 @@
-import { useMutation, useQuery } from 'react-query'
-import { login } from 'services/lib/auth'
+import { useMutation } from 'react-query'
+import { editProfile, login, logout } from '../lib/auth'
+import useStore from './useStore'
 
 const useProfile = () => {
-  const { mutate } = useMutation(user => login(user))
+  const { addUserToStore, setAuth } = useStore()
+  const { mutateAsync: Login } = useMutation(user => login(user), {
+    onSuccess: data => {
+      addUserToStore(data.data.data)
+      setAuth(true)
+    }
+  })
+
+  const { mutateAsync: EditProfile } = useMutation(user => {
+    addUserToStore(user)
+    editProfile(user)
+  })
+  const { mutateAsync: LogOut } = useMutation(() => logout(), {
+    onSuccess: () => {
+      setAuth(false)
+    }
+  })
   return {
-    LOGIN: mutate
+    Login,
+    LogOut,
+    EditProfile
   }
 }
 

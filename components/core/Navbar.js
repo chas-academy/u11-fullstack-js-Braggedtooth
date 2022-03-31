@@ -1,68 +1,47 @@
-import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import useUser from '../../services/hooks/useUser'
-import { logout } from '../../services/lib/auth'
-import LogoIcon from './logo.svg'
-import _ from 'lodash'
-import {
-  Box,
-  Burger,
-  Group,
-  Header,
-  Anchor,
-  Menu,
-  MenuItem,
-  Text,
-  useMantineTheme
-} from '@mantine/core'
-
-import {
-  MdAttribution,
-  MdLogin,
-  MdLogout,
-  MdPerson,
-  MdReviews
-} from 'react-icons/md'
+import { Anchor, Box, Burger, Group, Header, Menu, MenuItem, Text, useMantineTheme } from '@mantine/core'
 import Image from 'next/image'
+import Link from 'next/link'
+import React, { useState } from 'react'
+
+import { MdAttribution, MdLogin, MdLogout, MdPerson, MdReviews } from 'react-icons/md'
+import useProfile from '../../services/hooks/useProfile'
+import useStore from '../../services/hooks/useStore'
+import LogoIcon from './logo.svg'
+
 const LoggedIn = () => {
   const [opened, setOpened] = useState(false)
   const theme = useMantineTheme()
-  const { removeUserFromStore } = useUser()
+  const { LogOut } = useProfile()
   return (
     <Menu
-      placement='center'
+      placement="center"
       gutter={6}
       onClose={() => setOpened(!opened)}
       control={
         <Burger
           opened={opened}
           onClick={() => setOpened(!opened)}
-          size='sm'
+          size="sm"
           color={theme.colors.gray[6]}
-          mr='xl'
+          mr="xl"
         />
       }
     >
-      <MenuItem icon={<MdPerson />}>
-        <Link href='/mina-sidor' passHref>
-          <Text size='sm' color='gray'>
-            Mina Sidor{' '}
-          </Text>
-        </Link>
+      <MenuItem icon={<MdPerson/>} component={Anchor} href="/mina-sidor">
+        <Text size="sm" color="gray">
+          Mina Sidor
+        </Text>
       </MenuItem>
-      <MenuItem icon={<MdReviews />}>
-        <Link href='/reviews' passHref>
-          <Text size='sm' color='gray'>
-            Recensioner
-          </Text>
-        </Link>
+      <MenuItem icon={<MdReviews/>} component={Anchor} href="/reviews">
+        <Text size="sm" color="gray">
+          Recensioner
+        </Text>
       </MenuItem>
       <MenuItem
-        icon={<MdLogout />}
-        color='red'
-        onClick={() => {
-          logout()
-          removeUserFromStore()
+        icon={<MdLogout/>}
+        color="red"
+        onClick={async () => {
+          await LogOut(undefined, undefined)
         }}
       >
         Logga ut
@@ -75,31 +54,27 @@ const LoggedOut = () => {
   const theme = useMantineTheme()
   return (
     <Menu
-      placement='center'
+      placement="center"
       gutter={6}
       control={
         <Burger
           opened={opened}
           onClick={() => setOpened(o => !o)}
-          size='sm'
+          size="sm"
           color={theme.colors.gray[6]}
-          mr='xl'
+          mr="xl"
         />
       }
     >
-      <MenuItem icon={<MdAttribution />}>
-        <Link href='/about' passHref>
-          <Text size='sm' color='gray'>
-            Om oss
-          </Text>
-        </Link>
+      <MenuItem icon={MdAttribution} component={Anchor} href="/about">
+        <Text size="md">
+          Om oss
+        </Text>
       </MenuItem>
-      <MenuItem color='green' icon={<MdLogin />}>
-        <Link href='/login' passHref>
-          <Text size='sm' color='gray'>
-            Logga in
-          </Text>
-        </Link>
+      <MenuItem color="green" component={Anchor} href="/login" icon={MdLogin}>
+        <Text size="md">
+          Logga in
+        </Text>
       </MenuItem>
     </Menu>
   )
@@ -113,11 +88,11 @@ const Logo = () => {
         alignItems: 'center'
       }}
     >
-      <Image src={LogoIcon} height={50} width={50} alt='logo' />
-      <Link href='/' passHref>
+      <Image src={LogoIcon} height={50} width={50} alt="logo"/>
+      <Link href="/" passHref>
         <Anchor
-          size='xl'
-          color='red'
+          size="xl"
+          color="red"
           style={{
             marginLeft: '10px',
             fontFamily: 'Post No Bills Jaffna Medium'
@@ -131,18 +106,11 @@ const Logo = () => {
 }
 
 const Appbar = () => {
-  const { user } = useUser()
-  const [nav, toggle] = useState()
-  useEffect(() => {
-    if (_.isEmpty(user)) {
-      toggle(false)
-    }
-    if (!_.isEmpty(user)) toggle(true)
-  }, [user])
+  const { isLoggedIn } = useStore().store
   return (
     <Header
       height={70}
-      padding='md'
+      padding="md"
       style={{
         display: 'flex',
         flexDirection: 'row',
@@ -156,9 +124,9 @@ const Appbar = () => {
           height: '100%'
         }}
       >
-        <Logo />
+        <Logo/>
       </div>
-      <Group position='apart'>{nav ? <LoggedIn /> : <LoggedOut />}</Group>
+      <Group position="apart">{isLoggedIn ? <LoggedIn/> : <LoggedOut/>}</Group>
     </Header>
   )
 }

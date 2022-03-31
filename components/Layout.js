@@ -1,44 +1,46 @@
-import Head from 'next/head'
-import Appbar from './core/Navbar'
-import { useEffect, useState } from 'react'
-import useUser from '../services/hooks/useUser'
-import LoginForm from './forms/Login'
-import _ from 'lodash'
 import { AppShell, Center, Container, Modal, Text } from '@mantine/core'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import useStore from '../services/hooks/useStore'
+import Appbar from './core/Navbar'
+import LoginForm from './forms/Login'
 
 const Layout = ({ title, children, auth }) => {
   const [authState, setAuth] = useState()
   const router = useRouter()
-  const { user } = useUser()
+  const { store } = useStore()
+  const { isLoggedIn } = store
   useEffect(() => {
-    if (_.isEmpty(user)) {
-      setAuth(false)
-    }
-    if (!_.isEmpty(user)) setAuth(true)
-  }, [auth, user])
+    setAuth(isLoggedIn)
+    // if (_.isEmpty(user)) {
+    // setAuth(false)
+    //}
+    //if (!_.isEmpty(user)) setAuth(true)
+  }, [isLoggedIn])
 
   function CustomHeader (props) {
-    return <Appbar setOpened={props.togle} opened={props.opened} />
+    return <Appbar setOpened={props.toggle} opened={props.opened}/>
   }
+
   const [opened, setOpened] = useState(false)
   return (
     <>
       <Head>
         <title>{title || 'MV'}</title>
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico"/>
       </Head>
       <AppShell
-        padding='-60px'
+        padding="-60px"
         fixed
-        navbarOffsetBreakpoint='sm'
+        navbarOffsetBreakpoint="sm"
         header={
           <CustomHeader
             height={60}
-            padding='xs'
+            padding="xs"
             user
             op={opened}
-            togle={setOpened}
+            toggle={setOpened}
           />
         }
         styles={theme => ({
@@ -60,12 +62,12 @@ const Layout = ({ title, children, auth }) => {
             closeOnClickOutside
           >
             <Center>
-              <Text color='red'>
+              <Text color="red">
                 {' '}
                 Du måste logga in för att komma åt denna sidan
               </Text>
             </Center>
-            <LoginForm />
+            <LoginForm/>
           </Modal>
         )}
       </AppShell>

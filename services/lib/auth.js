@@ -20,7 +20,7 @@ export const logout = () => {
 }
 
 export const editProfile = user => {
-  return axios.put(apiUrl + '/user/edit', user, {
+  return axios.put(apiUrl + '/user/edit-profile', user, {
     withCredentials: true,
     headers: {
       'content-type': 'application/json',

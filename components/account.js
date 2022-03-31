@@ -1,15 +1,16 @@
-import { Anchor, Button, Modal, TextInput, Text, Group } from '@mantine/core'
-import useUser from '../services/hooks/useUser'
-import { useState } from 'react'
-import { getChangedProps } from '../services/lib/actions'
+import { Anchor, Button, Group, Modal, Text, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import { useNotifications } from '@mantine/notifications'
-import { MdCheck, MdError, MdInfo } from 'react-icons/md'
 import _ from 'lodash'
-import { editProfile } from '../services/lib/auth'
+import { useState } from 'react'
+import { MdCheck, MdError, MdInfo } from 'react-icons/md'
+import useProfile from '../services/hooks/useProfile'
+import useStore from '../services/hooks/useStore'
+import { getChangedProps } from '../services/lib/actions'
 
 const Account = () => {
-  const { user, addUserToStore } = useUser()
+  const { user } = useStore().store
+  const { EditProfile } = useProfile()
   const [edit, setEdit] = useState(false)
   const [modal, showModal] = useState(false)
   const notifications = useNotifications()
@@ -17,29 +18,30 @@ const Account = () => {
     data.role = 'USER'
     const hasEdit = getChangedProps(user, data)
     if (_.isEmpty(hasEdit)) {
+      showModal(false)
       notifications.showNotification({
-        message: 'Profile information unchanged',
+        message: 'Din profile är oförändrad',
         color: 'blue',
-        icon: <MdInfo />
+        icon: <MdInfo/>
       })
     }
     if (!_.isEmpty(hasEdit)) {
-      editProfile(data)
+      EditProfile(data)
         .then(res => {
-          addUserToStore(data)
+          showModal(false)
           notifications.showNotification({
             message: res.data.message,
             color: 'green',
-            icon: <MdCheck />
+            icon: <MdCheck/>
           })
         })
-        .catch(error => {
-          const err = error.response.data
+        .catch(() => {
+          showModal(false)
           notifications.showNotification({
-            title: error.response.status,
-            message: err.error.message,
+            title: 'Någåt gick fel..',
+            message: 'Vänligen logga in igen',
             color: 'red',
-            icon: <MdError />
+            icon: <MdError/>
           })
         })
     }
@@ -55,8 +57,8 @@ const Account = () => {
 
   return (
     <>
-      <Group direction='column' style={{ padding: '2em' }}>
-        <Text padding='2em' color='lime'>
+      <Group direction="column" style={{ padding: '2em' }}>
+        <Text padding="2em" color="lime">
           Förnamn: <Anchor> {user.firstname} </Anchor>
         </Text>
         <Text>
@@ -67,7 +69,7 @@ const Account = () => {
         </Text>
       </Group>
       <Button
-        my='md'
+        my="md"
         onClick={() => {
           showModal(true)
           setEdit(!edit)
@@ -80,20 +82,20 @@ const Account = () => {
           <form onSubmit={form.onSubmit(onSave)}>
             <TextInput
               placeholder={user.firstname}
-              label='Förnamn'
+              label="Förnamn"
               {...form.getInputProps('firstname')}
             />
             <TextInput
               placeholder={user.lastname}
-              label='Efternamn'
+              label="Efternamn"
               {...form.getInputProps('lastname')}
             />
             <TextInput
               placeholder={user.email}
-              label='Mailaddress'
+              label="Mailaddress"
               {...form.getInputProps('email')}
             />
-            <Button type='submit' color='green' my='md'>
+            <Button type="submit" color="green" my="md">
               Spara
             </Button>
           </form>
