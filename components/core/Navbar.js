@@ -50,7 +50,7 @@ const LoggedIn = () => {
   )
 }
 const LoggedOut = () => {
-  const [opened, setOpened] = useState()
+  const [opened, setOpened] = useState(false)
   const theme = useMantineTheme()
   return (
     <Menu
@@ -59,7 +59,7 @@ const LoggedOut = () => {
       control={
         <Burger
           opened={opened}
-          onClick={() => setOpened(o => !o)}
+          onClick={() => setOpened(!opened)}
           size="sm"
           color={theme.colors.gray[6]}
           mr="xl"
