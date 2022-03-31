@@ -1,23 +1,15 @@
 import { AppShell, Center, Container, Modal, Text } from '@mantine/core'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import useStore from '../services/hooks/useStore'
 import Appbar from './core/Navbar'
 import LoginForm from './forms/Login'
 
 const Layout = ({ title, children, auth }) => {
-  const [authState, setAuth] = useState()
   const router = useRouter()
   const { store } = useStore()
   const { isLoggedIn } = store
-  useEffect(() => {
-    setAuth(isLoggedIn)
-    // if (_.isEmpty(user)) {
-    // setAuth(false)
-    //}
-    //if (!_.isEmpty(user)) setAuth(true)
-  }, [isLoggedIn])
 
   function CustomHeader (props) {
     return <Appbar setOpened={props.toggle} opened={props.opened}/>
@@ -28,7 +20,6 @@ const Layout = ({ title, children, auth }) => {
     <>
       <Head>
         <title>{title || 'MV'}</title>
-        <link rel="icon" href="/favicon.ico"/>
       </Head>
       <AppShell
         padding="-60px"
@@ -52,7 +43,7 @@ const Layout = ({ title, children, auth }) => {
           }
         })}
       >
-        {!auth || authState ? (
+        {!auth || isLoggedIn ? (
           <Container width={'60'}>{children}</Container>
         ) : (
           <Modal

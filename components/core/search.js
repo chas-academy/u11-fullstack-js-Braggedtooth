@@ -1,30 +1,30 @@
-import { Input, InputWrapper, Tooltip } from '@mantine/core'
-import classNames from 'classnames'
+import { Input, InputWrapper, Loader, Tooltip } from '@mantine/core'
 import { isEmpty } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { MdPersonSearch } from 'react-icons/md'
+import useDebounce from '../../services/hooks/useDebouce'
+import useSearch from '../../services/hooks/useSearch'
 import Container from './Container'
 
 const Search = () => {
+  const { search, isLoading } = useSearch()
+  const [query, setQuery] = useState()
+  const debounced = useDebounce(query, 500)
+  useEffect(() => {
+
+    return search(debounced)
+
+  }, [debounced, search])
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm()
-  const [query, SetQuery] = useState()
-  console.log(errors)
+
   const submit = (data) => {
-    SetQuery(data.query)
-    console.log(data)
+    search(data.query)
   }
-  const [loading, setLoading] = useState(false)
-  useEffect(() => {
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-  }, [query])
 
   const rightSection = (
     <Tooltip label="We do not send spam" position="top" placement="end">
@@ -34,19 +34,19 @@ const Search = () => {
 
   return (
     <Container customStyle={{ alignItems: 'stretch', width: '80%', marginBottom: '2rem', marginTop: '2rem' }}>
-      <div className={classNames({ 'control is-medium is-hovered has-icons-left': true, 'is-loading ': loading })}>
-        <form onSubmit={handleSubmit(submit)}>
-          <InputWrapper
-            error={!isEmpty(errors) && 'något gick fel...'}
-          >
-            <Input
-              placeholder="Sök Mäklare"
-              rightSection={rightSection} {...register('query', { onChange: (e) => SetQuery(e.target.value) })}
-            />
-          </InputWrapper>
+      <form onSubmit={handleSubmit(submit)}>
+        <InputWrapper
+          loading
+          error={!isEmpty(errors) && 'något gick fel...'}
+        >
+          <Input
+            placeholder="Sök Mäklare"
+            rightSection={!isLoading ? rightSection : <Loader
+              variant="dots"/>} {...register('query', { onChange: (e) => setQuery(e.target.value) })}
+          />
+        </InputWrapper>
 
-        </form>
-      </div>
+      </form>
     </Container>
   )
 }
