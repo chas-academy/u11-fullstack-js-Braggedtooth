@@ -6,4 +6,8 @@ const About = () => {
 }
 
 export default About
-About.getLayout = (page) => <Layout title='About Us'>{page}</Layout>
+About.getLayout = page => (
+  <Layout title='About Us' auth={false}>
+    {page}
+  </Layout>
+)

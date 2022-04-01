@@ -19,7 +19,7 @@ const Register = () => {
     </Container>
   )
 }
-
-export default Register
+asPagewith
+export default
 
 Register.getLayout = (page) => <Layout title='Register'>{page}</Layout>

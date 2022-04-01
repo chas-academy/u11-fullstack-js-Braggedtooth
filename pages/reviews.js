@@ -1,8 +1,9 @@
+import Search from '../components/core/search'
 import React from 'react'
 import Layout from '../components/Layout'
 
 const Reviews = () => {
-  return <div />
+  return <Search />
 }
 
 export default Reviews

@@ -1,69 +1,135 @@
+import { Anchor, Box, Burger, Group, Header, Menu, MenuItem, Text, useMantineTheme } from '@mantine/core'
+import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import styles from '../../styles/Navbar.module.css'
-import classNames from 'classnames/bind'
-import { GiStarSwirl } from 'react-icons/gi'
+import React, { useState } from 'react'
+
+import { MdAttribution, MdLogin, MdLogout, MdPerson, MdReviews } from 'react-icons/md'
+import useProfile from '../../services/hooks/useProfile'
+import useStore from '../../services/hooks/useStore'
+import LogoIcon from './logo.svg'
+
 const LoggedIn = () => {
+  const [opened, setOpened] = useState(false)
+  const theme = useMantineTheme()
+  const { LogOut } = useProfile()
   return (
-    <nav className={styles.navigation}>
-      <Link href='/profile'>
-        <a>
+    <Menu
+      placement="center"
+      gutter={6}
+      onClose={() => setOpened(!opened)}
+      control={
+        <Burger
+          opened={opened}
+          onClick={() => setOpened(!opened)}
+          size="sm"
+          color={theme.colors.gray[6]}
+          mr="xl"
+        />
+      }
+    >
+      <MenuItem icon={<MdPerson/>} component={Anchor} href="/mina-sidor">
+        <Text size="sm" color="gray">
           Mina Sidor
-        </a>
-      </Link>
-      <Link href='/reviews'>
-        <a>
+        </Text>
+      </MenuItem>
+      <MenuItem icon={<MdReviews/>} component={Anchor} href="/reviews">
+        <Text size="sm" color="gray">
           Recensioner
-        </a>
-      </Link>
-      <Link href='/login'>
-        <a>
-          Logga ut
-        </a>
-      </Link>
-    </nav>
+        </Text>
+      </MenuItem>
+      <MenuItem
+        icon={<MdLogout/>}
+        color="red"
+        onClick={async () => {
+          await LogOut(undefined, undefined)
+        }}
+      >
+        Logga ut
+      </MenuItem>
+    </Menu>
   )
 }
 const LoggedOut = () => {
+  const [opened, setOpened] = useState(false)
+  const theme = useMantineTheme()
   return (
-    <nav className={styles.navigation}>
-      <Link href='/login'>
-        <a>
-          Logga in
-        </a>
-      </Link>
-      <Link href='/about'>
-        <a>
+    <Menu
+      placement="center"
+      gutter={6}
+      control={
+        <Burger
+          opened={opened}
+          onClick={() => setOpened(!opened)}
+          size="sm"
+          color={theme.colors.gray[6]}
+          mr="xl"
+        />
+      }
+    >
+      <MenuItem icon={MdAttribution} component={Anchor} href="/about">
+        <Text size="md">
           Om oss
-        </a>
-      </Link>
-    </nav>
+        </Text>
+      </MenuItem>
+      <MenuItem color="green" component={Anchor} href="/login" icon={MdLogin}>
+        <Text size="md">
+          Logga in
+        </Text>
+      </MenuItem>
+    </Menu>
   )
 }
 const Logo = () => {
   return (
-    <Link href='/' passHref>
-      <span className='has-background-dark p-4 has-text-black'>
-        <a>
-          <GiStarSwirl />  Mäklar Visionen
-        </a>
-      </span>
-    </Link>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center'
+      }}
+    >
+      <Image src={LogoIcon} height={50} width={50} alt="logo"/>
+      <Link href="/" passHref>
+        <Anchor
+          size="xl"
+          color="red"
+          style={{
+            marginLeft: '10px',
+            fontFamily: 'Post No Bills Jaffna Medium'
+          }}
+        >
+          Mäklar Visionen
+        </Anchor>
+      </Link>
+    </Box>
   )
 }
-const Navbar = ({ user, loading }) => {
+
+const Appbar = () => {
+  const { isLoggedIn } = useStore().store
   return (
-    <header className={classNames({ [styles.navbar]: true })} style={{ borderBottom: '1px solid black' }}>
-      <Logo />
+    <Header
+      height={70}
+      padding="md"
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          height: '100%'
+        }}
+      >
+        <Logo/>
+      </div>
+      <Group position="apart">{isLoggedIn ? <LoggedIn/> : <LoggedOut/>}</Group>
+    </Header>
 
-      {
-        !loading && (
-          user ? <LoggedIn /> : <LoggedOut />
-        )
-      }
-
-    </header>
   )
 }
 
-export default Navbar
+export default Appbar
