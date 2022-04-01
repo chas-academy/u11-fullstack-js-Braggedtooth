@@ -128,6 +128,7 @@ const Appbar = () => {
       </div>
       <Group position="apart">{isLoggedIn ? <LoggedIn/> : <LoggedOut/>}</Group>
     </Header>
+
   )
 }
 
