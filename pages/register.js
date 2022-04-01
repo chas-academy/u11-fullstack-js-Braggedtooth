@@ -1,7 +1,7 @@
 import React from 'react'
+import Container from '../components/core/Container'
 import RegisterForm from '../components/forms/Register'
 import Layout from '../components/Layout'
-import Container from '../components/core/Container'
 
 const RegisterStyle = {
   display: 'flex',
@@ -15,11 +15,10 @@ const Register = () => {
   return (
     <Container customStyle={RegisterStyle}>
 
-      <RegisterForm />
+      <RegisterForm/>
     </Container>
   )
 }
-asPagewith
-export default
+export default Register
 
-Register.getLayout = (page) => <Layout title='Register'>{page}</Layout>
+Register.getLayout = (page) => <Layout title="Register">{page}</Layout>
