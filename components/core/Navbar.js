@@ -110,7 +110,7 @@ const Appbar = () => {
   return (
     <Header
       height={70}
-      padding="md"
+      p="md"
       style={{
         display: 'flex',
         flexDirection: 'row',
@@ -128,6 +128,7 @@ const Appbar = () => {
       </div>
       <Group position="apart">{isLoggedIn ? <LoggedIn/> : <LoggedOut/>}</Group>
     </Header>
+
   )
 }
 

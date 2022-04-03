@@ -22,7 +22,6 @@ const Layout = ({ title, children, auth }) => {
         <title>{title || 'MV'}</title>
       </Head>
       <AppShell
-        padding="-60px"
         fixed
         navbarOffsetBreakpoint="sm"
         header={
@@ -44,7 +43,12 @@ const Layout = ({ title, children, auth }) => {
         })}
       >
         {!auth || isLoggedIn ? (
-          <Container width={'60'}>{children}</Container>
+          <Container size={'lg'} style={{
+            height: '100%',
+            display: 'flex',
+            flexFlow: 'column',
+            alignItems: 'center',
+          }}>{children}</Container>
         ) : (
           <Modal
             centered
@@ -62,10 +66,6 @@ const Layout = ({ title, children, auth }) => {
           </Modal>
         )}
       </AppShell>
-      {/*     <Navbar user />
-        <p>{title}</p>
-        <Footer /> */}
-      {/*  </Container> */}
     </>
   )
 }
