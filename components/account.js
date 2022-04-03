@@ -1,4 +1,4 @@
-import { Anchor, Button, Group, Modal, Text, TextInput } from '@mantine/core'
+import { Anchor, Button, Center, Group, Modal, Text, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import { useNotifications } from '@mantine/notifications'
 import _ from 'lodash'
@@ -27,10 +27,10 @@ const Account = () => {
     }
     if (!_.isEmpty(hasEdit)) {
       EditProfile(data)
-        .then(res => {
+        .then(() => {
           showModal(false)
           notifications.showNotification({
-            message: res.data.message,
+            message: 'Din profil har uppdaterats',
             color: 'green',
             icon: <MdCheck/>
           })
@@ -57,26 +57,25 @@ const Account = () => {
 
   return (
     <>
-      <Group direction="column" style={{ padding: '2em' }}>
-        <Text padding="2em" color="lime">
-          Förnamn: <Anchor> {user.firstname} </Anchor>
-        </Text>
-        <Text>
-          Efternamn: <Anchor> {user.lastname} </Anchor>
+      <Group direction="column" style={{ width: '100%' }}>
+        <Text p="2em">
+          Namn: <Anchor> {user.firstname} {user.lastname} </Anchor>
         </Text>
         <Text>
           Mailadress: <Anchor> {user.email} </Anchor>
         </Text>
       </Group>
-      <Button
-        my="md"
-        onClick={() => {
-          showModal(true)
-          setEdit(!edit)
-        }}
-      >
-        Redigera
-      </Button>
+      <Center>
+        <Button
+          my="md"
+          onClick={() => {
+            showModal(true)
+            setEdit(!edit)
+          }}
+        >
+          Redigera
+        </Button>
+      </Center>
       {modal && (
         <Modal opened={modal} centered onClose={() => showModal(false)}>
           <form onSubmit={form.onSubmit(onSave)}>

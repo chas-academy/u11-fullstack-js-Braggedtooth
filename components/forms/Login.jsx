@@ -68,13 +68,13 @@ const LoginForm = () => {
 
   return (
     <Paper
-      padding="lg"
+      p="lg"
       shadow="lg"
       style={{
         position: 'relative'
       }}
     >
-      <Center padding="lg" mb="md">
+      <Center p="lg" mb="md">
         <Title>{type ? 'Logga in' : 'Skapa Konto '}</Title>
       </Center>
       {type ? (
