@@ -21,7 +21,6 @@
     "@mantine/spotlight": "^4.1.1",
     "@mui/material": "^5.5.3",
     "axios": "^0.25.0",
-    "bulma": "^0.9.3",
     "classnames": "^2.3.1",
     "little-state-machine": "^4.2.0",
     "little-state-machine-devtools": "^2.0.1",
@@ -32,13 +31,16 @@
     "react-hook-form": "^7.25.0",
     "react-icons": "^4.3.1",
     "react-query": "^3.34.19",
-    "swr": "^1.2.0",
     "zod": "^3.11.6"
   },
   "devDependencies": {
-    "eslint": "8.7.0",
-    "eslint-config-next": "12.0.8",
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-next": "^12.1.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "lodash": "^4.17.21",
+    "prettier": "^2.6.2",
     "sass": "^1.49.0",
     "standard": "^16.0.4"
   }
