@@ -84,7 +84,7 @@ const Logo = () => {
       <Anchor sx={(theme) => ({
         color: '#FF6B6B',
         '&:hover': {
-          color: theme.colors.gray[5],
+          color: theme.primaryColor,
         },
       })}>
         <Logo1 size={40} color={'currentColor'}/>
