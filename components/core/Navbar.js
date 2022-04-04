@@ -1,12 +1,11 @@
-import { Anchor, Box, Burger, Group, Header, Menu, MenuItem, Text, useMantineTheme } from '@mantine/core'
-import Image from 'next/image'
+import { Anchor, Burger, Group, Header, Menu, MenuItem, Text, useMantineTheme } from '@mantine/core'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
 import { MdAttribution, MdLogin, MdLogout, MdPerson, MdReviews } from 'react-icons/md'
+import Logo1 from '../../components/core/Logo'
 import useProfile from '../../services/hooks/useProfile'
 import useStore from '../../services/hooks/useStore'
-import LogoIcon from './logo.svg'
 
 const LoggedIn = () => {
   const [opened, setOpened] = useState(false)
@@ -21,7 +20,7 @@ const LoggedIn = () => {
         <Burger
           opened={opened}
           onClick={() => setOpened(!opened)}
-          size="sm"
+          size="md"
           color={theme.colors.gray[6]}
           mr="xl"
         />
@@ -60,7 +59,7 @@ const LoggedOut = () => {
         <Burger
           opened={opened}
           onClick={() => setOpened(!opened)}
-          size="sm"
+          size="md"
           color={theme.colors.gray[6]}
           mr="xl"
         />
@@ -81,27 +80,18 @@ const LoggedOut = () => {
 }
 const Logo = () => {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center'
-      }}
-    >
-      <Image src={LogoIcon} height={50} width={50} alt="logo"/>
-      <Link href="/" passHref>
-        <Anchor
-          size="xl"
-          color="red"
-          style={{
-            marginLeft: '10px',
-            fontFamily: 'Post No Bills Jaffna Medium'
-          }}
-        >
-          Mäklar Visionen
-        </Anchor>
-      </Link>
-    </Box>
+    <Link href="/" passHref>
+      <Anchor sx={(theme) => ({
+        color: '#FF6B6B',
+        '&:hover': {
+          color: theme.colors.gray[5],
+        },
+      })}>
+        <Logo1 size={40} color={'currentColor'}/>
+      </Anchor>
+
+    </Link>
+
   )
 }
 
@@ -117,15 +107,9 @@ const Appbar = () => {
         justifyContent: 'space-between'
       }}
     >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          height: '100%'
-        }}
-      >
-        <Logo/>
-      </div>
+
+      <Logo/>
+
       <Group position="apart">{isLoggedIn ? <LoggedIn/> : <LoggedOut/>}</Group>
     </Header>
 

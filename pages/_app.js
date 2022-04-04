@@ -28,7 +28,7 @@ function MyApp ({ Component, pageProps }) {
         <MantineProvider
           withGlobalStyles
           withNormalizeCSS
-          theme={{ loader: 'bars', colorScheme: 'dark' }}
+          theme={{ loader: 'bars', colorScheme: 'light' }}
         >
           <NotificationsProvider>
             <StateMachineProvider>
