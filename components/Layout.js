@@ -43,11 +43,12 @@ const Layout = ({ title, children, auth }) => {
         })}
       >
         {!auth || isLoggedIn ? (
-          <Container size={'lg'} style={{
+          <Container style={{
             height: '100%',
             display: 'flex',
             flexFlow: 'column',
             alignItems: 'center',
+            maxWidth: '100%'
           }}>{children}</Container>
         ) : (
           <Modal
