@@ -1,7 +1,6 @@
-import { Paper, Tabs } from '@mantine/core'
+import { Tabs } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import React, { useState } from 'react'
-import { FcBookmark, FcComments, FcRatings, FcServices } from 'react-icons/fc'
 import Account from '../components/account'
 import Layout from '../components/Layout'
 
@@ -9,32 +8,47 @@ const Profile = () => {
   const [activeTab, setActiveTab] = useState(0)
   const media = useMediaQuery('(min-width: 900px)')
   return (
-    <Paper shadow="md" p="md" style={{ width: '100%', height: '100%' }}
-           withBorder>
+    // <Paper shadow="xs" p="md" style={{
+    //   width: '100%',
+    //   height: '100%',
+    //   backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
+    // }}>
 
-      <Tabs active={activeTab} onTabChange={setActiveTab} tabPadding="lg" grow variant={'outline'}
-            orientation={media ? 'vertical' : 'horizontal'}
-            styles={(theme) => ({
-              root: { width: '100%', fontSize: theme.fontSizes.md },
-              body: { width: '100%' },
-              tabControl: { padding: theme.spacing.lg, textAlign: 'center' }
-            })}
-      >
-        <Tabs.Tab label="Konto" icon={<FcBookmark size={media ? 24 : 16}/>}>
-          <Account/>
-        </Tabs.Tab>
-        <Tabs.Tab label="Recensioner" icon={<FcRatings size={media ? 24 : 16}/>}>
-          Mina Recensioner
-        </Tabs.Tab>
-        <Tabs.Tab label="Kommentarer" icon={<FcComments size={media ? 24 : 16}/>}>
-          Mina Kommentarer
-        </Tabs.Tab>
-        <Tabs.Tab label="Inställningar" icon={<FcServices size={media ? 24 : 16}/>}>
-          Mina Inställningar
-        </Tabs.Tab>
-      </Tabs>
+    <Tabs active={activeTab} onTabChange={setActiveTab} tabPadding="lg" variant={'unstyled'}
+          orientation={'horizontal'}
+          color={'orange'}
+          grow={!media}
+          styles={(theme) => ({
+            root: {
+              width: '100%',
+              height: '100%',
+            },
+            tabControl: {
+              backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[4],
+              color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[0],
+              fontSize: !media ? theme.fontSizes.sm : theme.fontSizes.lg,
 
-    </Paper>
+            },
+            tabActive: {
+              backgroundColor: theme.colors.blue[2],
+              borderColor: theme.colors.blue[2],
+              color: theme.colors.dark[9],
+            },
+          })}
+    >
+      <Tabs.Tab label="Konto" ml={2}>
+        <Account/>
+      </Tabs.Tab>
+      <Tabs.Tab label="Recensioner " ml={2}>
+        Mina Recensioner
+      </Tabs.Tab>
+      <Tabs.Tab label="Kommentarer" ml={2}>
+        Mina Kommentarer
+      </Tabs.Tab>
+
+    </Tabs>
+
+    // </Paper>
   )
 }
 

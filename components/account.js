@@ -1,6 +1,5 @@
 import {
   ActionIcon,
-  Anchor,
   Avatar,
   Button,
   Card,
@@ -77,29 +76,31 @@ const Account = () => {
       <Title order={2} align="center">
         Konto Inställningar
       </Title>
-      <Card shadow="sm" p="lg" mt={'sm'}>
-        <Card.Section>
+      <Card shadow="sm" p="lg" mt={'sm'} withBorder styles={(theme) => ({
+        root: {
+          height: 'calc(100% / 6px)',
+          backgroundColor: !dark && theme.colors.gray[3]
+        }
+      })}>
+        <Group direction="column" p={'lg'} align={'center'}>
           <Avatar size={'lg'}/>
-        </Card.Section>
-        <Group direction="column" p={'lg'}>
-          <Text>
-            Namn: <Anchor> {user.firstname} {user.lastname} </Anchor>
+          <Text size={'lg'} order={1} color={'blue'}>
+            {user.firstname} {user.lastname}
           </Text>
           <Text>
-            Mailadress: <Anchor> {user.email} </Anchor>
+            {user.email}
           </Text>
           <Group>
-            <Text> Ändra tema: </Text>
+            <Text>{!dark ? 'Mörkt Tema' : 'Ljust Tema'}</Text>
             <ActionIcon
               variant="filled"
-              color={dark ? 'yellow' : 'gray'}
               onClick={() => toggleColorScheme()}
               title="Toggle color scheme"
+              styles={(theme) => ({ root: { backgroundColor: dark ? theme.colors.dark[5] : theme.colors.gray[2] } })}
             >
               {dark ? <BsSun size={18}/> : <BsMoonStarsFill size={18}/>}
             </ActionIcon>
           </Group>
-
         </Group>
         <Center>
           <Button

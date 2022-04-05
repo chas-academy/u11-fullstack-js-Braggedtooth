@@ -37,8 +37,8 @@ const Layout = ({ title, children, auth }) => {
           main: {
             backgroundColor:
               theme.colorScheme === 'dark'
-                ? theme.colors.dark[8]
-                : theme.colors.gray[0]
+                ? theme.colors.dark[4]
+                : theme.colors.gray[2]
           }
         })}
       >
