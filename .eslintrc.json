@@ -1,3 +1,16 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "prettier"
+  ],
+  "plugins": [
+    "react",
+    "prettier"
+  ],
+  "rules": {
+    "no-console": 0,
+    "arrow-body-style": "off",
+    "react/jsx-props-no-spreading": "off",
+    "import/extensions": "off"
+  }
 }

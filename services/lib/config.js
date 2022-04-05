@@ -1,5 +1,6 @@
 import axios from 'axios'
-export const apiUrl = process.env.API_URL
+
+export const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
 if (!apiUrl) {
   console.log('No Api Url. Set API_URL  environment variable.')

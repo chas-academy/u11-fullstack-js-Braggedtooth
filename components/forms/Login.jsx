@@ -2,9 +2,9 @@ import {
   Anchor,
   Button,
   Center,
+  Container,
   Group,
   LoadingOverlay,
-  Paper,
   PasswordInput,
   Text,
   TextInput,
@@ -15,7 +15,7 @@ import { useNotifications } from '@mantine/notifications'
 import { EnvelopeClosedIcon, LockClosedIcon } from '@modulz/radix-icons'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { BiCheck } from 'react-icons/bi'
+import { BiCheck, BiError } from 'react-icons/bi'
 import useProfile from '../../services/hooks/useProfile'
 import RegisterForm from './Register'
 
@@ -55,31 +55,24 @@ const LoginForm = () => {
       })
       .catch(error => {
         console.log(error)
-        // const err = error.
-        //  notifications.showNotification({
-        //  title: error.response.status,
-        //  message: err.error.message,
-        //   color: 'red',
-        //   icon: <BiError/> }  )
+        notifications.showNotification({
+          message: error.message,
+          color: 'red',
+          icon: <BiError/>
+        })
 
       })
       .finally(() => setLoading(false))
   }
 
   return (
-    <Paper
-      padding="lg"
-      shadow="lg"
-      style={{
-        position: 'relative'
-      }}
-    >
-      <Center padding="lg" mb="md">
+    <Container my={'lg'} sx={{ width: '90%' }}>
+      <LoadingOverlay visible={loading}/>
+      <Center p="lg" mb="md">
         <Title>{type ? 'Logga in' : 'Skapa Konto '}</Title>
       </Center>
       {type ? (
         <form onSubmit={form.onSubmit(handleSubmit)}>
-          <LoadingOverlay visible={loading}/>
           <TextInput
             mt="md"
             required
@@ -118,7 +111,8 @@ const LoginForm = () => {
       ) : (
         <RegisterForm toggle={toggle}/>
       )}
-    </Paper>
+      {/*</Paper>*/}
+    </Container>
   )
 }
 

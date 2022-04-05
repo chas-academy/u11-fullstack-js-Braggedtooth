@@ -8,10 +8,11 @@ const useSearch = () => {
 
   const { data, isLoading } = useQuery('getSearchResult', () => searchRealtor(capitalizeString(filter)), {
     enabled: Boolean(filter),
+
   })
   return {
     search: setFilter,
-    result: data,
+    result: data?.data,
     isLoading
   }
 }

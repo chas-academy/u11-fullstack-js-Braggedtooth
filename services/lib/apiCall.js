@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { apiUrl } from './config'
 
+console.log(apiUrl)
 const apiCall = async ({ path, type, body, params }) => {
   const config = {
     url: apiUrl + path,
