@@ -9,7 +9,7 @@ import Results from '../../components/core/Results'
 import useDebounce from '../../services/hooks/useDebouce'
 import useSearch from '../../services/hooks/useSearch'
 
-const Search = () => {
+const SearchReviews = () => {
   const { search, isLoading, result } = useSearch()
   const [query, setQuery] = useState()
   const debounced = useDebounce(query, 500)
@@ -31,20 +31,11 @@ const Search = () => {
   }
   const rightSection = (
 
-    <MdPersonSearch size={24} style={{ display: 'block', opacity: 0.5 }}/>
-
+    <MdPersonSearch size={16} style={{ display: 'block', opacity: 0.5 }}/>
   )
 
   return (
-    <Container
-      customStyle={{
-        alignItems: 'stretch',
-        width: '80%',
-        marginBottom: '5rem',
-        marginTop: '2rem',
-        padding: 0
-
-      }}>
+    <Container customStyle={{ alignItems: 'stretch', width: '100%', marginBottom: '2rem', marginTop: '2rem' }}>
       <form onSubmit={handleSubmit(submit)}>
         <InputWrapper
           loading={isLoading.toString()}
@@ -53,8 +44,8 @@ const Search = () => {
           <Input
             autoFocus
             placeholder="Sök Mäklare"
-            rightSection={!isLoading ? rightSection :
-              <Loader variant={'oval'} p={6}/>} {...register('query', { onChange: (e) => setQuery(e.target.value) })}
+            rightSection={!isLoading ? rightSection : <Loader
+              variant="dots"/>} {...register('query', { onChange: (e) => setQuery(e.target.value) })}
           />
         </InputWrapper>
 
@@ -64,4 +55,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export default SearchReviews

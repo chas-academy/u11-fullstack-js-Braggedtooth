@@ -62,7 +62,7 @@ function MyApp ({ Component, pageProps }) {
     },
     loader: 'bars',
     fontFamily: 'Rajdhani ',
-    primaryColor: 'blue',
+    primaryColor: 'orange',
   }
   return (
     <>

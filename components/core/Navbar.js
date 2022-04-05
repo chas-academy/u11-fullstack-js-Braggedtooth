@@ -21,18 +21,18 @@ const LoggedIn = () => {
           opened={opened}
           onClick={() => setOpened(!opened)}
           size="md"
-          color={theme.colors.gray[6]}
+          color={theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.colors.dark[8]}
           mr="xl"
         />
       }
     >
       <MenuItem icon={<MdPerson/>} component={Anchor} href="/mina-sidor">
-        <Text size="sm" color="gray">
+        <Text size="lg">
           Mina Sidor
         </Text>
       </MenuItem>
       <MenuItem icon={<MdReviews/>} component={Anchor} href="/reviews">
-        <Text size="sm" color="gray">
+        <Text size="lg">
           Recensioner
         </Text>
       </MenuItem>
@@ -42,8 +42,9 @@ const LoggedIn = () => {
         onClick={async () => {
           await LogOut(undefined, undefined)
         }}
-      >
+      > <Text size="lg">
         Logga ut
+      </Text>
       </MenuItem>
     </Menu>
   )
@@ -60,18 +61,18 @@ const LoggedOut = () => {
           opened={opened}
           onClick={() => setOpened(!opened)}
           size="md"
-          color={theme.colors.gray[6]}
+          color={theme.colors.gray[9]}
           mr="xl"
         />
       }
     >
       <MenuItem icon={MdAttribution} component={Anchor} href="/about">
-        <Text size="md">
+        <Text size="lg">
           Om oss
         </Text>
       </MenuItem>
-      <MenuItem color="green" component={Anchor} href="/login" icon={MdLogin}>
-        <Text size="md">
+      <MenuItem component={Anchor} href="/login" icon={MdLogin}>
+        <Text size="lg" color="green">
           Logga in
         </Text>
       </MenuItem>
@@ -79,15 +80,15 @@ const LoggedOut = () => {
   )
 }
 const Logo = () => {
+  const themes = useMantineTheme()
   return (
     <Link href="/" passHref>
-      <Anchor sx={(theme) => ({
-        color: '#FF6B6B',
+      <Anchor sx={{
         '&:hover': {
-          color: theme.primaryColor,
+          color: themes.colors.gray[9],
         },
-      })}>
-        <Logo1 size={40} color={'currentColor'}/>
+      }}>
+        <Logo1 size={40} color={themes.colorScheme === 'dark' ? themes.primaryColor : themes.colors.dark[8]}/>
       </Anchor>
 
     </Link>
