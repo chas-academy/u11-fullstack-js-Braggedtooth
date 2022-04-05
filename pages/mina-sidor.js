@@ -1,41 +1,46 @@
+import { Paper, Tabs } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 import React, { useState } from 'react'
-import Layout from '../components/Layout'
-import { Container, Paper, Tabs, Title } from '@mantine/core'
-import { FcServices, FcComments, FcRatings, FcBookmark } from 'react-icons/fc'
+import { FcBookmark, FcComments, FcRatings, FcServices } from 'react-icons/fc'
 import Account from '../components/account'
+import Layout from '../components/Layout'
 
 const Profile = () => {
-  const [activeTab, setActiveTab] = useState(1)
+  const [activeTab, setActiveTab] = useState(0)
+  const media = useMediaQuery('(min-width: 900px)')
   return (
-    <Paper shadow='md' padding='xl'>
-      <Paper withBorder padding='xs'>
-        <Title order={2} align='center'>
-          Mina Sidor
-        </Title>
-      </Paper>
-      <Container fluid>
-        <Tabs active={activeTab} onTabChange={setActiveTab} grow variant={"pills"} orientation={'vertical'} mt={30}>
-          <Tabs.Tab label='Konto ' icon={<FcBookmark />}>
-            <Account />
-          </Tabs.Tab>
-          <Tabs.Tab label='Recensioner' icon={<FcRatings />}>
-            Mina Recensioner
-          </Tabs.Tab>
-          <Tabs.Tab label='Kommentarer' icon={<FcComments />}>
-            Mina Kommentarer
-          </Tabs.Tab>
-          <Tabs.Tab label='Inställningar' icon={<FcServices />}>
-            Mina Inställningar
-          </Tabs.Tab>
-        </Tabs>
-      </Container>
+    <Paper shadow="md" p="md" style={{ width: '100%', height: '100%' }}
+           withBorder>
+
+      <Tabs active={activeTab} onTabChange={setActiveTab} tabPadding="lg" grow variant={'outline'}
+            orientation={media ? 'vertical' : 'horizontal'}
+            styles={(theme) => ({
+              root: { width: '100%', fontSize: theme.fontSizes.md },
+              body: { width: '100%' },
+              tabControl: { padding: theme.spacing.lg, textAlign: 'center' }
+            })}
+      >
+        <Tabs.Tab label="Konto" icon={<FcBookmark size={media ? 24 : 16}/>}>
+          <Account/>
+        </Tabs.Tab>
+        <Tabs.Tab label="Recensioner" icon={<FcRatings size={media ? 24 : 16}/>}>
+          Mina Recensioner
+        </Tabs.Tab>
+        <Tabs.Tab label="Kommentarer" icon={<FcComments size={media ? 24 : 16}/>}>
+          Mina Kommentarer
+        </Tabs.Tab>
+        <Tabs.Tab label="Inställningar" icon={<FcServices size={media ? 24 : 16}/>}>
+          Mina Inställningar
+        </Tabs.Tab>
+      </Tabs>
+
     </Paper>
   )
 }
 
 export default Profile
 Profile.getLayout = page => (
-  <Layout title='Profile' auth>
+  <Layout title="Profile" auth>
     {page}
   </Layout>
 )

@@ -1,6 +1,8 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { ServerStyles, createStylesServer } from '@mantine/next'
+import { createStylesServer, ServerStyles } from '@mantine/next'
+import Document, { Head, Html, Main, NextScript } from 'next/document'
+
 const stylesServer = createStylesServer()
+
 class MyDocument extends Document {
   static async getInitialProps (ctx) {
     const initialProps = await Document.getInitialProps(ctx)
@@ -9,7 +11,7 @@ class MyDocument extends Document {
       styles: (
         <>
           {initialProps.styles}
-          <ServerStyles html={initialProps.html} server={stylesServer} />
+          <ServerStyles html={initialProps.html} server={stylesServer}/>
         </>
       )
     }
@@ -19,20 +21,16 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel='preconnect' href='https://fonts.googleapis.com' />
-          <link rel='preconnect' href='https://fonts.gstatic.com' />
+          <link rel="preconnect" href="https://fonts.googleapis.com"/>
+          <link rel="preconnect" href="https://fonts.gstatic.com"/>
           <link
-            href='https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&family=Roboto+Mono&display=swap'
-            rel='stylesheet'
-          />
-          <link
-            href='http://fonts.cdnfonts.com/css/post-no-bills-jaffna'
-            rel='stylesheet'
+            href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&family=Roboto+Mono&display=swap"
+            rel="stylesheet"
           />
         </Head>
         <body>
-          <Main />
-          <NextScript />
+        <Main/>
+        <NextScript/>
         </body>
       </Html>
     )
