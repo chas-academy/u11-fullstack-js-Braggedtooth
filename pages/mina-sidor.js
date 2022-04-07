@@ -3,6 +3,7 @@ import { useMediaQuery } from '@mantine/hooks'
 import React, { useState } from 'react'
 import Account from '../components/account'
 import Layout from '../components/Layout'
+import Reviews from '../pages/reviews'
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState(0)
@@ -40,7 +41,7 @@ const Profile = () => {
         <Account/>
       </Tabs.Tab>
       <Tabs.Tab label="Recensioner " ml={2}>
-        Mina Recensioner
+        <Reviews user/>
       </Tabs.Tab>
       <Tabs.Tab label="Kommentarer" ml={2}>
         Mina Kommentarer

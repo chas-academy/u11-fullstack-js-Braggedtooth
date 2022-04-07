@@ -1,13 +1,17 @@
 import axios from 'axios'
 import { apiUrl } from './config'
 
-console.log(apiUrl)
+// const logOut = () => {
+//   sessionStorage.removeItem('__LSM__')
+//
+// }
 const apiCall = async ({ path, type, body, params }) => {
+
   const config = {
     url: apiUrl + path,
     method: type,
-    data: body,
-    params: params,
+    body,
+    params,
     withCredentials: true,
     headers: {
       //'Authorisation': 'Bearer' + token,
@@ -15,6 +19,22 @@ const apiCall = async ({ path, type, body, params }) => {
       'access-control-allow-origin': apiUrl
     }
   }
+  axios.interceptors.response.use(
+    (response) => {
+      // Any status code that lie within the range of 2xx cause this function to trigger
+      // Do something with response data
+
+      return response
+    },
+    (error) => {
+      // Any status codes that falls outside the range of 2xx cause this function to trigger
+      // Do something with response error
+      if (error.status === 401 || 402 || 403) {
+
+      }
+      return Promise.reject(error)
+    }
+  )
 
   return axios(config)
 }

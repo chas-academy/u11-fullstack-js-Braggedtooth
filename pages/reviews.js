@@ -1,22 +1,38 @@
-import { Grid, Paper, Text } from '@mantine/core'
+import { Container } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 import React from 'react'
-import SearchReviews from '../components/core/SearchReviews'
 import Layout from '../components/Layout'
+import ReviewItem from '../components/ReviewItem'
+import useReviews from '../services/hooks/useReviews'
 
-const Reviews = () => {
-  return (
-    <Grid columns={24} justify="space-between" style={{ width: '100%', height: '100%' }}>
-      <Grid.Col span={6}>
-        <SearchReviews/>
-      </Grid.Col>
-      <Grid.Col span={18}>
-        <Paper p={'lg'} style={{ width: '100%', height: '100%' }}>
-          <Text weight={600} size={'lg'}>
-            Hello
-          </Text>
-        </Paper>
-      </Grid.Col>
-    </Grid>
+const Reviews = ({ user }) => {
+  const media = useMediaQuery('')
+  const { reviews, isLoading, userLoading, users } = useReviews()
+  if (!reviews) {
+    return (
+      <div>
+        Vänligen logga in för att läsa resensioner
+      </div>
+    )
+  }
+  return !userLoading && !isLoading && (
+
+    <Container p={'lg'} style={{ width: '100%', height: '100%' }}>
+      {
+        !user ? reviews.map((review) => {
+          const { id, title, content, rating, createdAt } = review
+          return (
+            <ReviewItem key={id} title={title} createdAt={createdAt} rating={rating} authorId={content}/>
+          )
+        }) : users.map((review) => {
+          const { id, title, content, rating, createdAt } = review
+          return (
+            <ReviewItem key={id} title={title} createdAt={createdAt} rating={rating} authorId={content}/>
+          )
+        })
+      }
+    </Container>
+
   )
 }
 
