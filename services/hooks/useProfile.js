@@ -1,9 +1,9 @@
 import { useMutation } from 'react-query'
-import { editProfile, login, logout } from '../lib/auth'
+import { editProfile, login } from '../lib/auth'
 import useStore from './useStore'
 
 const useProfile = () => {
-  const { addUserToStore, setAuth } = useStore()
+  const { addUserToStore, setAuth, logout } = useStore()
   const { mutateAsync: Login } = useMutation(user => login(user), {
     onSuccess: data => {
       addUserToStore(data.data.data)
@@ -18,6 +18,7 @@ const useProfile = () => {
   const { mutateAsync: LogOut } = useMutation(() => logout(), {
     onSuccess: () => {
       setAuth(false)
+      logout()
     }
   })
   return {

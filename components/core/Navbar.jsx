@@ -3,9 +3,9 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 
 import { MdAttribution, MdLogin, MdLogout, MdPerson, MdReviews } from 'react-icons/md'
-import Logo1 from '../../components/core/Logo'
 import useProfile from '../../services/hooks/useProfile'
 import useStore from '../../services/hooks/useStore'
+import Logo1 from './Logo'
 
 const LoggedIn = () => {
   const [opened, setOpened] = useState(false)
@@ -15,24 +15,24 @@ const LoggedIn = () => {
     <Menu
       placement="center"
       gutter={6}
-      onClose={() => setOpened(!opened)}
+      onClose={() => setOpened(false)}
       control={
         <Burger
           opened={opened}
           onClick={() => setOpened(!opened)}
           size="md"
-          color={theme.colors.gray[6]}
+          color={theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.colors.dark[8]}
           mr="xl"
         />
       }
     >
       <MenuItem icon={<MdPerson/>} component={Anchor} href="/mina-sidor">
-        <Text size="sm" color="gray">
+        <Text size="lg">
           Mina Sidor
         </Text>
       </MenuItem>
-      <MenuItem icon={<MdReviews/>} component={Anchor} href="/reviews">
-        <Text size="sm" color="gray">
+      <MenuItem icon={<MdReviews/>} component={Anchor} href="/recensioner">
+        <Text size="lg">
           Recensioner
         </Text>
       </MenuItem>
@@ -42,8 +42,9 @@ const LoggedIn = () => {
         onClick={async () => {
           await LogOut(undefined, undefined)
         }}
-      >
+      > <Text size="lg">
         Logga ut
+      </Text>
       </MenuItem>
     </Menu>
   )
@@ -55,23 +56,24 @@ const LoggedOut = () => {
     <Menu
       placement="center"
       gutter={6}
+      onClose={() => setOpened(false)}
       control={
         <Burger
           opened={opened}
           onClick={() => setOpened(!opened)}
           size="md"
-          color={theme.colors.gray[6]}
+          color={theme.colors.gray[9]}
           mr="xl"
         />
       }
     >
-      <MenuItem icon={MdAttribution} component={Anchor} href="/about">
-        <Text size="md">
+      <MenuItem icon={MdAttribution} component={Anchor} href="/om-oss">
+        <Text size="lg">
           Om oss
         </Text>
       </MenuItem>
-      <MenuItem color="green" component={Anchor} href="/login" icon={MdLogin}>
-        <Text size="md">
+      <MenuItem component={Anchor} href="/logga-in" icon={MdLogin}>
+        <Text size="lg" color="green">
           Logga in
         </Text>
       </MenuItem>
@@ -79,15 +81,15 @@ const LoggedOut = () => {
   )
 }
 const Logo = () => {
+  const themes = useMantineTheme()
   return (
     <Link href="/" passHref>
-      <Anchor sx={(theme) => ({
-        color: '#FF6B6B',
+      <Anchor sx={{
         '&:hover': {
-          color: theme.primaryColor,
+          color: themes.colors.gray[9],
         },
-      })}>
-        <Logo1 size={40} color={'currentColor'}/>
+      }}>
+        <Logo1 size={40} color={themes.colorScheme === 'dark' ? themes.primaryColor : themes.colors.dark[8]}/>
       </Anchor>
 
     </Link>

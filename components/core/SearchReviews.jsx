@@ -1,15 +1,15 @@
-import { Input, InputWrapper, Loader, Tooltip } from '@mantine/core'
+import { Input, InputWrapper, Loader } from '@mantine/core'
 import { isEmpty } from 'lodash'
 
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { MdPersonSearch } from 'react-icons/md'
-import Results from '../../components/core/Results'
+import Container from '../../components/core/Container'
 import useDebounce from '../../services/hooks/useDebouce'
 import useSearch from '../../services/hooks/useSearch'
-import Container from './Container'
+import Results from './Results'
 
-const Search = () => {
+const SearchReviews = () => {
   const { search, isLoading, result } = useSearch()
   const [query, setQuery] = useState()
   const debounced = useDebounce(query, 500)
@@ -30,13 +30,12 @@ const Search = () => {
     search(data.query)
   }
   const rightSection = (
-    <Tooltip label="We do not send spam" position="top" placement="end">
-      <MdPersonSearch size={16} style={{ display: 'block', opacity: 0.5 }}/>
-    </Tooltip>
+
+    <MdPersonSearch size={16} style={{ display: 'block', opacity: 0.5 }}/>
   )
 
   return (
-    <Container customStyle={{ alignItems: 'stretch', width: '80%', marginBottom: '2rem', marginTop: '2rem' }}>
+    <Container customStyle={{ alignItems: 'stretch', width: '100%', marginBottom: '2rem', marginTop: '2rem' }}>
       <form onSubmit={handleSubmit(submit)}>
         <InputWrapper
           loading={isLoading.toString()}
@@ -56,4 +55,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export default SearchReviews

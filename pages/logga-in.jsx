@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Container from '../components/core/Container'
+import Layout from '../components/core/Layout'
 import LoginForm from '../components/forms/Login'
-import Layout from '../components/Layout'
 import useStore from '../services/hooks/useStore'
 import Routes from '../services/routes'
 

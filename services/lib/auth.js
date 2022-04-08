@@ -15,7 +15,7 @@ export const registerAcc = async user => {
   return axios.post(apiUrl + '/signup', user)
 }
 
-export const logout = () => {
+export const logOut = () => {
   return axios.delete(apiUrl + '/logout', { withCredentials: true })
 }
 

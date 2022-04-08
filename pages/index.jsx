@@ -2,8 +2,8 @@ import { Button, Center, Container, List, MediaQuery, Paper, Title, useMantineTh
 import Image from 'next/image'
 import { MdCheckCircle } from 'react-icons/md'
 import animated from '../assets/animated.svg'
-import Search from '../components/core/search'
-import Layout from '../components/Layout'
+import Layout from '../components/core/Layout'
+import Search from '../components/core/Search'
 import Routes from '../services/routes'
 
 export default function Home () {
@@ -11,17 +11,17 @@ export default function Home () {
   const theme = useMantineTheme()
   return (
     <>
-      <Center style={{ width: '100vw ' }}>
+      <Center style={{ width: '100% ' }}>
         <Title align={'center'}>
           Välkommen Till Mäklar Visionen
         </Title>
       </Center>
       <Search/>
       <MediaQuery largerThan={'md'}
-                  styles={{ display: 'flex', flexDirection: theme.breakpoints.md ? 'row' : 'column' }}>
-        <Container>
+                  styles={{ display: 'flex', flexDirection: theme.breakpoints.md ? 'row' : 'column', width: '100vw' }}>
+        <Container style={{ width: '100%', padding: 0 }}>
           <Paper shadow="sm" p="lg" radius={0}
-                 style={{ backgroundColor: theme.colors.gray[2] }}>
+                 style={{ backgroundColor: theme.colors.orange[9] }}>
             <Title align="center" order={2}>Hitta och betygsätt </Title>
             <Image src={animated} alt="Illustration of realtors"/>
           </Paper>
