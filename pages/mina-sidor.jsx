@@ -1,20 +1,14 @@
 import { Tabs } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import React, { useState } from 'react'
-import Account from '../components/account'
-import Layout from '../components/Layout'
-import Reviews from '../pages/reviews'
+import Account from '../components/core/Account'
+import Layout from '../components/core/Layout'
+import Reviews from './recensioner'
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState(0)
   const media = useMediaQuery('(min-width: 900px)')
   return (
-    // <Paper shadow="xs" p="md" style={{
-    //   width: '100%',
-    //   height: '100%',
-    //   backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-    // }}>
-
     <Tabs active={activeTab} onTabChange={setActiveTab} tabPadding="lg" variant={'unstyled'}
           orientation={'horizontal'}
           color={'orange'}

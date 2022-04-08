@@ -2,8 +2,8 @@ import { Button, Center, Container, List, MediaQuery, Paper, Title, useMantineTh
 import Image from 'next/image'
 import { MdCheckCircle } from 'react-icons/md'
 import animated from '../assets/animated.svg'
-import Search from '../components/core/search'
-import Layout from '../components/Layout'
+import Layout from '../components/core/Layout'
+import Search from '../components/core/Search'
 import Routes from '../services/routes'
 
 export default function Home () {

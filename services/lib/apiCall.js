@@ -1,10 +1,11 @@
 import axios from 'axios'
 import { apiUrl } from './config'
 
-// const logOut = () => {
-//   sessionStorage.removeItem('__LSM__')
-//
-// }
+const logOut = () => {
+  const obj = { 'isLoggedIn': false, 'token': 'null', 'user': {} }
+  sessionStorage.setItem('__LSM__', JSON.stringify(obj))
+
+}
 const apiCall = async ({ path, type, body, params }) => {
 
   const config = {
@@ -29,8 +30,9 @@ const apiCall = async ({ path, type, body, params }) => {
     (error) => {
       // Any status codes that falls outside the range of 2xx cause this function to trigger
       // Do something with response error
-      if (error.status === 401 || 402 || 403) {
-
+      if (error.status === 401) {
+        logOut()
+        window.location.replace('/login')
       }
       return Promise.reject(error)
     }

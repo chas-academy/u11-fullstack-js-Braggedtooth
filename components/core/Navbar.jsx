@@ -3,9 +3,9 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 
 import { MdAttribution, MdLogin, MdLogout, MdPerson, MdReviews } from 'react-icons/md'
-import Logo1 from '../../components/core/Logo'
 import useProfile from '../../services/hooks/useProfile'
 import useStore from '../../services/hooks/useStore'
+import Logo1 from './Logo'
 
 const LoggedIn = () => {
   const [opened, setOpened] = useState(false)
@@ -15,7 +15,7 @@ const LoggedIn = () => {
     <Menu
       placement="center"
       gutter={6}
-      onClose={() => setOpened(!opened)}
+      onClose={() => setOpened(false)}
       control={
         <Burger
           opened={opened}
@@ -31,7 +31,7 @@ const LoggedIn = () => {
           Mina Sidor
         </Text>
       </MenuItem>
-      <MenuItem icon={<MdReviews/>} component={Anchor} href="/reviews">
+      <MenuItem icon={<MdReviews/>} component={Anchor} href="/recensioner">
         <Text size="lg">
           Recensioner
         </Text>
@@ -56,6 +56,7 @@ const LoggedOut = () => {
     <Menu
       placement="center"
       gutter={6}
+      onClose={() => setOpened(false)}
       control={
         <Burger
           opened={opened}
@@ -66,12 +67,12 @@ const LoggedOut = () => {
         />
       }
     >
-      <MenuItem icon={MdAttribution} component={Anchor} href="/about">
+      <MenuItem icon={MdAttribution} component={Anchor} href="/om-oss">
         <Text size="lg">
           Om oss
         </Text>
       </MenuItem>
-      <MenuItem component={Anchor} href="/login" icon={MdLogin}>
+      <MenuItem component={Anchor} href="/logga-in" icon={MdLogin}>
         <Text size="lg" color="green">
           Logga in
         </Text>

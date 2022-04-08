@@ -5,9 +5,9 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { MdPersonSearch } from 'react-icons/md'
 import Container from '../../components/core/Container'
-import Results from '../../components/core/Results'
 import useDebounce from '../../services/hooks/useDebouce'
 import useSearch from '../../services/hooks/useSearch'
+import Results from './Results'
 
 const Search = () => {
   const { search, isLoading, result } = useSearch()

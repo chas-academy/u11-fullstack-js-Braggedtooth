@@ -2,6 +2,7 @@ import { ColorSchemeProvider, MantineProvider } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
 import { NotificationsProvider } from '@mantine/notifications'
 import { createStore, StateMachineProvider } from 'little-state-machine'
+import dynamic from 'next/dynamic'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import '../styles/style.scss'
@@ -24,7 +25,7 @@ const queryClient = new QueryClient({
 function MyApp ({ Component, pageProps }) {
   const [colorScheme, setColorScheme] = useLocalStorage({
     key: 'mantine-color-scheme',
-    defaultValue: 'light',
+    defaultValue: 'dark',
     getInitialValueInEffect: true,
   })
   const toggleColorScheme = (value) =>
@@ -62,7 +63,7 @@ function MyApp ({ Component, pageProps }) {
 
     },
     loader: 'bars',
-    fontFamily: 'Rajdhani ',
+    fontFamily: 'Rajdhani',
     primaryColor: 'orange',
   }
   return (
@@ -70,12 +71,13 @@ function MyApp ({ Component, pageProps }) {
       <QueryClientProvider client={queryClient}>
         <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
           <MantineProvider
+            emotionOptions={{ key: 'mvapp' }}
             withGlobalStyles
             withNormalizeCSS
             theme={customTheme}
 
           >
-            <NotificationsProvider>
+            <NotificationsProvider position="top-right">
               <StateMachineProvider>
                 {Component.getLayout && getLayout(<Component {...pageProps} />)}
               </StateMachineProvider>
@@ -88,4 +90,7 @@ function MyApp ({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+// export default MyApp
+export default dynamic(() => Promise.resolve(MyApp), {
+  ssr: false
+})

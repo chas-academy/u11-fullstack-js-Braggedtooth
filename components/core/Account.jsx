@@ -18,9 +18,9 @@ import _ from 'lodash'
 import React, { useState } from 'react'
 import { BsMoonStarsFill, BsSun } from 'react-icons/bs'
 import { MdCheck, MdError, MdInfo } from 'react-icons/md'
-import useProfile from '../services/hooks/useProfile'
-import useStore from '../services/hooks/useStore'
-import { getChangedProps } from '../services/lib/actions'
+import useProfile from '../../services/hooks/useProfile'
+import useStore from '../../services/hooks/useStore'
+import { getChangedProps } from '../../services/lib/actions'
 
 const Account = () => {
   const { user } = useStore().store
