@@ -2,14 +2,13 @@ import { AppShell, Center, Container, Modal, Text } from '@mantine/core'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import useStore from '../services/hooks/useStore'
-import Appbar from './core/Navbar'
-import LoginForm from './forms/Login'
+import useStore from '../../services/hooks/useStore'
+import LoginForm from '../forms/Login'
+import Appbar from './Navbar'
 
 const Layout = ({ title, children, auth }) => {
   const router = useRouter()
-  const { store } = useStore()
-  const { isLoggedIn } = store
+  const { isLoggedIn } = useStore().store
 
   function CustomHeader (props) {
     return <Appbar setOpened={props.toggle} opened={props.opened}/>
@@ -37,8 +36,8 @@ const Layout = ({ title, children, auth }) => {
           main: {
             backgroundColor:
               theme.colorScheme === 'dark'
-                ? theme.colors.dark[8]
-                : theme.colors.gray[0]
+                ? theme.colors.dark[4]
+                : theme.colors.gray[2]
           }
         })}
       >

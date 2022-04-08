@@ -2,6 +2,7 @@ import { ColorSchemeProvider, MantineProvider } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
 import { NotificationsProvider } from '@mantine/notifications'
 import { createStore, StateMachineProvider } from 'little-state-machine'
+import dynamic from 'next/dynamic'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import '../styles/style.scss'
@@ -16,6 +17,7 @@ const queryClient = new QueryClient({
     queries: {
       staleTime: 0,
       retry: 3,
+      refetchInterval: 10000
     }
   }
 })
@@ -23,24 +25,59 @@ const queryClient = new QueryClient({
 function MyApp ({ Component, pageProps }) {
   const [colorScheme, setColorScheme] = useLocalStorage({
     key: 'mantine-color-scheme',
-    defaultValue: 'light',
+    defaultValue: 'dark',
     getInitialValueInEffect: true,
   })
   const toggleColorScheme = (value) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
 
   const getLayout = Component.getLayout || (page => page)
+  const customTheme = {
+    colorScheme,
+    colors: {
+      dark: [
+        '#d5d7e0',
+        '#acaebf',
+        '#8c8fa3',
+        '#666980',
+        '#4d4f66',
+        '#34354a',
+        '#2b2c3d',
+        '#1d1e30',
+        '#0c0d21',
+        '#01010a',
+      ],
+      gray: [
+        '#F8F9FA',
+        '#B9C2CB',
+        '#b3b3b3',
+        '#a4a4a4',
+        '#48484c',
+        '#616161',
+        '#A1A1A0',
+        '#797a80',
+        '#596366',
+        '#48484c',
+        '#212529',
+      ]
 
+    },
+    loader: 'bars',
+    fontFamily: 'Rajdhani',
+    primaryColor: 'orange',
+  }
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
           <MantineProvider
+            emotionOptions={{ key: 'mvapp' }}
             withGlobalStyles
             withNormalizeCSS
-            theme={{ colorScheme, loader: 'bars', fontFamily: 'Rajdhani ', primaryColor: 'teal', }}
+            theme={customTheme}
+
           >
-            <NotificationsProvider>
+            <NotificationsProvider position="top-right">
               <StateMachineProvider>
                 {Component.getLayout && getLayout(<Component {...pageProps} />)}
               </StateMachineProvider>
@@ -53,4 +90,7 @@ function MyApp ({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+// export default MyApp
+export default dynamic(() => Promise.resolve(MyApp), {
+  ssr: false
+})

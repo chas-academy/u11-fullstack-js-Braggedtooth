@@ -1,8 +1,9 @@
-import { Button, Center, Group, Modal, Pagination, Paper, Stack, Text } from '@mantine/core'
+import { Button, Center, Dialog, Group, Modal, Pagination, Paper, Stack, Text } from '@mantine/core'
 import { Rating } from '@mui/material'
 import { chunk } from 'lodash/array'
 import _ from 'lodash/fp'
 import React, { useEffect, useState } from 'react'
+import { FiAlertCircle } from 'react-icons/fi'
 import { MdBusiness, MdDateRange, MdPerson } from 'react-icons/md'
 import range from '../../services/lib/range'
 
@@ -17,6 +18,7 @@ const Results = ({ data }) => {
   const [isOpen, setOpen] = useState(false)
   const [activePage, setPage] = useState(1)
   const [toMap, setMap] = useState(false)
+  const [alert, openAlert] = useState(false)
   useEffect(() => {
     if (_.isArray(data)) {
       setMap(true)
@@ -24,6 +26,10 @@ const Results = ({ data }) => {
 
   }, [data])
 
+  const closePopUp = () => {
+    setOpen(false)
+    openAlert(true)
+  }
   const res = chunk(data, 10)
   if (data?.message) {
     return (
@@ -81,9 +87,20 @@ const Results = ({ data }) => {
             <MdDateRange size={32} color={'#59203a'} title={'Registerings Datum'}/>
             <Text align={'right'}> {selected?.registrationdate}</Text>
           </Group>
-          <Button onClick={() => console.log('he')}>Whack a mole</Button>
+          <Button onClick={closePopUp}>Skriv Recension</Button>
         </Stack>
       </Modal>
+      <Dialog color="red" withCloseButton opened={alert} onClose={() => openAlert(false)} size="lg"
+              radius="md"
+              transition="slide-up" transitionDuration={300} transitionTimingFunction="ease"
+              position={{ bottom: 20, right: 20 }}
+      >
+        <FiAlertCircle size={16}/>
+        <Text>
+          Denna funtionen är inte tillgänglig ännu. Vi håller ständigt på att
+          förbätrra denna tjänsten, registera dig så
+          får en notis när vi lanserar </Text>
+      </Dialog>
     </>
   ) : <div/>
 

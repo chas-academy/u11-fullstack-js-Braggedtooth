@@ -20,6 +20,7 @@ const toggleAuthState = (state, payload) => {
 const removeUser = (state, payload) => {
   return {
     ...state,
+    isLoggedIn: false,
     user: { ...payload }
   }
 }

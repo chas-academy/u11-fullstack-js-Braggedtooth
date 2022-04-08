@@ -1,10 +1,12 @@
 import { useStateMachine } from 'little-state-machine'
+import { useRouter } from 'next/router'
+
 import { removeUser, storeUser, toggleAuthState } from '../lib/actions'
+import { logOut } from '../lib/auth'
 
 const useStore = () => {
-  // const { data } = useQuery('getUser', () => getUser(), {
-  // onError: (err) => console.log(err)
-  //})
+
+  const router = useRouter()
   const { actions } = useStateMachine({ storeUser, removeUser, toggleAuthState })
   const { state } = useStateMachine()
   const addUserToStore = user => {
@@ -17,7 +19,8 @@ const useStore = () => {
     return actions.toggleAuthState(value)
   }
   const logout = () => {
-    return actions.removeUser('')
+    actions.removeUser('')
+    return logOut().then(() => router.push('/logga-in'))
   }
 
   return {
