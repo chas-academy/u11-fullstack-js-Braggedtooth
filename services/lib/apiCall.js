@@ -2,23 +2,26 @@ import axios from 'axios'
 import { apiUrl } from './config'
 
 const logOut = () => {
-  const obj = { 'isLoggedIn': false, 'token': 'null', 'user': {} }
+  const obj = { 'isLoggedIn': false, 'token': '', 'user': {} }
   sessionStorage.setItem('__LSM__', JSON.stringify(obj))
 
 }
 const getToken = ()=>{
   const store = sessionStorage.getItem('__LSM__')
-  const token = JSON.parse(store).token
-  return token || " "
+  if(store){
+    const token = JSON.parse(store).token
+    return token
+  }
+  return ""
 }
 const api = async ({ path, type, body, params }) => {
   const token = getToken()
+
   const config = {
     url: apiUrl + path,
     method: type,
     body,
     params,
-    withCredentials: true,
     headers: {
       Authorization: `Bearer ${token}`,
       'content-type': 'application/json',
