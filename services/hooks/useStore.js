@@ -19,8 +19,8 @@ const useStore = () => {
     return actions.toggleAuthState(value)
   }
   const logout = () => {
-    actions.removeUser('')
-    return logOut().then(() => router.push('/logga-in'))
+    actions.removeUser('') 
+    return  actions.setToken('')
   }
   const storeToken = (token)=>{
     return actions.setToken(token)
