@@ -54,9 +54,8 @@ const LoginForm = () => {
 
       })
       .catch(error => {
-        console.log(error)
         notifications.showNotification({
-          message: error.message,
+          message: error.response.data.error.message,
           color: 'red',
           icon: <BiError/>
         })

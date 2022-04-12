@@ -24,6 +24,12 @@ const removeUser = (state, payload) => {
     user: { ...payload }
   }
 }
+const setToken = (state, payload)=>{
+  return {
+    ...state,
+    token:payload
+  }
+}
 
 const getChangedProps = (user, payload) => {
   return Object.keys(user).reduce((result, key) => {
@@ -38,4 +44,4 @@ const getChangedProps = (user, payload) => {
   }, Object.keys(payload))
 }
 
-export { storeUser, removeUser, getChangedProps, toggleAuthState }
+export { storeUser, removeUser, getChangedProps, toggleAuthState ,setToken}

@@ -12,7 +12,7 @@ const Login = () => {
     if (isLoggedIn) {
       profile()
     }
-  }, [isLoggedIn])
+  }, [isLoggedIn, profile])
   return !isLoggedIn && (
     <Container>
       <LoginForm/>

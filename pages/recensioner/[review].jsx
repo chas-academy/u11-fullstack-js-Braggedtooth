@@ -14,14 +14,14 @@ import { Rating } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import Layout from '../../components/core/Layout'
-import useReviews from '../../services/hooks/useReviews'
+import useReview from '../../services/hooks/useReview'
 
 const Review = ({}) => {
 
   const router = useRouter()
   const [reviewState, setState] = useState(false)
   const { review: id } = router.query
-  const { fetchReview, review } = useReviews()
+  const { fetchReview, review } = useReview()
   const theme = useMantineTheme()
   useEffect(() => {
     if (review) {

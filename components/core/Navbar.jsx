@@ -13,38 +13,38 @@ const LoggedIn = () => {
   const { LogOut } = useProfile()
   return (
     <Menu
-      placement="center"
+      placement='center'
       gutter={6}
       onClose={() => setOpened(false)}
       control={
         <Burger
           opened={opened}
           onClick={() => setOpened(!opened)}
-          size="md"
+          size='md'
           color={theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.colors.dark[8]}
-          mr="xl"
+          mr='xl'
         />
       }
     >
-      <MenuItem icon={<MdPerson/>} component={Anchor} href="/mina-sidor">
-        <Text size="lg">
+      <MenuItem icon={<MdPerson />} component={Anchor} href='/mina-sidor'>
+        <Text size='lg'>
           Mina Sidor
         </Text>
       </MenuItem>
-      <MenuItem icon={<MdReviews/>} component={Anchor} href="/recensioner">
-        <Text size="lg">
+      <MenuItem icon={<MdReviews />} component={Anchor} href='/recensioner'>
+        <Text size='lg'>
           Recensioner
         </Text>
       </MenuItem>
       <MenuItem
-        icon={<MdLogout/>}
-        color="red"
+        icon={<MdLogout />}
+        color='red'
         onClick={async () => {
           await LogOut(undefined, undefined)
         }}
-      > <Text size="lg">
+      > <Text size='lg'>
         Logga ut
-      </Text>
+        </Text>
       </MenuItem>
     </Menu>
   )
@@ -54,26 +54,26 @@ const LoggedOut = () => {
   const theme = useMantineTheme()
   return (
     <Menu
-      placement="center"
+      placement='center'
       gutter={6}
       onClose={() => setOpened(false)}
       control={
         <Burger
           opened={opened}
           onClick={() => setOpened(!opened)}
-          size="md"
+          size='md'
           color={theme.colors.gray[9]}
-          mr="xl"
+          mr='xl'
         />
       }
     >
-      <MenuItem icon={MdAttribution} component={Anchor} href="/om-oss">
-        <Text size="lg">
+      <MenuItem icon={MdAttribution} component={Anchor} href='/om-oss'>
+        <Text size='lg'>
           Om oss
         </Text>
       </MenuItem>
-      <MenuItem component={Anchor} href="/logga-in" icon={MdLogin}>
-        <Text size="lg" color="green">
+      <MenuItem component={Anchor} href='/logga-in' icon={MdLogin}>
+        <Text size='lg' color='green'>
           Logga in
         </Text>
       </MenuItem>
@@ -83,13 +83,14 @@ const LoggedOut = () => {
 const Logo = () => {
   const themes = useMantineTheme()
   return (
-    <Link href="/" passHref>
+    <Link href='/' passHref>
       <Anchor sx={{
         '&:hover': {
-          color: themes.colors.gray[9],
-        },
-      }}>
-        <Logo1 size={40} color={themes.colorScheme === 'dark' ? themes.primaryColor : themes.colors.dark[8]}/>
+          color: themes.colors.gray[9]
+        }
+      }}
+      >
+        <Logo1 size={40} color={themes.colorScheme === 'dark' ? themes.primaryColor : themes.colors.dark[8]} />
       </Anchor>
 
     </Link>
@@ -102,7 +103,7 @@ const Appbar = () => {
   return (
     <Header
       height={70}
-      p="md"
+      p='md'
       style={{
         display: 'flex',
         flexDirection: 'row',
@@ -110,9 +111,9 @@ const Appbar = () => {
       }}
     >
 
-      <Logo/>
+      <Logo />
 
-      <Group position="apart">{isLoggedIn ? <LoggedIn/> : <LoggedOut/>}</Group>
+      <Group position='apart'>{isLoggedIn ? <LoggedIn /> : <LoggedOut />}</Group>
     </Header>
 
   )

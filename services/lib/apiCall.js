@@ -6,8 +6,13 @@ const logOut = () => {
   sessionStorage.setItem('__LSM__', JSON.stringify(obj))
 
 }
-const apiCall = async ({ path, type, body, params }) => {
-
+const getToken = ()=>{
+  const store = sessionStorage.getItem('__LSM__')
+  const token = JSON.parse(store).token
+  return token || " "
+}
+const api = async ({ path, type, body, params }) => {
+  const token = getToken()
   const config = {
     url: apiUrl + path,
     method: type,
@@ -15,30 +20,12 @@ const apiCall = async ({ path, type, body, params }) => {
     params,
     withCredentials: true,
     headers: {
-      //'Authorisation': 'Bearer' + token,
+      Authorization: `Bearer ${token}`,
       'content-type': 'application/json',
       'access-control-allow-origin': apiUrl
     }
   }
-  axios.interceptors.response.use(
-    (response) => {
-      // Any status code that lie within the range of 2xx cause this function to trigger
-      // Do something with response data
-
-      return response
-    },
-    (error) => {
-      // Any status codes that falls outside the range of 2xx cause this function to trigger
-      // Do something with response error
-      if (error.status === 401) {
-        logOut()
-        window.location.replace('/login')
-      }
-      return Promise.reject(error)
-    }
-  )
-
   return axios(config)
 }
 
-export default apiCall
+export default api
