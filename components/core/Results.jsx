@@ -2,6 +2,7 @@ import { Button, Center, Dialog, Group, Modal, Pagination, Paper, Stack, Text } 
 import { Rating } from '@mui/material'
 import { chunk } from 'lodash/array'
 import _ from 'lodash/fp'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { FiAlertCircle } from 'react-icons/fi'
 import { MdBusiness, MdDateRange, MdPerson } from 'react-icons/md'
@@ -25,10 +26,13 @@ const Results = ({ data }) => {
     }
 
   }, [data])
-
-  const closePopUp = () => {
+  const router = useRouter()
+  const closePopUp = (selected) => {
     setOpen(false)
     openAlert(true)
+    router.push(
+      { pathname: '/maklare', query: { id:selected } }
+    )
   }
   const res = chunk(data, 10)
   if (data?.message) {
@@ -38,6 +42,7 @@ const Results = ({ data }) => {
   }
   const ShowModal = (item) => {
     setOpen(true)
+    console.log(item);
     setSelected(item)
   }
 
@@ -87,7 +92,7 @@ const Results = ({ data }) => {
             <MdDateRange size={32} color={'#59203a'} title={'Registerings Datum'}/>
             <Text align={'right'}> {selected?.registrationdate}</Text>
           </Group>
-          <Button onClick={closePopUp}>Skriv Recension</Button>
+          <Button onClick={() => closePopUp(selected.id)}>Skriv Recension</Button>
         </Stack>
       </Modal>
       <Dialog color="red" withCloseButton opened={alert} onClose={() => openAlert(false)} size="lg"

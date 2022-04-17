@@ -11,3 +11,8 @@ export const fetchReviewById = (id) => {
   const config = { type: 'get', path: '/reviews/review', params: { id: id } }
   return apiCall(config)
 }
+
+export const fetchReviewByRealtorId = (id) => {
+  const config = { type: 'get', path: '/reviews/realtor', params: { realtorId: id } }
+  return apiCall(config)
+}
