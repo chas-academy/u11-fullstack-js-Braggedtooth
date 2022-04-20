@@ -6,13 +6,13 @@ const logOut = () => {
   sessionStorage.setItem('__LSM__', JSON.stringify(obj))
 
 }
-const getToken = ()=>{
+const getToken = () => {
   const store = sessionStorage.getItem('__LSM__')
-  if(store){
-    const token = JSON.parse(store).token
-    return token
+  if (store) {
+    return JSON.parse(store).token
+
   }
-  return ""
+  return ''
 }
 const api = async ({ path, type, body, params }) => {
   const token = getToken()
