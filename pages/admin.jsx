@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { Button, Text } from '@mantine/core'
 import useStore from '../services/hooks/useStore'
 import Layout from '../components/core/Layout'
+import User from '../components/shared/users'
 
 const Admin = () => {
   const router = useRouter()
@@ -18,7 +19,9 @@ const Admin = () => {
   }, [router, user])
   const goHome = () => router.push('/')
   return isAdmin ? (
-    <div>admin</div>
+    <div>
+      <User />
+    </div>
   ) : (
     <>
       <Text> Denna sidan är endast tillgängligt för admin </Text>

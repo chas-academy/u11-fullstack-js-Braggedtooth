@@ -1,26 +1,28 @@
 import { Anchor, Button, Group, LoadingOverlay, PasswordInput, Text, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import { useNotifications } from '@mantine/notifications'
-import { EnvelopeClosedIcon, LockClosedIcon } from '@modulz/radix-icons'
+import { FaEnvelope, FaLock } from 'react-icons/fa'
 import { useState } from 'react'
 import { BiCheck, BiError } from 'react-icons/bi'
 import { registerAcc } from '../../services/lib/auth'
+import useUSers from '../../services/hooks/useUsers'
 
-const RegisterForm = ({ toggle }) => {
+const RegisterForm = ({ toggle, type }) => {
   const [loading, setLoading] = useState(false)
   const notifications = useNotifications()
+  const { addUser } = useUSers()
   const form = useForm({
     initialValues: {
-      firtname: '',
+      firstname: '',
       lastname: '',
       email: '',
       password: ''
     },
     validationRules: {
-      firstname: value => value.trim(),
-      lastname: value => value.trim(),
-      email: value => /^\S+@\S+$/.test(value),
-      password: value => /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(value)
+      firstname: (value) => value.trim(),
+      lastname: (value) => value.trim(),
+      email: (value) => /^\S+@\S+$/.test(value),
+      password: (value) => /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(value)
     },
     errorMessages: {
       firstname: 'Du måste ange ditt förnamn',
@@ -29,22 +31,44 @@ const RegisterForm = ({ toggle }) => {
       password: 'Lösenordet måste inehålla minst en stor bokstav och en siffra'
     }
   })
-  const handleSubmit = data => {
+  const handleSubmit = (data) => {
     setLoading(true)
-    registerAcc(data)
-      .then(res => {
+    if (type === 'admin') {
+      return addUser
+        .mutateAsync(data)
+        .then((res) => {
+          notifications.showNotification({
+            color: 'green',
+            message: res.data.message,
+            icon: <BiCheck />
+          })
+          toggle()
+        })
+        .catch((error) => {
+          notifications.showNotification({
+            message: error.response.data.error,
+            color: 'red',
+            icon: <BiError />
+          })
+        })
+        .finally(() => {
+          setLoading(false)
+        })
+    }
+    return registerAcc(data)
+      .then((res) => {
         notifications.showNotification({
           color: 'green',
           message: res.data.message,
-          icon: <BiCheck/>
+          icon: <BiCheck />
         })
         toggle()
       })
-      .catch(error => {
+      .catch((error) => {
         notifications.showNotification({
-          message: error.message,
+          message: error.response.data.error.message,
           color: 'red',
-          icon: <BiError/>
+          icon: <BiError />
         })
       })
       .finally(() => {
@@ -53,64 +77,62 @@ const RegisterForm = ({ toggle }) => {
   }
 
   return (
-    <>
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <LoadingOverlay visible={loading}/>
-        <Group grow>
-          <TextInput
-            data-autofocus
-            required
-            name="firstname"
-            placeholder="Ditt förnamn"
-            label="Förnamn"
-            {...form.getInputProps('firstname')}
-          />
-
-          <TextInput
-            required
-            name="lastname"
-            placeholder="Ditt efternamn"
-            label="Efternamn"
-            {...form.getInputProps('lastname')}
-          />
-        </Group>
+    <form onSubmit={form.onSubmit(handleSubmit)}>
+      <LoadingOverlay visible={loading} />
+      <Group grow>
         <TextInput
-          mt="md"
+          data-autofocus
           required
-          name="email"
-          placeholder="Mailadress"
-          label="Mailadress"
-          type="email"
-          icon={<EnvelopeClosedIcon/>}
-          {...form.getInputProps('email')}
+          name="firstname"
+          placeholder="Ditt förnamn"
+          label="Förnamn"
+          {...form.getInputProps('firstname')}
         />
 
-        <PasswordInput
-          mt="md"
+        <TextInput
           required
-          placeholder="Lösenord"
-          label="Lösenord"
-          icon={<LockClosedIcon/>}
-          {...form.getInputProps('password')}
+          name="lastname"
+          placeholder="Ditt efternamn"
+          label="Efternamn"
+          {...form.getInputProps('lastname')}
         />
-        <Group position="apart" mt="xl">
-          <Text>
-            Redan registrerad?{' '}
-            <Anchor
-              component="button"
-              type="button"
-              size="md"
-              onClick={() => toggle()}
-            >
-              Logga in
-            </Anchor>
-          </Text>
-          <Button color="blue" type="submit" aria-label="Logga in">
-            Registrera
-          </Button>
-        </Group>
-      </form>
-    </>
+      </Group>
+      <TextInput
+        mt="md"
+        required
+        name="email"
+        placeholder="Mailadress"
+        label="Mailadress"
+        type="email"
+        icon={<FaEnvelope />}
+        {...form.getInputProps('email')}
+      />
+
+      <PasswordInput
+        mt="md"
+        required
+        placeholder="Lösenord"
+        label="Lösenord"
+        icon={<FaLock />}
+        {...form.getInputProps('password')}
+      />
+      <Group position="apart" mt="xl">
+        <Text>
+          Redan registrerad?{' '}
+          <Anchor
+            component="button"
+            type="button"
+            size="md"
+            onClick={() => toggle()}
+          >
+            Logga in
+          </Anchor>
+        </Text>
+        <Button color="blue" type="submit" aria-label="Logga in">
+          Registrera
+        </Button>
+      </Group>
+    </form>
   )
 }
 
