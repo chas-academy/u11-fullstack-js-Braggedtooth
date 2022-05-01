@@ -14,7 +14,7 @@ const Routes = () => {
   const profile = () => router.push(myRoutes.PROFILE)
   const reviews = () => router.push(myRoutes.REVIEWS)
   const about = () => router.push(myRoutes.ABOUT)
-  const review = (id) => router.push(myRoutes.REVIEWS + '/' + id)
+  const review = (id) => router.push(`${myRoutes.REVIEWS}/${id}`)
   const login = () => router.push(myRoutes.LOGIN)
 
   return {

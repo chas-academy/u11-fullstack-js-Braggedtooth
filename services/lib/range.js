@@ -1,3 +1,4 @@
+// eslint-disable-next-line consistent-return
 const range = (value) => {
   if (value < 1) {
     return 0

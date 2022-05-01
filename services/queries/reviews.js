@@ -1,4 +1,5 @@
 import apiCall from '../lib/apiCall'
+
 export const fetchUserReviews = () => {
   const config = { type: 'get', path: '/user/my-reviews' }
   return apiCall(config)
@@ -8,7 +9,7 @@ export const fetchAllReviews = () => {
   return apiCall(config)
 }
 export const fetchReviewById = (id) => {
-  const config = { type: 'get', path: '/reviews/review', params: { id: id } }
+  const config = { type: 'get', path: '/reviews/review', params: { id } }
   return apiCall(config)
 }
 
