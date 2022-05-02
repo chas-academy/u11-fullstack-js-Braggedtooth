@@ -22,13 +22,17 @@ const RegisterForm = ({ toggle, type }) => {
       firstname: (value) => value.trim(),
       lastname: (value) => value.trim(),
       email: (value) => /^\S+@\S+$/.test(value),
-      password: (value) => /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(value)
+      password: (value) =>
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(
+          value
+        )
     },
     errorMessages: {
       firstname: 'Du måste ange ditt förnamn',
       lastname: 'Du måste ange ditt efternamn',
       email: 'Vänligen ange ett giltigt mailadress',
-      password: 'Lösenordet måste inehålla minst en stor bokstav och en siffra'
+      password:
+        'Lösenordet måste innehålla minst en stor bokstav, en liten bokstav , en siffra och en speciell tecken'
     }
   })
   const handleSubmit = (data) => {

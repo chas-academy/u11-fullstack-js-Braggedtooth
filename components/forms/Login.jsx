@@ -13,7 +13,6 @@ import {
 import { useBooleanToggle, useForm } from '@mantine/hooks'
 import { useNotifications } from '@mantine/notifications'
 import { FaEnvelope, FaLock } from 'react-icons/fa'
-import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { BiCheck, BiError } from 'react-icons/bi'
 import useProfile from '../../services/hooks/useProfile'
@@ -23,7 +22,6 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false)
   const notifications = useNotifications()
   const [type, toggle] = useBooleanToggle(true)
-  const router = useRouter()
   const { Login } = useProfile()
   const form = useForm({
     initialValues: {
@@ -32,11 +30,15 @@ const LoginForm = () => {
     },
     validationRules: {
       email: (value) => /^\S+@\S+$/.test(value),
-      password: (value) => /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(value)
+      password: (value) =>
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(
+          value
+        )
     },
     errorMessages: {
       email: 'Vänligen ange ett giltigt mailadress',
-      password: 'Ange ett lösenord '
+      password:
+        'Lösenordet måste innehålla minst en stor bokstav, en liten bokstav , en siffra och en speciell tecken'
     }
   })
   const handleSubmit = (data) => {
@@ -44,7 +46,6 @@ const LoginForm = () => {
     Login(data)
       .then((res) => {
         setLoading(false)
-        router.push('/mina-sidor')
         notifications.showNotification({
           color: 'green',
           message: res.data.message,

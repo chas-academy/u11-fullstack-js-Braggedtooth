@@ -1,24 +1,18 @@
-import axios from 'axios'
-import { apiUrl } from './config'
+import api from './apiCall'
 
 export const login = async (user) => {
-  return axios.post(`${apiUrl}/signin`, user)
+  return api({ path: '/signin', type: 'post', body: user })
 }
 
 export const registerAcc = async (user) => {
-  return axios.post(`${apiUrl}/signup`, user)
+  return api({ path: '/signup', type: 'post', body: user })
 }
 
-export const logOut = () => {
-  return axios.delete(`${apiUrl}/logout`, { withCredentials: true })
+export const voidToken = () => {
+  return api({ path: '/logout', type: 'delete' })
 }
 
 export const editProfile = (user) => {
-  return axios.put(`${apiUrl}/user/edit-profile`, user, {
-    withCredentials: true,
-    headers: {
-      'content-type': 'application/json',
-      'access-control-allow-origin': apiUrl
-    }
-  })
+  const config = { path: '/user/edit-profile', type: 'put', body: user }
+  return api(config)
 }
