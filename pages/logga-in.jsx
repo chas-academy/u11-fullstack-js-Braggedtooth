@@ -1,5 +1,5 @@
+import { Container } from '@mantine/core'
 import React, { useEffect } from 'react'
-import Container from '../components/core/Container'
 import Layout from '../components/core/Layout'
 import LoginForm from '../components/forms/Login'
 import useStore from '../services/hooks/useStore'
@@ -13,16 +13,18 @@ const Login = () => {
       profile()
     }
   }, [isLoggedIn, profile])
-  return !isLoggedIn && (
-    <Container>
-      <LoginForm/>
-    </Container>
+  return (
+    !isLoggedIn && (
+      <Container>
+        <LoginForm />
+      </Container>
+    )
   )
 }
 
 export default Login
 
-Login.getLayout = page => (
+Login.getLayout = (page) => (
   <Layout title="Login" auth={false}>
     {page}
   </Layout>

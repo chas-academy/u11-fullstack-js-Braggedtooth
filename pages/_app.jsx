@@ -5,7 +5,6 @@ import { createStore, StateMachineProvider } from 'little-state-machine'
 import dynamic from 'next/dynamic'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
-import '../styles/style.scss'
 
 createStore({
   isLoggedIn: false,
@@ -15,7 +14,7 @@ createStore({
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 0,
+      staleTime: 50000,
       retry: 3,
       refetchInterval: 10000
     }
