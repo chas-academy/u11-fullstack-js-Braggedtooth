@@ -1,54 +1,85 @@
 import {
+  Group,
   LoadingOverlay,
   SegmentedControl,
   Stack,
-  Text,
   Title
 } from '@mantine/core'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Layout from '../../components/core/Layout'
 import ReviewItem from '../../components/shared/ReviewItem'
 import useReviews from '../../services/hooks/useReviews'
 import useUserReviews from '../../services/hooks/useUserReviews'
+import applyFilter from '../../services/lib/filter'
 
 const Index = ({ user }) => {
-  // const media = useMediaQuery('(min-width: 900px)')
-  const [filter, setFilters] = useState(() => ' ')
-  const { reviews, isLoading } = useReviews()
-  const { userReviews, isLoading: userLoading } = useUserReviews()
-
-  if (!reviews || !userReviews) {
-    return <LoadingOverlay visible />
+  const [order, setOrder] = useState('asc')
+  const [orderBy, setOrderBy] = useState('title')
+  const [filter, setFilters] = useState('')
+  const [view, setView] = useState([])
+  const [filteredView, setfilteredView] = useState([])
+  const { reviews, isLoading } = useReviews(user)
+  const { userReviews, isLoading: userLoading } = useUserReviews(user)
+  const handleSort = (property) => {
+    setOrderBy(property)
+    setFilters(property)
   }
 
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    if (user) {
+      return setView(userReviews)
+    }
+    if (!user) {
+      if (reviews) {
+        return setView(reviews)
+      }
+    }
+  }, [reviews, user, userReviews])
+  const filtered = useCallback(() => {
+    return applyFilter(view, order, orderBy)
+  }, [order, orderBy, view])
+
+  useEffect(() => {
+    setfilteredView(filtered)
+
+    return () => {
+      setfilteredView(view)
+    }
+  }, [view, filtered])
   return (
-    !userLoading &&
-    !isLoading && (
-      <Stack align={'center'}>
-        <Title>Recensioner</Title>
+    <Stack align="center">
+      <LoadingOverlay visible={isLoading || userLoading} />
+      <Title>Recensioner</Title>
+      <Group>
         <SegmentedControl
           value={filter}
-          onChange={setFilters}
+          onChange={(value) => handleSort(value)}
           data={[
-            { label: 'Standard', value: 'latest' },
-            { label: 'Betyg', value: 'star' },
-            { label: 'Datum', value: 'date' },
+            { label: 'Title', value: 'title' },
+            { label: 'Betyg', value: 'rating' },
+            { label: 'Datum', value: 'createdAt' },
             { label: 'Gillningar', value: 'likes' }
           ]}
         />
-        {user && userReviews.length === 0 && (
-          <h1> Du har inte skrivit några recensioner ännu</h1>
-        )}
-        {!user
-          ? reviews.map((review) => {
-              return <ReviewItem key={review.id} data={review} />
-            })
-          : userReviews.map((userReview) => {
-              return <ReviewItem key={userReview.id} data={userReview} />
-            })}
-      </Stack>
-    )
+        <SegmentedControl
+          value={order}
+          onChange={setOrder}
+          data={[
+            { label: 'Ascending', value: 'asc' },
+            { label: 'Descending', value: 'desc' }
+          ]}
+        />
+      </Group>
+
+      {user && view?.length === 0 && (
+        <h1> Du har inte skrivit några recensioner ännu</h1>
+      )}
+      {filteredView?.map((review) => {
+        return <ReviewItem key={review.id} data={review} />
+      })}
+    </Stack>
   )
 }
 

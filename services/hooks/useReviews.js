@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import useStore from './useStore'
 import { fetchAllReviews } from '../queries/reviews'
 
-const useReviews = () => {
+const useReviews = (user) => {
   const [error, setError] = useState()
   const { logout } = useStore()
   useEffect(() => {
@@ -14,10 +14,9 @@ const useReviews = () => {
     }
   }, [error, logout])
 
-  const { isLoggedIn } = useStore().store
   const { data, isLoading } = useQuery('getReviews', () => fetchAllReviews(), {
-    enabled: isLoggedIn,
-    refetchInterval: false,
+    enabled: Boolean(!user),
+    retry: 3,
     onError: (err) => setError(err)
   })
 
