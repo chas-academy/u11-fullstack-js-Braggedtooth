@@ -1,13 +1,23 @@
-import apiCall from '../lib/apiCall'
+import api from '../lib/apiCall'
+
 export const fetchUserReviews = () => {
   const config = { type: 'get', path: '/user/my-reviews' }
-  return apiCall(config)
+  return api(config)
 }
 export const fetchAllReviews = () => {
   const config = { type: 'get', path: '/reviews/all' }
-  return apiCall(config)
+  return api(config)
 }
 export const fetchReviewById = (id) => {
-  const config = { type: 'get', path: '/reviews/review', params: { id: id } }
-  return apiCall(config)
+  const config = { type: 'get', path: '/reviews/review', params: { id } }
+  return api(config)
+}
+
+export const fetchReviewByRealtorId = (id) => {
+  const config = {
+    type: 'get',
+    path: '/reviews/realtor',
+    params: { realtorId: id }
+  }
+  return api(config)
 }

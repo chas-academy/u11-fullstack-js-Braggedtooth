@@ -1,19 +1,24 @@
 import { z } from 'zod'
-const email = z.string().email({ message: 'Invalid email address' }).transform((str) => str.toLowerCase().trim())
 
-const firstname = z.string().nonempty({ message: 'firstname is required' }).transform((str) => str.toLowerCase().trim())
-const lastname = z.string().nonempty({ message: 'lastname is required' }).transform((str) => str.toLowerCase().trim())
+const email = z
+  .string()
+  .email({ message: 'Invalid email address' })
+  .transform((str) => str.toLowerCase().trim())
+const firstname = z
+  .string()
+  .nonempty({ message: 'firstname is required' })
+  .transform((str) => str.toLowerCase().trim())
+const lastname = z
+  .string()
+  .nonempty({ message: 'lastname is required' })
+  .transform((str) => str.toLowerCase().trim())
 
 const password = z
   .string()
-  .regex(new RegExp('.*[A-Z].*'), ' Must contain at least one uppercase character')
-  .regex(new RegExp('.*[a-z].*'), ' Must contain at least one lowercase character')
-  .regex(new RegExp('.*\\d.*'), 'Must have at least one number')
   .regex(
-    new RegExp(".*[`~<>?,./!@#$%^&*()\\-_+=\"'|{}\\[\\];:\\\\].*"),
-    'Must contain at least one special character'
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+    'Lösenordet måste innehålla minst en stor bokstav, en liten bokstav , en siffra och en speciell tecken'
   )
-  .min(8, 'Must be at least 8 characters in length')
 
 const Signup = z.object({
   email,
@@ -24,7 +29,7 @@ const Signup = z.object({
 
 const Login = z.object({
   email,
-  password: password
+  password
 })
 
 const ForgotPassword = z.object({
@@ -33,7 +38,7 @@ const ForgotPassword = z.object({
 
 const ResetPassword = z
   .object({
-    password: password,
+    password,
     passwordConfirmation: password,
     token: z.string()
   })
@@ -48,15 +53,24 @@ const ChangePassword = z.object({
 })
 const WriteReview = z.object({
   title: z.string().transform((str) => str.toLowerCase().trim()),
-  content: z.string().min(200).transform((str) => str.toLowerCase().trim()),
+  content: z
+    .string()
+    .min(200)
+    .transform((str) => str.toLowerCase().trim()),
   realtorsId: z.string()
 })
 const EditReview = z.object({
   title: z.string().transform((str) => str.toLowerCase().trim()),
-  content: z.string().min(200).transform((str) => str.toLowerCase().trim())
+  content: z
+    .string()
+    .min(200)
+    .transform((str) => str.toLowerCase().trim())
 })
 const WriteComment = z.object({
-  content: z.string().min(200).transform((str) => str.toLowerCase().trim()),
+  content: z
+    .string()
+    .min(200)
+    .transform((str) => str.toLowerCase().trim()),
   reviewId: z.string()
 })
 export {
@@ -68,5 +82,4 @@ export {
   WriteReview,
   EditReview,
   WriteComment
-
 }

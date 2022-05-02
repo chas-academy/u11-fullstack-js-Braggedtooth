@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { isEqual } from 'lodash'
 
 const storeUser = (state, payload) => {
   return {
@@ -24,10 +24,10 @@ const removeUser = (state, payload) => {
     user: { ...payload }
   }
 }
-const setToken = (state, payload)=>{
+const setToken = (state, payload) => {
   return {
     ...state,
-    token:payload
+    token: payload
   }
 }
 
@@ -36,7 +36,7 @@ const getChangedProps = (user, payload) => {
     // eslint-disable-next-line no-prototype-builtins
     if (!payload.hasOwnProperty(key)) {
       result.push(key)
-    } else if (_.isEqual(user[key], payload[key])) {
+    } else if (isEqual(user[key], payload[key])) {
       const resultKeyIndex = result.indexOf(key)
       result.splice(resultKeyIndex, 1)
     }
@@ -44,4 +44,4 @@ const getChangedProps = (user, payload) => {
   }, Object.keys(payload))
 }
 
-export { storeUser, removeUser, getChangedProps, toggleAuthState ,setToken}
+export { storeUser, removeUser, getChangedProps, toggleAuthState, setToken }

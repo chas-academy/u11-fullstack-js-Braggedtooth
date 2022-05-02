@@ -1,32 +1,28 @@
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
-import useStore from '../../services/hooks/useStore'
+import useStore from './useStore'
 import { fetchAllReviews } from '../queries/reviews'
 
-const useReviews = () => {
+const useReviews = (user) => {
   const [error, setError] = useState()
   const { logout } = useStore()
   useEffect(() => {
     if (error) {
       if (error.message === 'Request failed with status code 401') {
-        return logout()
+        logout()
       }
-
     }
   }, [error, logout])
 
-  const { isLoggedIn } = useStore().store
-  const { data, isLoading, } = useQuery('getReviews', () => fetchAllReviews(), {
-    enabled: isLoggedIn,
-    refetchInterval: false,
+  const { data, isLoading } = useQuery('getReviews', () => fetchAllReviews(), {
+    enabled: Boolean(!user),
+    retry: 3,
     onError: (err) => setError(err)
   })
 
-
   return {
     reviews: data?.data.data,
-    isLoading,
-
+    isLoading
   }
 }
 

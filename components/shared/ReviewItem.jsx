@@ -17,41 +17,52 @@ import getTime from '../../services/lib/getTime'
 const ReviewItem = ({ data }) => {
   const { title, authorName, rating, createdAt, id, likes, comments } = data
   const media = useMediaQuery('(min-width: 900px)')
-  const date = getTime(createdAt).date
+  const { date } = getTime(createdAt)
   const theme = useMantineTheme()
 
   return (
-
-    <Card component={'a'}
-          href={`/recensioner/${id}`}
-          styles={(theme) => ({
-            root: {
-              '&:hover': { backgroundColor: theme.colors.gray },
-              border: 0,
-              width: media ? '680px' : '100%',
-              padding: '2em'
-            }
-          })
-          }>
+    <Card
+      component="a"
+      href={`/recensioner/${id}`}
+      styles={(t) => ({
+        root: {
+          '&:hover': { backgroundColor: t.colors.gray },
+          border: 0,
+          width: media ? '680px' : '100%',
+          padding: '2em'
+        }
+      })}
+    >
       <Card.Section p={3}>
         <Group position="apart">
-          <Text weight={700} size="md" lineClamp={1}>{title}</Text>
-          <Rating
-            value={rating} readOnly
-            sx={{ color: theme.colors.blue }}/>
+          <Text weight={700} size="md" lineClamp={1}>
+            {title}
+          </Text>
+          <Rating value={rating} readOnly sx={{ color: theme.colors.blue }} />
         </Group>
       </Card.Section>
       <Card.Section p={3}>
-        <Group position={'apart'}>
+        <Group position="apart">
           <Text color="gray"> Skriven av {authorName}</Text>
           <Text color="gray"> {date}</Text>
-          {comments &&
-            <Text color="gray"> Kommentarer <Badge size="sm" variant="outline" color="orange">{comments.length}</Badge></Text>}
-          <Text color="gray">Gillningar <Badge size="sm" variant="filled" color="cyan">{likes}</Badge></Text>
+          {comments && (
+            <Text color="gray">
+              {' '}
+              Kommentarer{' '}
+              <Badge size="sm" variant="outline" color="orange">
+                {comments.length}
+              </Badge>
+            </Text>
+          )}
+          <Text color="gray">
+            Gillningar{' '}
+            <Badge size="sm" variant="filled" color="cyan">
+              {likes}
+            </Badge>
+          </Text>
         </Group>
       </Card.Section>
     </Card>
-
   )
 }
 export default ReviewItem

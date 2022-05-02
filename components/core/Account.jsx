@@ -30,15 +30,18 @@ const Account = () => {
   const notifications = useNotifications()
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const dark = colorScheme === 'dark'
-  const onSave = data => {
-    data.role = 'USER'
-    const hasEdit = getChangedProps(user, data)
+  const onSave = (data) => {
+    const newProps = {
+      ...data,
+      role: user.role
+    }
+    const hasEdit = getChangedProps(user, newProps)
     if (_.isEmpty(hasEdit)) {
       showModal(false)
       notifications.showNotification({
         message: 'Din profile är oförändrad',
         color: 'blue',
-        icon: <MdInfo/>
+        icon: <MdInfo />
       })
     }
     if (!_.isEmpty(hasEdit)) {
@@ -48,7 +51,7 @@ const Account = () => {
           notifications.showNotification({
             message: 'Din profil har uppdaterats',
             color: 'green',
-            icon: <MdCheck/>
+            icon: <MdCheck />
           })
         })
         .catch(() => {
@@ -57,7 +60,7 @@ const Account = () => {
             title: 'Någåt gick fel..',
             message: 'Vänligen logga in igen',
             color: 'red',
-            icon: <MdError/>
+            icon: <MdError />
           })
         })
     }
@@ -76,29 +79,39 @@ const Account = () => {
       <Title order={2} align="center">
         Konto Inställningar
       </Title>
-      <Card shadow="sm" p="lg" mt={'sm'} withBorder styles={(theme) => ({
-        root: {
-          height: 'calc(100% / 6px)',
-          backgroundColor: !dark && theme.colors.gray[3]
-        }
-      })}>
-        <Group direction="column" p={'lg'} align={'center'}>
-          <Avatar size={'lg'}/>
-          <Text size={'lg'} order={1} color={'blue'}>
+      <Card
+        shadow="sm"
+        p="lg"
+        mt="sm"
+        withBorder
+        styles={(theme) => ({
+          root: {
+            height: 'calc(100% / 6px)',
+            backgroundColor: !dark && theme.colors.gray[3]
+          }
+        })}
+      >
+        <Group direction="column" p="lg" align="center">
+          <Avatar size="lg" />
+          <Text size="lg" order={1} color="blue">
             {user.firstname} {user.lastname}
           </Text>
-          <Text>
-            {user.email}
-          </Text>
+          <Text>{user.email}</Text>
           <Group>
             <Text>{!dark ? 'Mörkt Tema' : 'Ljust Tema'}</Text>
             <ActionIcon
               variant="filled"
               onClick={() => toggleColorScheme()}
               title="Toggle color scheme"
-              styles={(theme) => ({ root: { backgroundColor: dark ? theme.colors.dark[5] : theme.colors.gray[2] } })}
+              styles={(theme) => ({
+                root: {
+                  backgroundColor: dark
+                    ? theme.colors.dark[5]
+                    : theme.colors.gray[2]
+                }
+              })}
             >
-              {dark ? <BsSun size={18}/> : <BsMoonStarsFill size={18}/>}
+              {dark ? <BsSun size={18} /> : <BsMoonStarsFill size={18} />}
             </ActionIcon>
           </Group>
         </Group>

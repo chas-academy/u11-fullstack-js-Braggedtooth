@@ -12,8 +12,7 @@ import {
 } from '@mantine/core'
 import { useBooleanToggle, useForm } from '@mantine/hooks'
 import { useNotifications } from '@mantine/notifications'
-import { EnvelopeClosedIcon, LockClosedIcon } from '@modulz/radix-icons'
-import { useRouter } from 'next/router'
+import { FaEnvelope, FaLock } from 'react-icons/fa'
 import { useState } from 'react'
 import { BiCheck, BiError } from 'react-icons/bi'
 import useProfile from '../../services/hooks/useProfile'
@@ -23,8 +22,6 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false)
   const notifications = useNotifications()
   const [type, toggle] = useBooleanToggle(true)
-  const router = useRouter()
-  //const {  } = useStore().store
   const { Login } = useProfile()
   const form = useForm({
     initialValues: {
@@ -32,41 +29,42 @@ const LoginForm = () => {
       password: ''
     },
     validationRules: {
-      email: value => /^\S+@\S+$/.test(value),
-      password: value => /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(value)
+      email: (value) => /^\S+@\S+$/.test(value),
+      password: (value) =>
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(
+          value
+        )
     },
     errorMessages: {
       email: 'Vänligen ange ett giltigt mailadress',
-      password: 'Ange ett lösenord '
+      password:
+        'Lösenordet måste innehålla minst en stor bokstav, en liten bokstav , en siffra och en speciell tecken'
     }
   })
-  const handleSubmit = data => {
+  const handleSubmit = (data) => {
     setLoading(true)
     Login(data)
-      .then(res => {
+      .then((res) => {
         setLoading(false)
-        router.push('/mina-sidor')
         notifications.showNotification({
           color: 'green',
           message: res.data.message,
-          icon: <BiCheck/>
+          icon: <BiCheck />
         })
-
       })
-      .catch(error => {
+      .catch((error) => {
         notifications.showNotification({
-          message: error.response.data.error.message,
+          message: error.response.data.error,
           color: 'red',
-          icon: <BiError/>
+          icon: <BiError />
         })
-
       })
       .finally(() => setLoading(false))
   }
 
   return (
-    <Container my={'lg'} sx={{ width: '90%' }}>
-      <LoadingOverlay visible={loading}/>
+    <Container my="lg" sx={{ width: '90%' }}>
+      <LoadingOverlay visible={loading} />
       <Center p="lg" mb="md">
         <Title>{type ? 'Logga in' : 'Skapa Konto '}</Title>
       </Center>
@@ -78,7 +76,7 @@ const LoginForm = () => {
             placeholder="Mailadress"
             label="Mailadress"
             type="email"
-            icon={<EnvelopeClosedIcon/>}
+            icon={<FaEnvelope />}
             {...form.getInputProps('email')}
           />
 
@@ -87,7 +85,7 @@ const LoginForm = () => {
             required
             placeholder="Lösenord"
             label="Lösenord"
-            icon={<LockClosedIcon/>}
+            icon={<FaLock />}
             {...form.getInputProps('password')}
           />
           <Group position="apart" mt="xl">
@@ -108,9 +106,8 @@ const LoginForm = () => {
           </Group>
         </form>
       ) : (
-        <RegisterForm toggle={toggle}/>
+        <RegisterForm toggle={toggle} />
       )}
-      {/*</Paper>*/}
     </Container>
   )
 }

@@ -31,7 +31,6 @@ const Rating = ({ value }) => {
   }
 
   useEffect(() => {
-
     switch (range(value)) {
       case 0:
         setStars(0)
@@ -52,13 +51,15 @@ const Rating = ({ value }) => {
         break
       case 5:
         setStars(5)
+        break
+      default:
+        setStars(0)
     }
   }, [value])
   const numArr = () => {
-    let arr = []
-    for (let i = 0; i < stars; i++) {
+    const arr = []
+    for (let i = 0; i < stars; i = +1) {
       arr.push(i)
-
     }
     return arr
   }

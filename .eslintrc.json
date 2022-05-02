@@ -1,16 +1,18 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "prettier"
-  ],
-  "plugins": [
-    "react",
-    "prettier"
-  ],
+  "extends": ["airbnb", "next/core-web-vitals", "prettier"],
+  "plugins": ["react", "prettier"],
   "rules": {
     "no-console": 0,
     "arrow-body-style": "off",
+    "import/extensions": "off",
     "react/jsx-props-no-spreading": "off",
-    "import/extensions": "off"
+    "react/function-component-definition": "off",
+    "react/require-default-props": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".jsx", ".js"]
+      }
+    ]
   }
 }
