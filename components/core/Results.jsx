@@ -11,7 +11,7 @@ import isArray from 'lodash/isArray'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import range from '../../services/lib/range'
-import chunk from './../../services/lib/chunk'
+import chunk from '../../services/lib/chunk'
 
 const Results = ({ data }) => {
   const [activePage, setPage] = useState(1)

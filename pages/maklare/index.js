@@ -4,7 +4,6 @@ import {
   Accordion,
   Text,
   Avatar,
-  useMantineTheme,
   Card,
   Box,
   Anchor,
@@ -12,16 +11,31 @@ import {
 } from '@mantine/core'
 import { Rating } from '@mui/material'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import isEmpty from 'lodash/isEmpty'
 import Layout from '../../components/core/Layout'
 import useReviewByRealtorsId from '../../services/hooks/useReviewByRealtorsId'
-import { MdPerson } from 'react-icons/md'
-import isEmpty from 'lodash/isEmpty'
+
+function AccordionLabel({ title, authorName, rating }) {
+  return (
+    <Group noWrap>
+      <Avatar radius="xl" size="lg" />
+      <div>
+        <Text>{title}</Text>
+        <Group>
+          <Text size="sm" color="dimmed" weight={400}>
+            {authorName}
+          </Text>
+          <Rating value={rating} readOnly />{' '}
+        </Group>
+      </div>
+    </Group>
+  )
+}
 const ReviewbyRealtorId = () => {
   const router = useRouter()
   const { id } = router.query
   const { reviews, realtor, fetchReviews, isLoading } = useReviewByRealtorsId()
-  const theme = useMantineTheme()
 
   useEffect(() => {
     if (id) {
@@ -29,23 +43,6 @@ const ReviewbyRealtorId = () => {
       fetchReviews(decodeId)
     }
   }, [fetchReviews, id])
-
-  function AccordionLabel({ title, authorName, rating }) {
-    return (
-      <Group noWrap>
-        <Avatar radius="xl" size="lg" />
-        <div>
-          <Text>{title}</Text>
-          <Group>
-            <Text size="sm" color="dimmed" weight={400}>
-              {authorName}
-            </Text>
-            <Rating value={rating} readOnly />{' '}
-          </Group>
-        </div>
-      </Group>
-    )
-  }
 
   const items = reviews?.map((item) => (
     <Accordion.Item label={<AccordionLabel {...item} />} key={item.id}>
@@ -73,7 +70,7 @@ const ReviewbyRealtorId = () => {
         <Box>
           <Rating value={realtor?.averageRating} readOnly />
         </Box>
-        <Anchor href={`/recensioner/skriv`}>Skriv Recension</Anchor>
+        <Anchor href="/recensioner/skriv">Skriv Recension</Anchor>
       </Card>
 
       <Stack position="center" style={{ width: '100%' }} align="center">
@@ -86,9 +83,7 @@ const ReviewbyRealtorId = () => {
             {items}
           </Accordion>
         ) : (
-          <>
-            <Text> Det finns inga recensioner</Text>
-          </>
+          <Text> Det finns inga recensioner</Text>
         )}
       </Stack>
     </>

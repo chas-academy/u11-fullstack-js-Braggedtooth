@@ -10,7 +10,7 @@ const NewReview = () => {
   return (
     <>
       <Title> Skriv en Rescension</Title>
-      <Paper p={'lg'}>
+      <Paper p="lg">
         <ReviewForm />
       </Paper>{' '}
     </>

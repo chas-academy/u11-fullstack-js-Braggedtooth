@@ -67,26 +67,26 @@ function MyApp ({ Component, pageProps }) {
     primaryColor: 'orange',
   }
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-          <MantineProvider
-            emotionOptions={{ key: 'mvapp' }}
-            withGlobalStyles
-            withNormalizeCSS
-            theme={customTheme}
-
-          >
-            <NotificationsProvider position="top-right">
-              <StateMachineProvider>
-                {Component.getLayout && getLayout(<Component {...pageProps} />)}
-              </StateMachineProvider>
-            </NotificationsProvider>
-          </MantineProvider>
-          <ReactQueryDevtools/>
-        </ColorSchemeProvider>
-      </QueryClientProvider>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
+      >
+        <MantineProvider
+          emotionOptions={{ key: 'mvapp' }}
+          withGlobalStyles
+          withNormalizeCSS
+          theme={customTheme}
+        >
+          <NotificationsProvider position="top-right">
+            <StateMachineProvider>
+              {Component.getLayout && getLayout(<Component {...pageProps} />)}
+            </StateMachineProvider>
+          </NotificationsProvider>
+        </MantineProvider>
+        <ReactQueryDevtools />
+      </ColorSchemeProvider>
+    </QueryClientProvider>
   )
 }
 

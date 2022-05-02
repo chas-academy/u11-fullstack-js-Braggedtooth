@@ -6,13 +6,13 @@ import useStore from '../../services/hooks/useStore'
 import LoginForm from '../forms/Login'
 import Appbar from './Navbar'
 
+function CustomHeader({ toggle, opened }) {
+  return <Appbar setOpened={toggle} opened={opened} />
+}
+
 const Layout = ({ title, children, auth }) => {
   const router = useRouter()
   const { isLoggedIn } = useStore().store
-
-  function CustomHeader (props) {
-    return <Appbar setOpened={props.toggle} opened={props.opened}/>
-  }
 
   const [opened, setOpened] = useState(false)
   return (
@@ -32,7 +32,7 @@ const Layout = ({ title, children, auth }) => {
             toggle={setOpened}
           />
         }
-        styles={theme => ({
+        styles={(theme) => ({
           main: {
             backgroundColor:
               theme.colorScheme === 'dark'
@@ -42,13 +42,17 @@ const Layout = ({ title, children, auth }) => {
         })}
       >
         {!auth || isLoggedIn ? (
-          <Container style={{
-            height: '100%',
-            display: 'flex',
-            flexFlow: 'column',
-            alignItems: 'center',
-            maxWidth: '100%'
-          }}>{children}</Container>
+          <Container
+            style={{
+              height: '100%',
+              display: 'flex',
+              flexFlow: 'column',
+              alignItems: 'center',
+              maxWidth: '100%'
+            }}
+          >
+            {children}
+          </Container>
         ) : (
           <Modal
             centered
@@ -62,7 +66,7 @@ const Layout = ({ title, children, auth }) => {
                 Du måste logga in för att komma åt denna sidan
               </Text>
             </Center>
-            <LoginForm/>
+            <LoginForm />
           </Modal>
         )}
       </AppShell>
