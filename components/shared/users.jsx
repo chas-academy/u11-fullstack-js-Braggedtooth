@@ -21,68 +21,16 @@ import SearchNotFound from './SearchNotFound'
 import { UserListHead, AdminToolbar, AdminMoreMenu } from '../admin/user'
 import useUSers from '../../services/hooks/useUsers'
 import RegisterForm from '../forms/Register'
+import applyFilter from '../../services/lib/filter'
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
+  { id: 'lastname', label: 'Name', alignRight: false },
   { id: 'email', label: 'Email', alignRight: false },
   { id: 'role', label: 'Role', alignRight: false },
   { id: 'isVerified', label: 'Verified', alignRight: false },
   { id: 'status', label: 'Status', alignRight: false },
   { id: 'actions', label: 'Actions', alignRight: false }
 ]
-
-/**
- *
- * @param {*} a
- * @param {*} b
- * @param {*} orderBy
- * @returns
- */
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1
-  }
-  return 0
-}
-
-/**
- *
- * @param {*} order
- * @param {*} orderBy
- * @returns
- */
-function getComparator(order, orderBy) {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy)
-}
-
-/**
- *
- * @param {*} array
- * @param {*} comparator
- * @param {*} query
- * @returns
- */
-function applySortFilter(array, comparator, query) {
-  const stabilizedThis = array?.map((el, index) => [el, index])
-  stabilizedThis?.sort((a, b) => {
-    const order = comparator(a[0], b[0])
-    if (order !== 0) return order
-    return a[1] - b[1]
-  })
-  if (query) {
-    return filter(
-      array,
-      (_user) =>
-        _user.firstname.toLowerCase().indexOf(query.toLowerCase()) !== -1
-    )
-  }
-  return stabilizedThis?.map((el) => el[0])
-}
 
 export default function User() {
   const [page, setPage] = useState(0)
@@ -153,11 +101,7 @@ export default function User() {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0
 
-  const filteredUsers = applySortFilter(
-    USERLIST,
-    getComparator(order, orderBy),
-    filterName
-  )
+  const filteredUsers = applyFilter(USERLIST, order, orderBy, filterName)
 
   const isUserNotFound = filteredUsers?.length === 0
   const [userModal, setUserModal] = useState(false)
