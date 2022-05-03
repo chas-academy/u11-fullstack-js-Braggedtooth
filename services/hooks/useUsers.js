@@ -7,9 +7,11 @@ import {
   deleteUser,
   activateUser
 } from '../queries/users'
+import useStore from './useStore'
 
 const useUSers = () => {
   const client = useQueryClient()
+  const { isLoggedIn, user } = useStore().store
   const addUser = useMutation((data) => addUsers(data), {
     onSuccess: () => client.invalidateQueries('getUsers')
   })
@@ -31,6 +33,7 @@ const useUSers = () => {
     'getUsers',
     () => getAllUsers(),
     {
+      enabled: isLoggedIn && Boolean(user.role === 'ADMIN'),
       refetchInterval: false
     }
   )

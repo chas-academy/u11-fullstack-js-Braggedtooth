@@ -1,4 +1,4 @@
-import api from '../lib/apiCall'
+import api from '../lib/api'
 
 export const fetchUserReviews = () => {
   const config = { type: 'get', path: '/user/my-reviews' }

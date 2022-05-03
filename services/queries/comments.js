@@ -1,4 +1,4 @@
-import api from '../lib/apiCall'
+import api from '../lib/api'
 
 export const createComment = (data) => {
   const config = { type: 'post', path: '/comments/create', body: data }

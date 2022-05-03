@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { apiUrl } from './config'
 
-
 const getToken = () => {
   const store = sessionStorage.getItem('__LSM__')
   if (store) {

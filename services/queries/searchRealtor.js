@@ -1,8 +1,8 @@
-import apiCall from '../lib/apiCall'
+import api from '../lib/api'
 
 const searchRealtor = (query) => {
   const config = { type: 'get', path: '/r/search', params: { query } }
-  return apiCall(config)
+  return api(config)
 }
 
 export default searchRealtor

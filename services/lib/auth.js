@@ -1,4 +1,4 @@
-import api from './apiCall'
+import api from './api'
 
 export const login = async (user) => {
   return api({ path: '/signin', type: 'post', body: user })

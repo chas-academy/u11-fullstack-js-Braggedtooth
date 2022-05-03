@@ -1,5 +1,5 @@
 import { useMutation } from 'react-query'
-import { editProfile, login, voidToken } from '../lib/auth'
+import { editProfile, login } from '../lib/auth'
 import useStore from './useStore'
 
 const useProfile = () => {
@@ -16,12 +16,13 @@ const useProfile = () => {
     addUserToStore(user)
     editProfile(user)
   })
-  const { mutateAsync: LogOut } = useMutation(() => voidToken(), {
-    onSuccess: () => {
-      setAuth(false)
-      logout()
-    }
-  })
+  const LogOut = async () => {
+    logout()
+    setAuth(false)
+  }
+  
+    
+
   return {
     Login,
     LogOut,
