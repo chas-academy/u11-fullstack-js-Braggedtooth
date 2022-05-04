@@ -11,9 +11,12 @@ import {
   useMantineTheme,
   Container
 } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 import { Rating } from '@mui/material'
+import capitalize from 'lodash/capitalize'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import { RiDoubleQuotesL } from 'react-icons/ri'
 import Layout from '../../components/core/Layout'
 import NewComment from '../../components/forms/NewComment'
 import CommentItem from '../../components/shared/CommentItem'
@@ -21,6 +24,7 @@ import useReview from '../../services/hooks/useReview'
 import getTime from '../../services/lib/getTime'
 
 const Review = () => {
+  const media = useMediaQuery('(min-width: 900px)')
   const router = useRouter()
   const [reviewState, setState] = useState(false)
   const { review: id } = router.query
@@ -37,17 +41,22 @@ const Review = () => {
   }, [id, fetchReview])
 
   return reviewState ? (
-    <Container size="100%" style={{ minWidth: '60%' }}>
+    <Container size="100%" pl={0} pr={0}>
       <Stack style={{ width: '100%' }}>
         <>
-          <Group justify="apart" style={{ width: '90%' }}>
+          <Group position="apart">
             <Button color="cyan" onClick={() => router.back()}>
               Tillbaka
             </Button>
-            <Title align="center" order={3} style={{ margin: ' 0 auto' }}>
-              {reviewState.title}
-            </Title>
+            <Rating
+              value={reviewState.rating}
+              readOnly
+              sx={{ color: theme.colors.blue }}
+            />
           </Group>
+          <Title align="center" order={3}>
+            {capitalize(reviewState.title)}
+          </Title>
           <Blockquote
             cite={` - ${reviewState.authorName} ${
               getTime(reviewState.createdAt).date
@@ -57,21 +66,13 @@ const Review = () => {
               style={{ overflowWrap: 'break-word', wordWrap: ' break-word' }}
             >
               {reviewState.content}
-            </Text>{' '}
+            </Text>
           </Blockquote>
 
           <Stack align="end">
-            <Rating
-              value={reviewState.rating}
-              readOnly
-              sx={{ color: theme.colors.blue }}
-            />
-
-            <Group>
-              <Badge size="lg" variant="filled" color="cyan">
-                {reviewState.comments.length} Kommentarer
-              </Badge>
-            </Group>
+            <Badge size="lg" variant="filled" color="cyan">
+              {reviewState.comments.length} Kommentarer
+            </Badge>
           </Stack>
         </>
         <Group>

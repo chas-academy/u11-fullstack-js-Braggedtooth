@@ -1,5 +1,5 @@
 import { Input, InputWrapper, Loader, Container } from '@mantine/core'
-import { isEmpty } from 'lodash'
+import isEmpty from 'lodash/isEmpty'
 
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
