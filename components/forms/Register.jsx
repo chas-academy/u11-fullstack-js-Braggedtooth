@@ -70,7 +70,7 @@ const RegisterForm = ({ toggle, type }) => {
       })
       .catch((error) => {
         notifications.showNotification({
-          message: error.response.data.error.message,
+          message: error.response.data.error,
           color: 'red',
           icon: <BiError />
         })

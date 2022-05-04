@@ -70,7 +70,9 @@ const ReviewbyRealtorId = () => {
         <Box>
           <Rating value={realtor?.averageRating} readOnly />
         </Box>
-        <Anchor href="/recensioner/skriv">Skriv Recension</Anchor>
+        <Anchor href={`/recensioner/skriv?id=${realtor?.id}`}>
+          Skriv Recension
+        </Anchor>
       </Card>
 
       <Stack position="center" style={{ width: '100%' }} align="center">

@@ -1,5 +1,6 @@
 import { Anchor, Burger, Group, Header, Menu, MenuItem, Text, useMantineTheme } from '@mantine/core'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import {
   MdAttribution,
@@ -18,6 +19,7 @@ const MenuItems = () => {
   const [opened, setOpened] = useState(false)
   const { isLoggedIn, user } = useStore().store
   const theme = useMantineTheme()
+  const router = useRouter()
   return (
     <Menu
       placement="center"
@@ -63,7 +65,7 @@ const MenuItems = () => {
           icon={<MdLogout />}
           color="red"
           onClick={async () => {
-            await LogOut(undefined, undefined)
+            await LogOut().then(router.push('/'))
           }}
         >
           {' '}

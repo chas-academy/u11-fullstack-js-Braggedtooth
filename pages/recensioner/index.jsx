@@ -1,6 +1,7 @@
 import {
+  Center,
   Group,
-  LoadingOverlay,
+  Loader,
   SegmentedControl,
   Stack,
   Title
@@ -48,11 +49,10 @@ const Index = ({ user }) => {
       setfilteredView(view)
     }
   }, [view, filtered])
-  return (
+  return !isLoading || !userLoading ? (
     <Stack align="center">
-      <LoadingOverlay visible={isLoading || userLoading} />
       <Title>Recensioner</Title>
-      <Group>
+      <Group position="center">
         <SegmentedControl
           value={filter}
           onChange={(value) => handleSort(value)}
@@ -60,15 +60,15 @@ const Index = ({ user }) => {
             { label: 'Title', value: 'title' },
             { label: 'Betyg', value: 'rating' },
             { label: 'Datum', value: 'createdAt' },
-            { label: 'Gillningar', value: 'likes' }
+            { label: 'Antal Kommentarer', value: 'comments' }
           ]}
         />
         <SegmentedControl
           value={order}
           onChange={setOrder}
           data={[
-            { label: 'Ascending', value: 'asc' },
-            { label: 'Descending', value: 'desc' }
+            { label: 'Stigande', value: 'asc' },
+            { label: 'Fallande', value: 'desc' }
           ]}
         />
       </Group>
@@ -77,9 +77,19 @@ const Index = ({ user }) => {
         <h1> Du har inte skrivit några recensioner ännu</h1>
       )}
       {filteredView?.map((review) => {
-        return <ReviewItem key={review.id} data={review} />
+        return (
+          <ReviewItem
+            key={review.id}
+            data={review}
+            published={review.published}
+          />
+        )
       })}
     </Stack>
+  ) : (
+    <Center>
+      <Loader />
+    </Center>
   )
 }
 

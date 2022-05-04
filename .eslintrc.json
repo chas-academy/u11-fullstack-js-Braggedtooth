@@ -3,6 +3,7 @@
   "plugins": ["react", "prettier"],
   "rules": {
     "no-console": 0,
+    "no-unused-vars":"warn",
     "arrow-body-style": "off",
     "import/extensions": "off",
     "react/jsx-props-no-spreading": "off",

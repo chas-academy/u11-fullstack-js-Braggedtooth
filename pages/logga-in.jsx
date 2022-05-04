@@ -15,7 +15,7 @@ const Login = () => {
   }, [isLoggedIn, profile])
   return (
     !isLoggedIn && (
-      <Container>
+      <Container style={{ width: '100%' }}>
         <LoginForm />
       </Container>
     )

@@ -1,15 +1,18 @@
 import { useState } from 'react'
 import { useQuery } from 'react-query'
-import { capitalizeString } from '../lib/helpers'
+import { capitalize } from '../lib/helpers'
 import searchRealtor from '../queries/searchRealtor'
 
 const useSearch = () => {
   const [filter, setFilter] = useState('')
 
-  const { data, isLoading } = useQuery('getSearchResult', () => searchRealtor(capitalizeString(filter)), {
-    enabled: Boolean(filter),
-
-  })
+  const { data, isLoading } = useQuery(
+    'getSearchResult',
+    () => searchRealtor(capitalize(filter)),
+    {
+      enabled: Boolean(filter)
+    }
+  )
   return {
     search: setFilter,
     result: data?.data,
