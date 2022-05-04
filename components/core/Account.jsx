@@ -14,7 +14,7 @@ import {
 } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import { useNotifications } from '@mantine/notifications'
-import _ from 'lodash'
+import isEmpty from 'lodash/isEmpty'
 import React, { useState } from 'react'
 import { BsMoonStarsFill, BsSun } from 'react-icons/bs'
 import { MdCheck, MdError, MdInfo } from 'react-icons/md'
@@ -36,7 +36,7 @@ const Account = () => {
       role: user.role
     }
     const hasEdit = getChangedProps(user, newProps)
-    if (_.isEmpty(hasEdit)) {
+    if (isEmpty(hasEdit)) {
       showModal(false)
       notifications.showNotification({
         message: 'Din profile är oförändrad',
@@ -44,7 +44,7 @@ const Account = () => {
         icon: <MdInfo />
       })
     }
-    if (!_.isEmpty(hasEdit)) {
+    if (!isEmpty(hasEdit)) {
       EditProfile(data)
         .then(() => {
           showModal(false)

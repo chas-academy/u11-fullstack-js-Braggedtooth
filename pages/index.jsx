@@ -33,7 +33,12 @@ export default function Home () {
             <Title align="center" order={2}>
               Hitta och betygsätt{' '}
             </Title>
-            <Image src={animated} alt="Illustration of realtors" />
+            <Image
+              src={animated}
+              width="auto"
+              height="auto"
+              alt="Illustration of realtors"
+            />
           </Paper>
           <Paper
             shadow="sm"

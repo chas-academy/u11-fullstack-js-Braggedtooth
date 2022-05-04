@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useForm } from '@mantine/hooks'
-import { Button, Group, Text, Textarea, Paper, Stack } from '@mantine/core'
+import { Button, Group, Text, Textarea, Box, Stack } from '@mantine/core'
 import { useNotifications } from '@mantine/notifications'
 import { useMutation, useQueryClient } from 'react-query'
 import { createComment } from '../../services/queries/comments'
@@ -50,7 +50,7 @@ const NewComment = ({ id }) => {
   }, [form.values.content, charCount])
 
   return (
-    <Paper p="lg" style={{ width: '50%', margin: 'auto  ' }}>
+    <Box p="sm">
       <form onSubmit={form.onSubmit(onSubmit)}>
         <Stack>
           <Textarea
@@ -74,7 +74,7 @@ const NewComment = ({ id }) => {
           </Group>
         </Stack>
       </form>
-    </Paper>
+    </Box>
   )
 }
 export default NewComment
