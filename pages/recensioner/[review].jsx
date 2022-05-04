@@ -1,20 +1,28 @@
 import {
   Badge,
+  Blockquote,
   Button,
+  Card,
   Group,
+  Loader,
   LoadingOverlay,
   Paper,
   Stack,
   Text,
   Title,
   Tooltip,
-  useMantineTheme
+  Box,
+  useMantineTheme,
+  Container
 } from '@mantine/core'
 import { Rating } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import Layout from '../../components/core/Layout'
+import NewComment from '../../components/forms/NewComment'
+import CommentItem from '../../components/shared/CommentItem'
 import useReview from '../../services/hooks/useReview'
+import getTime from '../../services/lib/getTime'
 
 const Review = () => {
   const router = useRouter()
@@ -31,45 +39,57 @@ const Review = () => {
   useEffect(() => {
     fetchReview(id)
   }, [id, fetchReview])
-  return (
-    reviewState && (
-      <Stack sx={() => ({ root: { minWidth: '60%', height: '50%' } })}>
-        <LoadingOverlay visible={!reviewState} />
-        <Paper p="lg">
-          <Title align="center" order={3}>
-            {reviewState.title}
-          </Title>
-          <Text align="center" p="lg">
-            {reviewState.content}
-          </Text>
-          <Group align="end" position="apart">
-            <Group position="center">
-              <Text size="md">Skriven av: {reviewState.authorName}</Text>
-              <Rating
-                value={reviewState.rating}
-                readOnly
-                sx={{ color: theme.colors.blue }}
-              />
-            </Group>
-            <Group>
-              <Tooltip label="Klicka för att gilla">
-                <Badge size="lg" variant="filled" color="cyan">
-                  {reviewState.likes}
-                </Badge>
-              </Tooltip>
-            </Group>
+  return reviewState ? (
+    <Container size="100%" style={{ minWidth: '60%' }}>
+      <Stack style={{ width: '100%' }}>
+        <>
+          <Group justify="apart" style={{ width: '90%' }}>
+            <Button color="cyan" onClick={() => router.back()}>
+              Tillbaka
+            </Button>
+            <Title align="center" order={3} style={{ margin: ' 0 auto' }}>
+              {reviewState.title}
+            </Title>
           </Group>
-        </Paper>
-        <Button
-          color="blue"
-          mt="sm"
-          onClick={() => router.back()}
-          style={{ alignSelf: 'end' }}
-        >
-          Tillbaka
-        </Button>
+          <Blockquote
+            cite={` - ${reviewState.authorName} ${
+              getTime(reviewState.createdAt).date
+            }`}
+          >
+            <Text
+              style={{ overflowWrap: 'break-word', wordWrap: ' break-word' }}
+            >
+              {reviewState.content}
+            </Text>{' '}
+          </Blockquote>
+
+          <Stack align="end">
+            <Rating
+              value={reviewState.rating}
+              readOnly
+              sx={{ color: theme.colors.blue }}
+            />
+
+            <Group>
+              <Badge size="lg" variant="filled" color="cyan">
+                {reviewState.comments.length} Kommentarer
+              </Badge>
+            </Group>
+          </Stack>
+        </>
+        <Group>
+          <Paper withBorder shadow="sm" p="md" style={{ width: '100%' }}>
+            <Text>Kommentarer</Text>
+            {reviewState.comments.map((comment) => (
+              <CommentItem key={comment.id} comment={comment} />
+            ))}
+            <NewComment id={id} />
+          </Paper>
+        </Group>
       </Stack>
-    )
+    </Container>
+  ) : (
+    <Loader />
   )
 }
 

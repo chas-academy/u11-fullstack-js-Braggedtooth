@@ -77,7 +77,7 @@ function MyApp ({ Component, pageProps }) {
           withNormalizeCSS
           theme={customTheme}
         >
-          <NotificationsProvider position="top-right">
+          <NotificationsProvider position="top-center">
             <StateMachineProvider>
               {Component.getLayout && getLayout(<Component {...pageProps} />)}
             </StateMachineProvider>
