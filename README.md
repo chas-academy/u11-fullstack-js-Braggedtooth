@@ -36,4 +36,4 @@ yarn dev #start development server
 
 
 > [Api Documentation](https://gist.github.com/Braggedtooth/f2aa232de9a990c05c0d2a111f38e481)
-> [Hoppscotch Collection](/esraserver(1).json)
+> [Hoppscotch Collection](/esraserver.json)
