@@ -1,12 +1,14 @@
 import { Container, Input, InputWrapper, Loader } from '@mantine/core'
 import isEmpty from 'lodash/isEmpty'
+import dynamic from 'next/dynamic'
 
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { MdPersonSearch } from 'react-icons/md'
 import useDebounce from '../../services/hooks/useDebouce'
 import useSearch from '../../services/hooks/useSearch'
-import Results from './Results'
+
+const Results = dynamic(() => import('./Results'))
 
 const SearchReviews = () => {
   const { search, isLoading, result } = useSearch()

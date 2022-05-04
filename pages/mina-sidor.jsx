@@ -1,9 +1,11 @@
+import React, { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { Container, Tabs } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
-import React, { useState } from 'react'
-import Account from '../components/core/Account'
-import Layout from '../components/core/Layout'
-import Reviews from './recensioner'
+
+const Account = dynamic(() => import('../components/core/Account'))
+const Layout = dynamic(() => import('../components/core/Layout'))
+const Reviews = dynamic(() => import('./recensioner'))
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState(0)
