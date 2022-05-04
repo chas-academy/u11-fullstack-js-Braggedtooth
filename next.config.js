@@ -1,13 +1,23 @@
 const withImages = require('next-images')
-
-module.exports = {
-
+const withPlugins = require('next-compose-plugins')
+const withPWA = require('next-pwa')({
   reactStrictMode: true,
-  withImages,
+  pwa: {
+    dest: 'public',
+    register: true,
+    skipWaiting: true
+    /*   disable: process.env.NODE_ENV === 'development' */
+  }
+})
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true'
+})
+
+module.exports = withPlugins([[withBundleAnalyzer], withImages, withPWA], {
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL
   },
-  async redirects () {
+  async redirects() {
     return [
       {
         source: '/register',
@@ -16,4 +26,4 @@ module.exports = {
       }
     ]
   }
-}
+})
