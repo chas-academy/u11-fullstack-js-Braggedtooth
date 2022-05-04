@@ -28,7 +28,7 @@ const Review = () => {
   const router = useRouter()
   const [reviewState, setState] = useState(false)
   const { review: id } = router.query
-  const { fetchReview, review } = useReview()
+  const { fetchReview, review, error } = useReview()
   const theme = useMantineTheme()
   useEffect(() => {
     if (review) {
@@ -39,6 +39,7 @@ const Review = () => {
   useEffect(() => {
     fetchReview(id)
   }, [id, fetchReview])
+
   return reviewState ? (
     <Container size="100%" style={{ minWidth: '60%' }}>
       <Stack style={{ width: '100%' }}>
@@ -89,7 +90,15 @@ const Review = () => {
       </Stack>
     </Container>
   ) : (
-    <Loader />
+    <>
+      <Loader />
+      {error && (
+        <>
+          <Text>{error.response.data.error}</Text>
+          <Button onClick={() => router.back()}> Back</Button>
+        </>
+      )}
+    </>
   )
 }
 
