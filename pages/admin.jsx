@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Button, Text } from '@mantine/core'
-import dynamic from 'next/dynamic'
 import useStore from '../services/hooks/useStore'
 import Layout from '../components/core/Layout'
-
-const User = dynamic(() => import('../components/shared/users'))
+import User from '../components/shared/users'
 
 const Admin = () => {
   const router = useRouter()

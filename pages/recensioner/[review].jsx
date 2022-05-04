@@ -11,20 +11,20 @@ import {
   useMantineTheme,
   Container
 } from '@mantine/core'
-import dynamic from 'next/dynamic'
+import { useMediaQuery } from '@mantine/hooks'
 import { Rating } from '@mui/material'
 import capitalize from 'lodash/capitalize'
 import { useRouter } from 'next/router'
-
 import React, { useEffect, useState } from 'react'
+import { RiDoubleQuotesL } from 'react-icons/ri'
 import Layout from '../../components/core/Layout'
+import NewComment from '../../components/forms/NewComment'
+import CommentItem from '../../components/shared/CommentItem'
 import useReview from '../../services/hooks/useReview'
 import getTime from '../../services/lib/getTime'
 
-const CommentItem = dynamic(() => import('../../components/shared/CommentItem'))
-const NewComment = dynamic(() => import('../../components/forms/NewComment'))
-
 const Review = () => {
+  const media = useMediaQuery('(min-width: 900px)')
   const router = useRouter()
   const [reviewState, setState] = useState(false)
   const { review: id } = router.query

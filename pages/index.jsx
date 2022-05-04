@@ -1,14 +1,11 @@
 import { Button, Center, Container, List, MediaQuery, Paper, Title, useMantineTheme } from '@mantine/core'
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
-
 import { MdCheckCircle } from 'react-icons/md'
+import animated from '../assets/animated.svg'
+import Layout from '../components/core/Layout'
+import Search from '../components/core/Search'
 import Routes from '../services/routes'
 
-const animated = dynamic(() => import('../assets/animated.svg'))
-
-const Search = dynamic(() => import('../components/core/Search'))
-const Layout = dynamic(() => import('../components/core/Layout'))
 export default function Home () {
   const { login } = Routes()
   const theme = useMantineTheme()

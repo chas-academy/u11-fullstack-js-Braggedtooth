@@ -3,6 +3,7 @@ import {
   Stack,
   Accordion,
   Text,
+  Avatar,
   Card,
   Box,
   Anchor,
@@ -12,14 +13,25 @@ import { Rating } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import isEmpty from 'lodash/isEmpty'
-import dynamic from 'next/dynamic'
 import Layout from '../../components/core/Layout'
 import useReviewByRealtorsId from '../../services/hooks/useReviewByRealtorsId'
 
-const AccordionItem = dynamic(() =>
-  import('../../components/shared/AccordionItem')
-)
-
+function AccordionLabel({ title, authorName, rating }) {
+  return (
+    <Group noWrap>
+      <Avatar radius="xl" size="lg" />
+      <div>
+        <Text>{title}</Text>
+        <Group>
+          <Text size="sm" color="dimmed" weight={400}>
+            {authorName}
+          </Text>
+          <Rating value={rating} readOnly />{' '}
+        </Group>
+      </div>
+    </Group>
+  )
+}
 const ReviewbyRealtorId = () => {
   const router = useRouter()
   const { id } = router.query
@@ -32,6 +44,14 @@ const ReviewbyRealtorId = () => {
     }
   }, [fetchReviews, id])
 
+  const items = reviews?.map((item) => (
+    <Accordion.Item label={<AccordionLabel {...item} />} key={item.id}>
+      <Text size="sm" lineClamp={2}>
+        {item.content}
+      </Text>
+      <Anchor href={`/recensioner/${item.id}`}>Läs mer..</Anchor>
+    </Accordion.Item>
+  ))
   return !isLoading ? (
     <>
       <Card
@@ -62,7 +82,7 @@ const ReviewbyRealtorId = () => {
             iconPosition="right"
             style={{ width: '100%' }}
           >
-            {AccordionItem}
+            {items}
           </Accordion>
         ) : (
           <Text> Det finns inga recensioner</Text>

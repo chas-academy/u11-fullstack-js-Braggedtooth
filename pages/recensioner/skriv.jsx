@@ -1,10 +1,8 @@
-import React from 'react'
-import dynamic from 'next/dynamic'
 import { Container, Title, Loader, Center } from '@mantine/core'
 import { useRouter } from 'next/router'
+import React from 'react'
 import Layout from '../../components/core/Layout'
-
-const ReviewForm = dynamic(() => import('../../components/forms/NewReview'))
+import ReviewForm from '../../components/forms/NewReview'
 
 const NewReview = () => {
   const router = useRouter()

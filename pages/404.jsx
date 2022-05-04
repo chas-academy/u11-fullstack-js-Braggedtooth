@@ -17,7 +17,7 @@ const Custom404 = () => {
         height={500}
         color={theme.primaryColor}
       />
-      <Button onClick={() => router.back()}>Back</Button>
+      <Button>Back</Button>
     </Stack>
   )
 }

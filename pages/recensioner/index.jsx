@@ -6,16 +6,13 @@ import {
   Stack,
   Title
 } from '@mantine/core'
-import dynamic from 'next/dynamic'
 
 import React, { useState, useEffect, useCallback } from 'react'
 import Layout from '../../components/core/Layout'
-
+import ReviewItem from '../../components/shared/ReviewItem'
 import useReviews from '../../services/hooks/useReviews'
 import useUserReviews from '../../services/hooks/useUserReviews'
 import applyFilter from '../../services/lib/filter'
-
-const ReviewItem = dynamic(() => import('../../components/shared/ReviewItem'))
 
 const Index = ({ user }) => {
   const [order, setOrder] = useState('asc')

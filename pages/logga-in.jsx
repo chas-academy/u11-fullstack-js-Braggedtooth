@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
-import dynamic from 'next/dynamic'
 import { Container } from '@mantine/core'
+import React, { useEffect } from 'react'
 import Layout from '../components/core/Layout'
+import LoginForm from '../components/forms/Login'
 import useStore from '../services/hooks/useStore'
 import Routes from '../services/routes'
 
-const LoginForm = dynamic(() => import('../components/forms/Login'))
 const Login = () => {
   const { isLoggedIn } = useStore().store
   const { profile } = Routes()
