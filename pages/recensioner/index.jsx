@@ -2,7 +2,6 @@ import {
   Center,
   Group,
   Loader,
-  LoadingOverlay,
   SegmentedControl,
   Stack,
   Title

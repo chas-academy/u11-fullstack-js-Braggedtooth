@@ -1,4 +1,4 @@
-import { Container, Paper, Tabs } from '@mantine/core'
+import { Container, Tabs } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import React, { useState } from 'react'
 import Account from '../components/core/Account'
