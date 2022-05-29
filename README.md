@@ -23,7 +23,7 @@ yarn install #install dependencies
 # or
 yarn dev #start development server
 ```
-## Admin Login 
+## Admin Login  : [url](https://mv.bayo.se/admin)
 > email : admin@admin.com
 > password : !Adminpassword1
 
