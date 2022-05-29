@@ -23,6 +23,10 @@ yarn install #install dependencies
 # or
 yarn dev #start development server
 ```
+## Admin Login 
+> email : admin@admin.com
+> password : !Adminpassword1
+
 
 ## Things to Improve
 ### Backend
