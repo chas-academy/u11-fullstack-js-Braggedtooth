@@ -1,1 +1,642 @@
-{"name":"esraserver","requests":[],"folders":[{"folders":[],"name":"Auth","requests":[{"v":"1","endpoint":"http://localhost:3103/signup","name":"signup","params":[],"headers":[],"method":"POST","auth":{"addTo":"Headers","key":"","authType":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjQ4NjA1NTAwNDA5LCJleHAiOjE2NDg2MDU1MTA0MDl9.us_-9E8dxIf1hpzHkcky904Xk2ZEaP924dCRcmp3BhY","authActive":true,"value":""},"preRequestScript":"","testScript":"","body":{"contentType":"application/json","body":"{\n  \"email\":\"me@bayo.se\",\n  \"password\":\"maxadloss13!\",\n  \"firstname\": \"Munjatd\",\n  \"lastname\": \"Misade\"\n}"}},{"v":"1","endpoint":"http://localhost:3103/signin","name":"signin","params":[],"headers":[],"method":"POST","auth":{"authType":"none","token":"","addTo":"Headers","value":"","key":"","authActive":true},"preRequestScript":"","testScript":"","body":{"contentType":"application/json","body":"{\n  \"email\":\"anmemail@em.com\",\n  \"password\":\"miangadA13151!\"\n}"}},{"headers":[],"name":"currentuser","endpoint":"http://localhost:3103/user/me","params":[],"v":"1","auth":{"key":"","value":"","addTo":"Headers","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ","authActive":true,"authType":"bearer"},"testScript":"","preRequestScript":"","body":{"contentType":"application/json","body":"{\n  \"realtorId\":\"6243a1856fc7a41b9441bb6a\"\n}"},"method":"GET"}],"v":1},{"folders":[],"requests":[{"headers":[],"testScript":"","body":{"body":"","contentType":"application/json"},"method":"GET","auth":{"key":"","authType":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjQ4NjA1NTAwNDA5LCJleHAiOjE2NDg2MDU1MTA0MDl9.us_-9E8dxIf1hpzHkcky904Xk2ZEaP924dCRcmp3BhY","addTo":"Headers","authActive":true,"value":""},"name":"Get All Realtors","preRequestScript":"","v":"1","params":[{"key":"page","active":true,"value":"2"}],"endpoint":"http://localhost:3103/realtor"},{"endpoint":"http://localhost:3103/realtor/get","body":{"contentType":"application/json","body":""},"testScript":"","params":[{"key":"realtorId","active":true,"value":"6243a1856fc7a41b9441bb6a"}],"v":"1","method":"GET","headers":[],"auth":{"value":"","key":"","authActive":true,"authType":"bearer","addTo":"Headers","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjQ4NjA1NTAwNDA5LCJleHAiOjE2NDg2MDU1MTA0MDl9.us_-9E8dxIf1hpzHkcky904Xk2ZEaP924dCRcmp3BhY"},"preRequestScript":"","name":"Get Realtor by ID"},{"v":"1","endpoint":"http://localhost:3103/r/search","name":"Search Realtors","params":[{"key":"query","value":"Luca","active":true}],"headers":[],"method":"GET","auth":{"key":"","value":"","addTo":"Headers","authActive":true,"authType":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjQ4NjA1NTAwNDA5LCJleHAiOjE2NDg2MDU1MTA0MDl9.us_-9E8dxIf1hpzHkcky904Xk2ZEaP924dCRcmp3BhY"},"preRequestScript":"","testScript":"","body":{"body":"","contentType":"application/json"}},{"v":"1","endpoint":"http://localhost:3103/realtor/company","name":"Get Realtors By Company ID","params":[{"active":true,"key":"companyId","value":"62439ea06fc7a41b9441a076"}],"headers":[],"method":"GET","auth":{"value":"","authActive":true,"authType":"bearer","addTo":"Headers","key":"","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjQ4NjA1NTAwNDA5LCJleHAiOjE2NDg2MDU1MTA0MDl9.us_-9E8dxIf1hpzHkcky904Xk2ZEaP924dCRcmp3BhY"},"preRequestScript":"","testScript":"","body":{"body":"","contentType":"application/json"}}],"name":"Realtors","v":1},{"requests":[{"preRequestScript":"","testScript":"","name":"Get Review By Realtors ID","body":{"body":"{\n  \"realtorId\":\"6243a1856fc7a41b9441bb6a\"\n}","contentType":"application/json"},"params":[{"key":"realtorId","active":true,"value":"6243a1856fc7a41b9441b86a"}],"endpoint":"http://localhost:3103/reviews/realtor","auth":{"authActive":true,"key":"","addTo":"Headers","authType":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ","value":""},"headers":[],"method":"GET","v":"1"},{"v":"1","endpoint":"http://localhost:3103/reviews/review","name":"Fetch Review By Review ID","params":[{"key":"id","value":"624f68c6fc13ae31ad000090","active":true}],"headers":[],"method":"GET","auth":{"authType":"bearer","authActive":true,"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUxMjY5MTY0OTM0LCJleHAiOjE2NTEyNzA5NjQ5MzR9.4yDyzFx8K0veLZY6wfuqjmd05rDevDwEHHf-L36_g1c"},"preRequestScript":"","testScript":"","body":{"body":null,"contentType":null}},{"v":"1","endpoint":"http://localhost:3103/reviews/all","name":"Fetch All Reviews","params":[],"headers":[],"method":"GET","auth":{"authType":"bearer","authActive":true,"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUxMjY5MTY0OTM0LCJleHAiOjE2NTEyNzA5NjQ5MzR9.4yDyzFx8K0veLZY6wfuqjmd05rDevDwEHHf-L36_g1c"},"preRequestScript":"","testScript":"","body":{"body":null,"contentType":null}},{"v":"1","endpoint":"http://localhost:3103/reviews/create","name":"Create Review","params":[],"headers":[],"method":"POST","auth":{"authActive":true,"key":"","addTo":"Headers","authType":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ","value":""},"preRequestScript":"","testScript":"","body":{"body":"{\n  \"realtorsId\":\"6243a1856fc7a41b9441bb6a\",\n\t\"title\": \"how i met your sister\",\n\t\"content\":\" season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32\",\n  \t\"rating\": 3\n}","contentType":"application/json"}},{"v":"1","endpoint":"http://localhost:3103/reviews/edit","name":"Edit Review","params":[],"headers":[],"method":"POST","auth":{"authActive":true,"key":"","addTo":"Headers","authType":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ","value":""},"preRequestScript":"","testScript":"","body":{"body":"{\n  \"id\":\"626f05d10da5450f8ea69390\",\n\t\"title\": \"A bing bang theory\",\n\t\"content\":\"Vero dolore ut ut consequat amet accusam feugait duo. Sea ipsum aliquip nibh duo justo stet ipsum et eum elitr diam sea amet lorem eros dolor ut tempor. Consetetur elit sed assum rebum dolore lorem elitr quis ipsum feugiat dolore. Illum justo justo dolor at illum feugait et sit. Qui sed adipiscing at justo et voluptua lorem et accusam illum gubergren eum commodo dolores stet sea nonumy. Tempor ea duo sadipscing dolores amet magna duo et accusam. Dolor sadipscing iriure in velit kasd quis odio. At dolore lorem vero kasd no erat dolor accusam. Erat invidunt accusam vel. Takimata dolor labore sit stet. Ipsum dolor et aliquam eum et dolore sea sea est. Tempor sea feugiat labore invidunt amet dolore nulla suscipit vulputate dolor. Ut magna sadipscing elitr at. Eirmod voluptua sit eos at autem vel dolores. Ipsum dolor justo eirmod rebum erat euismod. Sit lorem feugait ut ullamcorper odio tincidunt.\"\n  \n}","contentType":"application/json"}},{"v":"1","endpoint":"http://localhost:3103/reviews/publish","name":"Publish Review","params":[],"headers":[],"method":"PUT","auth":{"authActive":true,"key":"","addTo":"Headers","authType":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ","value":""},"preRequestScript":"","testScript":"","body":{"body":"{\n  \"id\":\"626f05d10da5450f8ea69390\"\n  \n}","contentType":"application/json"}},{"v":"1","endpoint":"http://localhost:3103/reviews/delete","name":"Delete Review","params":[],"headers":[],"method":"DELETE","auth":{"authActive":true,"key":"","addTo":"Headers","authType":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ","value":""},"preRequestScript":"","testScript":"","body":{"body":"{\n  \"id\":\"626f05d10da5450f8ea69390\"\n  \n}","contentType":"application/json"}}],"name":"Reviews","v":1,"folders":[]},{"requests":[{"v":"1","endpoint":"http://localhost:3103/admin/all-users","name":"Get All Users","params":[],"headers":[],"method":"GET","auth":{"authType":"bearer","authActive":true,"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUxMjY5MTY0OTM0LCJleHAiOjE2NTEyNzA5NjQ5MzR9.4yDyzFx8K0veLZY6wfuqjmd05rDevDwEHHf-L36_g1c"},"preRequestScript":"","testScript":"","body":{"body":null,"contentType":null}},{"preRequestScript":"","name":"Add User","v":"1","auth":{"authActive":true,"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUxMjY5MTY0OTM0LCJleHAiOjE2NTEyNzA5NjQ5MzR9.4yDyzFx8K0veLZY6wfuqjmd05rDevDwEHHf-L36_g1c","authType":"bearer"},"testScript":"","endpoint":"http://localhost:3103/admin/addUser","method":"POST","headers":[],"body":{"contentType":null,"body":null},"params":[{"active":true,"value":"\"\",","key":"email"},{"active":true,"value":"\"\",","key":"password"},{"value":"\"\",","active":true,"key":"firstname"},{"key":"lastname","active":true,"value":"\"\""}]},{"v":"1","endpoint":"http://localhost:3103/admin/change-role","name":"Change Role","params":[],"headers":[],"method":"PUT","auth":{"authType":"bearer","authActive":true,"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MTM1ODY2OTgzMywiZXhwIjoxNjUxMzYwNDY5ODMzfQ.t7WVzNmEKCRrC9uRvLaHPoih62ujITJTVkI__X0QtWY"},"preRequestScript":"","testScript":"","body":{"contentType":"application/json","body":"{\n  \"id\":\"6244d6498625a93555d4351d\",\n  \"role\":\"ADMIN\"\n}"}},{"v":"1","endpoint":"http://localhost:3103/admin/delete-user","name":"Delete User","params":[],"headers":[],"method":"PUT","auth":{"authType":"bearer","authActive":true,"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MTM1ODY2OTgzMywiZXhwIjoxNjUxMzYwNDY5ODMzfQ.t7WVzNmEKCRrC9uRvLaHPoih62ujITJTVkI__X0QtWY"},"preRequestScript":"","testScript":"","body":{"contentType":"application/json","body":"{\n  \"id\":\"6244d6498625a93555d4351d\",\n  \"role\":\"USER\"\n}"}},{"v":"1","endpoint":"http://localhost:3103/admin/ban-user","name":"Ban User","params":[],"headers":[],"method":"PUT","auth":{"authType":"bearer","authActive":true,"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MTM1ODY2OTgzMywiZXhwIjoxNjUxMzYwNDY5ODMzfQ.t7WVzNmEKCRrC9uRvLaHPoih62ujITJTVkI__X0QtWY"},"preRequestScript":"","testScript":"","body":{"contentType":"application/json","body":"{\n  \"id\":\"6244d6498625a93555d4351d\",\n  \"role\":\"USER\"\n}"}}],"folders":[],"name":"Admin","v":1},{"v":1,"name":"Users","folders":[],"requests":[{"v":"1","endpoint":"http://localhost:3103/admin/activate-user","name":"Activate Account","params":[],"headers":[],"method":"PUT","auth":{"authType":"bearer","authActive":true,"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MTM1ODY2OTgzMywiZXhwIjoxNjUxMzYwNDY5ODMzfQ.t7WVzNmEKCRrC9uRvLaHPoih62ujITJTVkI__X0QtWY"},"preRequestScript":"","testScript":"","body":{"contentType":"application/json","body":"{\n  \"id\":\"6244d6498625a93555d4351d\",\n  \"role\":\"USER\"\n}"}},{"v":"1","endpoint":"http://localhost:3103/admin/request-delete","name":"Request Delete","params":[],"headers":[],"method":"PUT","auth":{"authType":"bearer","authActive":true,"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MTM1ODY2OTgzMywiZXhwIjoxNjUxMzYwNDY5ODMzfQ.t7WVzNmEKCRrC9uRvLaHPoih62ujITJTVkI__X0QtWY"},"preRequestScript":"","testScript":"","body":{"contentType":"application/json","body":"{\n  \"id\":\"6244d6498625a93555d4351d\",\n  \"role\":\"USER\"\n}"}},{"v":"1","endpoint":"http://localhost:3103/user/my-reviews","name":"Fetch User Reviews","params":[],"headers":[],"method":"GET","auth":{"authType":"bearer","authActive":true,"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUxMjY5MTY0OTM0LCJleHAiOjE2NTEyNzA5NjQ5MzR9.4yDyzFx8K0veLZY6wfuqjmd05rDevDwEHHf-L36_g1c"},"preRequestScript":"","testScript":"","body":{"body":null,"contentType":null}},{"v":"1","endpoint":"http://localhost:3103/user/edit-profile","name":"Edit Profile","params":[{"key":"email","value":"changedEmail@mails.com","active":true},{"active":true,"key":"firstname","value":"Benny"},{"key":"lastname","value":"Honduras","active":true}],"headers":[],"method":"POST","auth":{"addTo":"Headers","key":"","authType":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjQ4NjA1NTAwNDA5LCJleHAiOjE2NDg2MDU1MTA0MDl9.us_-9E8dxIf1hpzHkcky904Xk2ZEaP924dCRcmp3BhY","authActive":true,"value":""},"preRequestScript":"","testScript":"","body":{"contentType":"application/json","body":"{\n  \"realtorId\":\"6243a1856fc7a41b9441bb6a\"\n}"}}]},{"v":1,"name":"Comments","folders":[],"requests":[{"v":"1","endpoint":"http://localhost:3103/comments/create","name":"Create Comment","params":[],"headers":[],"method":"POST","auth":{"authActive":true,"key":"","addTo":"Headers","authType":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ","value":""},"preRequestScript":"","testScript":"","body":{"body":"{\n  \"reviewId\":\"627168c7a65ed39d0fbcad72\",\n   \"content\":\"a comment\"\n}","contentType":"application/json"}},{"v":"1","endpoint":"http://localhost:3103/comments/delete","name":"Delete Comment","params":[],"headers":[],"method":"DELETE","auth":{"authActive":true,"key":"","addTo":"Headers","authType":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ","value":""},"preRequestScript":"","testScript":"","body":{"body":"{\n  \"id\":\"6271787d6050b873600dcf81\"\n  \n}","contentType":"application/json"}}]}],"v":1}
+{
+    "name": "esraserver",
+    "requests": [],
+    "folders": [
+        {
+            "folders": [],
+            "name": "Auth",
+            "requests": [
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/signup",
+                    "name": "signup",
+                    "params": [],
+                    "headers": [],
+                    "method": "POST",
+                    "auth": {
+                        "addTo": "Headers",
+                        "key": "",
+                        "authType": "bearer",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjQ4NjA1NTAwNDA5LCJleHAiOjE2NDg2MDU1MTA0MDl9.us_-9E8dxIf1hpzHkcky904Xk2ZEaP924dCRcmp3BhY",
+                        "authActive": true,
+                        "value": ""
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"email\":\"me@bayo.se\",\n  \"password\":\"maxadloss13!\",\n  \"firstname\": \"Munjatd\",\n  \"lastname\": \"Misade\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/signin",
+                    "name": "signin",
+                    "params": [],
+                    "headers": [],
+                    "method": "POST",
+                    "auth": {
+                        "authType": "none",
+                        "token": "",
+                        "addTo": "Headers",
+                        "value": "",
+                        "key": "",
+                        "authActive": true
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"email\":\"anmemail@em.com\",\n  \"password\":\"miangadA13151!\"\n}"
+                    }
+                },
+                {
+                    "headers": [],
+                    "name": "currentuser",
+                    "endpoint": "http://localhost:3103/user/me",
+                    "params": [],
+                    "v": "1",
+                    "auth": {
+                        "key": "",
+                        "value": "",
+                        "addTo": "Headers",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ",
+                        "authActive": true,
+                        "authType": "bearer"
+                    },
+                    "testScript": "",
+                    "preRequestScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"realtorId\":\"6243a1856fc7a41b9441bb6a\"\n}"
+                    },
+                    "method": "GET"
+                }
+            ],
+            "v": 1
+        },
+        {
+            "folders": [],
+            "requests": [
+                {
+                    "headers": [],
+                    "testScript": "",
+                    "body": {
+                        "body": "",
+                        "contentType": "application/json"
+                    },
+                    "method": "GET",
+                    "auth": {
+                        "key": "",
+                        "authType": "bearer",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjQ4NjA1NTAwNDA5LCJleHAiOjE2NDg2MDU1MTA0MDl9.us_-9E8dxIf1hpzHkcky904Xk2ZEaP924dCRcmp3BhY",
+                        "addTo": "Headers",
+                        "authActive": true,
+                        "value": ""
+                    },
+                    "name": "Get All Realtors",
+                    "preRequestScript": "",
+                    "v": "1",
+                    "params": [
+                        {
+                            "key": "page",
+                            "active": true,
+                            "value": "2"
+                        }
+                    ],
+                    "endpoint": "http://localhost:3103/realtor"
+                },
+                {
+                    "endpoint": "http://localhost:3103/realtor/get",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": ""
+                    },
+                    "testScript": "",
+                    "params": [
+                        {
+                            "key": "realtorId",
+                            "active": true,
+                            "value": "6243a1856fc7a41b9441bb6a"
+                        }
+                    ],
+                    "v": "1",
+                    "method": "GET",
+                    "headers": [],
+                    "auth": {
+                        "value": "",
+                        "key": "",
+                        "authActive": true,
+                        "authType": "bearer",
+                        "addTo": "Headers",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjQ4NjA1NTAwNDA5LCJleHAiOjE2NDg2MDU1MTA0MDl9.us_-9E8dxIf1hpzHkcky904Xk2ZEaP924dCRcmp3BhY"
+                    },
+                    "preRequestScript": "",
+                    "name": "Get Realtor by ID"
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/r/search",
+                    "name": "Search Realtors",
+                    "params": [
+                        {
+                            "key": "query",
+                            "value": "Luca",
+                            "active": true
+                        }
+                    ],
+                    "headers": [],
+                    "method": "GET",
+                    "auth": {
+                        "key": "",
+                        "value": "",
+                        "addTo": "Headers",
+                        "authActive": true,
+                        "authType": "bearer",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjQ4NjA1NTAwNDA5LCJleHAiOjE2NDg2MDU1MTA0MDl9.us_-9E8dxIf1hpzHkcky904Xk2ZEaP924dCRcmp3BhY"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "body": "",
+                        "contentType": "application/json"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/realtor/company",
+                    "name": "Get Realtors By Company ID",
+                    "params": [
+                        {
+                            "active": true,
+                            "key": "companyId",
+                            "value": "62439ea06fc7a41b9441a076"
+                        }
+                    ],
+                    "headers": [],
+                    "method": "GET",
+                    "auth": {
+                        "value": "",
+                        "authActive": true,
+                        "authType": "bearer",
+                        "addTo": "Headers",
+                        "key": "",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjQ4NjA1NTAwNDA5LCJleHAiOjE2NDg2MDU1MTA0MDl9.us_-9E8dxIf1hpzHkcky904Xk2ZEaP924dCRcmp3BhY"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "body": "",
+                        "contentType": "application/json"
+                    }
+                }
+            ],
+            "name": "Realtors",
+            "v": 1
+        },
+        {
+            "requests": [
+                {
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "name": "Get Review By Realtors ID",
+                    "body": {
+                        "body": "{\n  \"realtorId\":\"6243a1856fc7a41b9441bb6a\"\n}",
+                        "contentType": "application/json"
+                    },
+                    "params": [
+                        {
+                            "key": "realtorId",
+                            "active": true,
+                            "value": "6243a1856fc7a41b9441b86a"
+                        }
+                    ],
+                    "endpoint": "http://localhost:3103/reviews/realtor",
+                    "auth": {
+                        "authActive": true,
+                        "key": "",
+                        "addTo": "Headers",
+                        "authType": "bearer",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ",
+                        "value": ""
+                    },
+                    "headers": [],
+                    "method": "GET",
+                    "v": "1"
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/reviews/review",
+                    "name": "Fetch Review By Review ID",
+                    "params": [
+                        {
+                            "key": "id",
+                            "value": "624f68c6fc13ae31ad000090",
+                            "active": true
+                        }
+                    ],
+                    "headers": [],
+                    "method": "GET",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUxMjY5MTY0OTM0LCJleHAiOjE2NTEyNzA5NjQ5MzR9.4yDyzFx8K0veLZY6wfuqjmd05rDevDwEHHf-L36_g1c"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "body": null,
+                        "contentType": null
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/reviews/all",
+                    "name": "Fetch All Reviews",
+                    "params": [],
+                    "headers": [],
+                    "method": "GET",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUxMjY5MTY0OTM0LCJleHAiOjE2NTEyNzA5NjQ5MzR9.4yDyzFx8K0veLZY6wfuqjmd05rDevDwEHHf-L36_g1c"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "body": null,
+                        "contentType": null
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/reviews/create",
+                    "name": "Create Review",
+                    "params": [],
+                    "headers": [],
+                    "method": "POST",
+                    "auth": {
+                        "authActive": true,
+                        "key": "",
+                        "addTo": "Headers",
+                        "authType": "bearer",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ",
+                        "value": ""
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "body": "{\n  \"realtorsId\":\"6243a1856fc7a41b9441bb6a\",\n\t\"title\": \"how i met your sister\",\n\t\"content\":\" season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32season 2 ep 12 14:22:32\",\n  \t\"rating\": 3\n}",
+                        "contentType": "application/json"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/reviews/edit",
+                    "name": "Edit Review",
+                    "params": [],
+                    "headers": [],
+                    "method": "POST",
+                    "auth": {
+                        "authActive": true,
+                        "key": "",
+                        "addTo": "Headers",
+                        "authType": "bearer",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ",
+                        "value": ""
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "body": "{\n  \"id\":\"626f05d10da5450f8ea69390\",\n\t\"title\": \"A bing bang theory\",\n\t\"content\":\"Vero dolore ut ut consequat amet accusam feugait duo. Sea ipsum aliquip nibh duo justo stet ipsum et eum elitr diam sea amet lorem eros dolor ut tempor. Consetetur elit sed assum rebum dolore lorem elitr quis ipsum feugiat dolore. Illum justo justo dolor at illum feugait et sit. Qui sed adipiscing at justo et voluptua lorem et accusam illum gubergren eum commodo dolores stet sea nonumy. Tempor ea duo sadipscing dolores amet magna duo et accusam. Dolor sadipscing iriure in velit kasd quis odio. At dolore lorem vero kasd no erat dolor accusam. Erat invidunt accusam vel. Takimata dolor labore sit stet. Ipsum dolor et aliquam eum et dolore sea sea est. Tempor sea feugiat labore invidunt amet dolore nulla suscipit vulputate dolor. Ut magna sadipscing elitr at. Eirmod voluptua sit eos at autem vel dolores. Ipsum dolor justo eirmod rebum erat euismod. Sit lorem feugait ut ullamcorper odio tincidunt.\"\n  \n}",
+                        "contentType": "application/json"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/reviews/publish",
+                    "name": "Publish Review",
+                    "params": [],
+                    "headers": [],
+                    "method": "PUT",
+                    "auth": {
+                        "authActive": true,
+                        "key": "",
+                        "addTo": "Headers",
+                        "authType": "bearer",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ",
+                        "value": ""
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "body": "{\n  \"id\":\"626f05d10da5450f8ea69390\"\n  \n}",
+                        "contentType": "application/json"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/reviews/delete",
+                    "name": "Delete Review",
+                    "params": [],
+                    "headers": [],
+                    "method": "DELETE",
+                    "auth": {
+                        "authActive": true,
+                        "key": "",
+                        "addTo": "Headers",
+                        "authType": "bearer",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ",
+                        "value": ""
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "body": "{\n  \"id\":\"626f05d10da5450f8ea69390\"\n  \n}",
+                        "contentType": "application/json"
+                    }
+                }
+            ],
+            "name": "Reviews",
+            "v": 1,
+            "folders": []
+        },
+        {
+            "requests": [
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/admin/all-users",
+                    "name": "Get All Users",
+                    "params": [],
+                    "headers": [],
+                    "method": "GET",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUxMjY5MTY0OTM0LCJleHAiOjE2NTEyNzA5NjQ5MzR9.4yDyzFx8K0veLZY6wfuqjmd05rDevDwEHHf-L36_g1c"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "body": null,
+                        "contentType": null
+                    }
+                },
+                {
+                    "preRequestScript": "",
+                    "name": "Add User",
+                    "v": "1",
+                    "auth": {
+                        "authActive": true,
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUxMjY5MTY0OTM0LCJleHAiOjE2NTEyNzA5NjQ5MzR9.4yDyzFx8K0veLZY6wfuqjmd05rDevDwEHHf-L36_g1c",
+                        "authType": "bearer"
+                    },
+                    "testScript": "",
+                    "endpoint": "http://localhost:3103/admin/addUser",
+                    "method": "POST",
+                    "headers": [],
+                    "body": {
+                        "contentType": null,
+                        "body": null
+                    },
+                    "params": [
+                        {
+                            "active": true,
+                            "value": "\"\",",
+                            "key": "email"
+                        },
+                        {
+                            "active": true,
+                            "value": "\"\",",
+                            "key": "password"
+                        },
+                        {
+                            "value": "\"\",",
+                            "active": true,
+                            "key": "firstname"
+                        },
+                        {
+                            "key": "lastname",
+                            "active": true,
+                            "value": "\"\""
+                        }
+                    ]
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/admin/change-role",
+                    "name": "Change Role",
+                    "params": [],
+                    "headers": [],
+                    "method": "PUT",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MTM1ODY2OTgzMywiZXhwIjoxNjUxMzYwNDY5ODMzfQ.t7WVzNmEKCRrC9uRvLaHPoih62ujITJTVkI__X0QtWY"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"id\":\"6244d6498625a93555d4351d\",\n  \"role\":\"ADMIN\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/admin/delete-user",
+                    "name": "Delete User",
+                    "params": [],
+                    "headers": [],
+                    "method": "PUT",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MTM1ODY2OTgzMywiZXhwIjoxNjUxMzYwNDY5ODMzfQ.t7WVzNmEKCRrC9uRvLaHPoih62ujITJTVkI__X0QtWY"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"id\":\"6244d6498625a93555d4351d\",\n  \"role\":\"USER\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/admin/ban-user",
+                    "name": "Ban User",
+                    "params": [],
+                    "headers": [],
+                    "method": "PUT",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MTM1ODY2OTgzMywiZXhwIjoxNjUxMzYwNDY5ODMzfQ.t7WVzNmEKCRrC9uRvLaHPoih62ujITJTVkI__X0QtWY"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"id\":\"6244d6498625a93555d4351d\",\n  \"role\":\"USER\"\n}"
+                    }
+                }
+            ],
+            "folders": [],
+            "name": "Admin",
+            "v": 1
+        },
+        {
+            "v": 1,
+            "name": "Users",
+            "folders": [],
+            "requests": [
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/admin/activate-user",
+                    "name": "Activate Account",
+                    "params": [],
+                    "headers": [],
+                    "method": "PUT",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MTM1ODY2OTgzMywiZXhwIjoxNjUxMzYwNDY5ODMzfQ.t7WVzNmEKCRrC9uRvLaHPoih62ujITJTVkI__X0QtWY"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"id\":\"6244d6498625a93555d4351d\",\n  \"role\":\"USER\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/admin/request-delete",
+                    "name": "Request Delete",
+                    "params": [],
+                    "headers": [],
+                    "method": "PUT",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MTM1ODY2OTgzMywiZXhwIjoxNjUxMzYwNDY5ODMzfQ.t7WVzNmEKCRrC9uRvLaHPoih62ujITJTVkI__X0QtWY"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"id\":\"6244d6498625a93555d4351d\",\n  \"role\":\"USER\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/user/my-reviews",
+                    "name": "Fetch User Reviews",
+                    "params": [],
+                    "headers": [],
+                    "method": "GET",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUxMjY5MTY0OTM0LCJleHAiOjE2NTEyNzA5NjQ5MzR9.4yDyzFx8K0veLZY6wfuqjmd05rDevDwEHHf-L36_g1c"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "body": null,
+                        "contentType": null
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/user/edit-profile",
+                    "name": "Edit Profile",
+                    "params": [
+                        {
+                            "key": "email",
+                            "value": "changedEmail@mails.com",
+                            "active": true
+                        },
+                        {
+                            "active": true,
+                            "key": "firstname",
+                            "value": "Benny"
+                        },
+                        {
+                            "key": "lastname",
+                            "value": "Honduras",
+                            "active": true
+                        }
+                    ],
+                    "headers": [],
+                    "method": "POST",
+                    "auth": {
+                        "addTo": "Headers",
+                        "key": "",
+                        "authType": "bearer",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjQ4NjA1NTAwNDA5LCJleHAiOjE2NDg2MDU1MTA0MDl9.us_-9E8dxIf1hpzHkcky904Xk2ZEaP924dCRcmp3BhY",
+                        "authActive": true,
+                        "value": ""
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"realtorId\":\"6243a1856fc7a41b9441bb6a\"\n}"
+                    }
+                }
+            ]
+        },
+        {
+            "v": 1,
+            "name": "Comments",
+            "folders": [],
+            "requests": [
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/comments/create",
+                    "name": "Create Comment",
+                    "params": [],
+                    "headers": [],
+                    "method": "POST",
+                    "auth": {
+                        "authActive": true,
+                        "key": "",
+                        "addTo": "Headers",
+                        "authType": "bearer",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ",
+                        "value": ""
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "body": "{\n  \"reviewId\":\"627168c7a65ed39d0fbcad72\",\n   \"content\":\"a comment\"\n}",
+                        "contentType": "application/json"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://localhost:3103/comments/delete",
+                    "name": "Delete Comment",
+                    "params": [],
+                    "headers": [],
+                    "method": "DELETE",
+                    "auth": {
+                        "authActive": true,
+                        "key": "",
+                        "addTo": "Headers",
+                        "authType": "bearer",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YiI6IjYyNDNiOWQwYTUwY2M5NTQ3NmYyY2RkOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjUwMTk5MTQwODA0LCJleHAiOjE2NTAyMDA5NDA4MDR9.u-j1MhppXOVrM4ukfj_AfCJ-NQXRmi0GGNffvoB7bcQ",
+                        "value": ""
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "body": "{\n  \"id\":\"6271787d6050b873600dcf81\"\n  \n}",
+                        "contentType": "application/json"
+                    }
+                }
+            ]
+        }
+    ],
+    "v": 1
+}
