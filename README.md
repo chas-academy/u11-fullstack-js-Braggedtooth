@@ -38,11 +38,13 @@ yarn dev #start development server
 - Typescript 
 - Improve mobile support on admin page
 
+> [Wireframe](https://gist.github.com/Braggedtooth/07e0dbf654d5176d5285f7b321f2c765)
+> 
+> [User Stories and persona](https://gist.github.com/Braggedtooth/abe48cb325c0b3a08e3030125a5ebe85)
+> 
+> [Api Documentation](https://gist.github.com/Braggedtooth/f2aa232de9a990c05c0d2a111f38e481)
+
+
 ### [Hoppscotch](https://hoppscotch.io/)
 - Import esraserver.json to hoppscotch
-
-> [Wireframe](https://gist.github.com/Braggedtooth/07e0dbf654d5176d5285f7b321f2c765)
-> [User Stories and persona](https://gist.github.com/Braggedtooth/abe48cb325c0b3a08e3030125a5ebe85)
-> [Api Documentation](https://gist.github.com/Braggedtooth/f2aa232de9a990c05c0d2a111f38e481)
-> 
 > [Hoppscotch Collection](/esraserver.json)
